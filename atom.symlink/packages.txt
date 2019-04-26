@@ -1,0 +1,14 @@
+atom-ide-debugger-react-native@0.7.3
+atom-ide-ui@0.13.0
+atom-react-native-style@0.2.0
+busy-signal@2.0.1
+file-icons@2.1.31
+ide-flowtype@0.24.0
+intentions@1.1.5
+language-babel@2.85.0
+linter@2.3.0
+linter-eslint@8.5.5
+linter-ui-default@1.7.1
+prettier-atom@0.56.4
+react-native-snippets@0.3.0
+
