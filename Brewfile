@@ -6,6 +6,7 @@ tap 'caskroom/cask'
 
 #brew 'ack'
 #brew 'coreutils'
+brew 'awscli'
 brew 'antigen'
 brew 'git'
 brew 'go'
