@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-PIP_PREFIX="/usr/local/bin/pip"
+
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+rm -f get-pip.py
+
+PIP_PREFIX="sudo /usr/local/bin/pip"
 
 echo "> installing python global packages"
 # Install global Python packages
