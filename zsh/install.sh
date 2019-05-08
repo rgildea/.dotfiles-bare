@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # Set up ZSH to be installed and default shell
 
-#echo '> brew install szh'
-#brew install zsh
-sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+echo '> brew install szh'
+brew install zsh
 
 echo '> sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh'
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
