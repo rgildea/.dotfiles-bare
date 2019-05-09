@@ -38,6 +38,7 @@ brew 'wget'
 brew 'yarn'
 #brew 'youtube-dl'
 brew 'zsh'
+brew 'zlib'
 
 # cask '1password'
 # cask 'adium'

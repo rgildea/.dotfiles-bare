@@ -19,3 +19,9 @@ cd fonts
 # clean-up a bit
 cd ..
 rm -rf fonts
+
+
+## download the patched menlo font and install it too
+## see here for instructions on the fonts and colors: https://gist.github.com/kevin-smets/8568070
+## download the iTerm2 colors and run it to apply them
+# open ${https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark%20-%20Patched.itermcolors
