@@ -28,6 +28,11 @@ do
   source $file
 done
 
+
+# Disable flow control commands (keeps C-s from freezing everything)
+stty start undef
+stty stop undef
+
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
