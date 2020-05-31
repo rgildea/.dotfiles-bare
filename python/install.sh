@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
+# pyenv global 3.7.3
 
+echo "installing pip"
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 rm -f get-pip.py
 
-PIP_PREFIX="sudo /usr/local/bin/pip"
+PIP_PREFIX="sudo -H python -m pip"
 
 echo "> installing python global packages"
 # Install global Python packages
