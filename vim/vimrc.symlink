@@ -1,0 +1,75 @@
+colorscheme jellybeans
+
+" Leader Mappings
+let mapleader = "\<Space>"
+nmap <leader>vr :tabedit $MYVIMRC<cr>
+nmap <leader>so :source $MYVIMRC<cr>
+nmap <leader>F :Files .<cr>
+
+" Custom Mappings
+imap jk <esc>
+imap kj <esc>
+imap <C-s> <esc>:w<cr>
+map <C-s> :w<cr>
+nmap 0 ^
+
+nnoremap <leader>rap  :RAddParameter<cr>
+nnoremap <leader>rcpc :RConvertPostConditional<cr>
+nnoremap <leader>rel  :RExtractLet<cr>
+vnoremap <leader>rec  :RExtractConstant<cr>
+vnoremap <leader>relv :RExtractLocalVariable<cr>
+nnoremap <leader>rit  :RInlineTemp<cr>
+vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+vnoremap <leader>rem  :RExtractMethod<cr>
+
+" Options
+set number
+set scrolloff=4
+set history=1000
+set backspace=indent,eol,start
+set colorcolumn=80,100
+
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/site/pack/git-plugins/start)
+call plug#begin('~/.vim/plugged')
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+
+" Syntax Highlighting And Indentation For 100+ Languages
+"Plug 'sheerun/vim-polyglot'
+
+Plug 'dense-analysis/ale'
+
+" Fuzzy Search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Autocompletion, Linting & Intellisense
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+" Plug 'SirVer/ultisnips'
+
+" Ruby/Rails
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'ecomba/vim-ruby-refactoring'
+
+" Utilities
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-surround'
+Plug 'ervandew/supertab'
+" Plug 'tpope/vim-bundle'
+Plug 'jwhitley/vim-matchit'
+Plug 'chiel92/vim-autoformat'
+
+call plug#end()
+
+" Paths
+let g:python3_host_prog='/usr/local/bin/python3'
+
+" Autoformat Configuration
+au BufWrite * :Autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 1
+let g:autoformat_remove_trailing_spaces = 1

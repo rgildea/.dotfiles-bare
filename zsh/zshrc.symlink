@@ -28,6 +28,11 @@ do
   source $file
 done
 
+
+# Disable flow control commands (keeps C-s from freezing everything)
+stty start undef
+stty stop undef
+
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
@@ -51,3 +56,4 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
