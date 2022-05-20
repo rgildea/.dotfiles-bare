@@ -15,7 +15,7 @@
         branch = auto
         ui = true
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/ryan/.gitignore
         editor = vim
 [apply]
         whitespace = nowarn
@@ -65,3 +65,6 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[user]
+	name = Ryan Gildea
+	email = ryangildea@gmail.com
