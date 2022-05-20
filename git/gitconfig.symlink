@@ -68,3 +68,5 @@
 [user]
 	name = Ryan Gildea
 	email = ryangildea@gmail.com
+[init]
+	hints = false
