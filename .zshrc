@@ -81,9 +81,27 @@ fpath=($HOME/.asdf/completions $fpath)
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git dotbare asdf)
+plugins=(
+	1password
+	git
+	dotbare 
+	asdf 
+	colored-man-pages 
+	colorize 
+	pip 
+	python 
+	brew 
+	common-aliases
+	web-search
+	copyfile
+	macos
+	zsh-autosuggestions
+)
+
+
 
 source $ZSH/oh-my-zsh.sh
+eval "$(op completion zsh)"; compdef _op op
 
 # User configuration
 
@@ -102,15 +120,24 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+export DOTBARE_DIR="$HOME/.cfg"
+export DOTBARE_TREE="$HOME"
+
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
+alias e="vim"
 alias zshconfig="vim ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias ohmyzsh="e ~/.oh-my-zsh"
+#alias dotbare='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config=dotbare
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Set up syntax highlighting
+source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
