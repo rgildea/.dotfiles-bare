@@ -84,18 +84,17 @@ fpath=($HOME/.asdf/completions $fpath)
 plugins=(
 	1password
 	git
-	dotbare 
-	asdf 
-	colored-man-pages 
-	colorize 
-	pip 
-	python 
-	brew 
+	dotbare
+	asdf
+	colored-man-pages
+	colorize
+	pip
+	python
+	brew
 	common-aliases
 	web-search
 	copyfile
 	macos
-	zsh-autosuggestions
 )
 
 
@@ -141,3 +140,9 @@ alias config=dotbare
 # Set up syntax highlighting
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+#Set up zsh-autosuggestionss
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
+
+#Set up zsh-autocomplete
+source $HOME/repos/zsh-autocomplete/zsh-autocomplete.plugin.zsh
