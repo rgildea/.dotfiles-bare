@@ -121,7 +121,9 @@ eval "$(op completion zsh)"; compdef _op op
 
 export DOTBARE_DIR="$HOME/.cfg"
 export DOTBARE_TREE="$HOME"
-
+export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
