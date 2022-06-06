@@ -133,6 +133,8 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="e ~/.oh-my-zsh"
 #alias dotbare='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config=dotbare
+source $HOME/.aliases.zsh
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
