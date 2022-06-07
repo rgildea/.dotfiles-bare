@@ -33,38 +33,29 @@
         default = simple
 [credential]
 	helper = osxkeychain
-        
+
+[diff]
+	tool = Kaleidoscope
+
+[difftool]
+	prompt = false
+
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
-# If you want to set up Kaleidoscope as the default diff tool,
-# then also set the following variables:
-[difftool]
-	prompt = false
-[diff]
-	tool = Kaleidoscope
-			
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
-
-# If you want to set up Kaleidoscope as the default merge tool,
-# then also set the following variables:
-[mergetool]
-	prompt = false
 [merge]
 	tool = Kaleidoscope
-			
+
+[mergetool]
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
 
 [commit]
 	template = /Users/ryan/.stCommitMsg
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [user]
 	name = Ryan Gildea
 	email = ryangildea@gmail.com
