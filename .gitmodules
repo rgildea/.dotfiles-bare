@@ -1,3 +1,6 @@
 [submodule "repos/zsh-autocomplete"]
 	path = repos/zsh-autocomplete
 	url = https://github.com/marlonrichert/zsh-autocomplete.git
+[submodule ".janus/vim-rails"]
+	path = .janus/vim-rails
+	url = https://github.com/tpope/vim-rails.git
