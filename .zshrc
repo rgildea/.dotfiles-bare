@@ -119,6 +119,10 @@ eval "$(op completion zsh)"; compdef _op op
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+
+# bindkey "[D" backward-word # ALT-left-arrow  ⌥ + ←
+# bindkey "[C" forward-word  # ALT-right-arrow ⌥ + →
+
 export DOTBARE_DIR="$HOME/.cfg"
 export DOTBARE_TREE="$HOME"
 export FZF_DEFAULT_COMMAND="fd . $HOME"
@@ -150,3 +154,5 @@ bindkey '^ ' autosuggest-accept
 
 #Set up zsh-autocomplete
 source $HOME/repos/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
