@@ -17,3 +17,5 @@ alias gum='git checkout master && git fetch && git pull'
 
 #git-flow
 alias gf=git-flow
+
+alias gsubmodules="git config --file .gitmodules --get-regexp path | awk '{ print $3 }'"
