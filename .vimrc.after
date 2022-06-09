@@ -1,0 +1,13 @@
+set tags=./tags
+
+" Leader Mappigns
+let mapleader = "\<Space>"
+nmap <leader>vr :tabedit $MYVIMRC<cr>
+nmap <leader>so :source $MYVIMRC<cr>
+nmap <leader>F :Files .<cr>
+
+" Custom Mappings
+imap jk <esc>
+imap kj <esc>
+imap <C-s> <esc>:w<cr>
+imap 0 ^
