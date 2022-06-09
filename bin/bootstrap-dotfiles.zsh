@@ -51,7 +51,6 @@ declare -A ZSH_CUSTOM_PLUGINS
 ZSH_CUSTOM_PLUGINS_DIR=~/.oh-my-zsh/custom/plugins
 
 ZSH_CUSTOM_PLUGINS[dotbare]="git clone https://github.com/kazhala/dotbare.git $ZSH_CUSTOM_PLUGINS_DIR/dotbare"
-ZSH_CUSTOM_PLUGINS[dotbare]="git clone https://github.com/kazhala/dotbare.git $ZSH_CUSTOM_PLUGINS_DIR/dotbare"
 
 ZSH_CUSTOM_PLUGINS[zsh-autocomplete]="git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM_PLUGINS_DIR/zsh-syntax-highlighting"
 
@@ -67,7 +66,7 @@ for plugin plugin_install_cmd in ${(kv)ZSH_CUSTOM_PLUGINS}; do
   if [ -d $ZSH_CUSTOM_PLUGINS_DIR/$plugin ]
   then
     output "${plugin} already installed...skipping"
-  else 
+  else
     if [[ ! $DRY_RUN = true ]]
     then
       # install plugin

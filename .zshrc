@@ -148,7 +148,7 @@ source $HOME/.aliases.zsh
 # Set up syntax highlighting
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#Set up zsh-autosuggestionss
+#Set up zsh-autosuggestions
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
