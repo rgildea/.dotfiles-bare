@@ -146,7 +146,7 @@ source $HOME/.aliases.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Set up syntax highlighting
-source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #Set up zsh-autosuggestions
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
