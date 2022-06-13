@@ -10,4 +10,3 @@ nmap <leader>F :Files .<cr>
 imap jk <esc>
 imap kj <esc>
 imap <C-s> <esc>:w<cr>
-imap 0 ^

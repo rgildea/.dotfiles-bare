@@ -10,4 +10,3 @@ imap jk <esc>
 imap kj <esc>
 imap <C-s> <esc>:w<cr>
 map <C-s> :w<cr>
-nmap 0 ^
