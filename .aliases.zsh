@@ -19,3 +19,6 @@ alias gum='git checkout master && git fetch && git pull'
 alias gf=git-flow
 
 alias gsubmodules="git config --file .gitmodules --get-regexp path | awk '{ print $3 }'"
+
+#heroku
+alias gph='git push heroku'
