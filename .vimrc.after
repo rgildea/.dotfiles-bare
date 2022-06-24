@@ -10,3 +10,11 @@ nmap <leader>F :Files .<cr>
 imap jk <esc>
 imap kj <esc>
 imap <C-s> <esc>:w<cr>
+
+" Prettier config
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat_config_present = 1
+let g:prettier#autoformat_require_pragma = 0
+" let g:prettier#quickfix_enabled = 0
+" autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+
