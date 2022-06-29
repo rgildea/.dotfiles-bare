@@ -13,3 +13,9 @@
 [submodule "repos/zsh-autosuggestions"]
 	path = repos/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".janus/vim-surround"]
+	path = .janus/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule ".janus/auto-pairs"]
+	path = .janus/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
