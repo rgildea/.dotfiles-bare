@@ -17,6 +17,7 @@
 [core]
 	excludesfile = /Users/ryan/.gitignore
         editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -63,3 +64,5 @@
 	hints = false
 [pull]
 	rebase = true
+[interactive]
+	diffFilter = diff-so-fancy --patch
