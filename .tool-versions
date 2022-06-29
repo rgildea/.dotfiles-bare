@@ -2,3 +2,4 @@ ruby 3.1.2
 nodejs 18.3.0
 yarn 1.22.19
 sqlite 3.38.5
+python 3.10.5
