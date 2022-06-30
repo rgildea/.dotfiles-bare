@@ -11,6 +11,14 @@ imap jk <esc>
 imap kj <esc>
 imap <C-s> <esc>:w<cr>
 
+" Easily move lines and blocks up and down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " Prettier config
 let g:prettier#exec_cmd_async = 1
 let g:prettier#autoformat_config_present = 1
@@ -18,8 +26,8 @@ let g:prettier#autoformat_require_pragma = 0
 " let g:prettier#quickfix_enabled = 0
 " autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 
-" call janus#disable_plugin('syntastic')
 " syntastic config
+" call janus#disable_plugin('syntastic')
 let g:syntastic_mode_map = { "mode": "active" }
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:syntastic_javascript_eslint_exec = 'npm'
