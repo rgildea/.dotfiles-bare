@@ -22,3 +22,6 @@ alias gsubmodules="git config --file .gitmodules --get-regexp path | awk '{ prin
 
 #heroku
 alias gph='git push heroku'
+
+# dotfiles
+alias clog="config log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
