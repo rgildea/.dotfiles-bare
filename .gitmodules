@@ -22,3 +22,6 @@
 [submodule ".janus/copilot.vim"]
 	path = .janus/copilot.vim
 	url = https://github.com/github/copilot.vim
+[submodule ".janus/vim-prettier"]
+	path = .janus/vim-prettier
+	url = https://github.com/prettier/vim-prettier.git
