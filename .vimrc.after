@@ -59,3 +59,5 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
+
+let g:copilot_node_command = "~/.asdf/installs/nodejs/lts/bin/node"

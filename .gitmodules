@@ -19,3 +19,6 @@
 [submodule ".janus/auto-pairs"]
 	path = .janus/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule ".janus/copilot.vim"]
+	path = .janus/copilot.vim
+	url = https://github.com/github/copilot.vim
