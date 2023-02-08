@@ -1,5 +1,4 @@
 tap "1password/tap"
-tap "espanso/espanso"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
