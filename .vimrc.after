@@ -62,7 +62,8 @@ map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<
 
 let g:copilot_node_command = "~/.asdf/installs/nodejs/lts/bin/node"
 
-color molokai
+" color molokai
+color base16-darktooth
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
