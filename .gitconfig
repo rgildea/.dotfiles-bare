@@ -1,68 +1,86 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
-[hub]
-#        protocol = https
-[alias]
-        co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
-        count   = !git shortlog -sn
+[user]
+        name = Ryan Gildea
+        email = ryangildea@gmail.com
+[credential]
+        helper = osxkeychain
+[url "git@github.com:"]
+        insteadOf = https://github.com/
+[merge]
+        tool = Kaleidoscope
+[mergetool]
+        keepBackup = false
+        prompt = false
+[mergetool "Kaleidoscope"]
+        cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
+[pull]
+        rebase = true
+[push]
+        default = simple
+        autoSetupRemote = true
+[fetch]
+        prune = true
+[rebase]
+        autoSquash = true
+        autosquash = true
+[log]
+        abbrevCommit = true
+        decorate = auto
+[pretty]
+        pretty = oneline
+[status]
+        short = true
+        branch = true
+[alias]        
+        count                   = !git shortlog -sn
+        force-push              = push --force-with-lease
+        br                      = branch
+        ci                      = commit
+        co                      = checkout
+        cp                      = cherry-pick
+        fp                      = force-push
+        promote                 = !$ZSH/bin/git-promote
+        rank-contributors       = !$ZSH/bin/git-rank-contributors
+        rb                      = rebase
+        st                      = status
+        unstage                 = reset --quiet HEAD
+        uncommit                = reset --mixed HEAD~
+        wtf                     = !$ZSH/bin/git-wtf
+[apply]
+        whitespace = nowarn
 [color]
         diff = auto
         status = auto
         branch = auto
         ui = true
+[commit]
+        template = /Users/ryan/.stCommitMsg
 [core]
-	excludesfile = /Users/ryan/.gitignore
+        excludesfile = /Users/ryan/.gitignore
         editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RFX
-[apply]
-        whitespace = nowarn
-[mergetool]
-        keepBackup = false
+        pager = diff-so-fancy | less --tabs=4 -RFX
+[diff]
+        #tool = Kaleidoscope
+        tool = vimdiff
 [difftool]
         prompt = false
+[difftool "vimdiff"]
+        cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+[difftool "Kaleidoscope"]
+        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [help]
         autocorrect = 1
-[push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
-        default = simple
-[credential]
-	helper = osxkeychain
-
-[diff]
-	tool = Kaleidoscope
-
-[difftool]
-	prompt = false
-
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-
-[merge]
-	tool = Kaleidoscope
-
-[mergetool]
-	prompt = false
-
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
-
-[commit]
-	template = /Users/ryan/.stCommitMsg
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[user]
-	name = Ryan Gildea
-	email = ryangildea@gmail.com
+[hub]
+#        protocol = https
 [init]
-	hints = false
-[pull]
-	rebase = true
+        hints = false
 [interactive]
-	diffFilter = diff-so-fancy --patch
+        diffFilter = diff-so-fancy --patch
+
+
+
+
+
+
