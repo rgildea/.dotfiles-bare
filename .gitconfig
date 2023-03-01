@@ -33,7 +33,7 @@
 [status]
         short = true
         branch = true
-[alias]        
+[alias]
         count                   = !git shortlog -sn
         force-push              = push --force-with-lease
         br                      = branch
@@ -54,16 +54,17 @@
         diff = auto
         status = auto
         branch = auto
-        ui = true
+	ui = true
 [commit]
         template = /Users/ryan/.stCommitMsg
 [core]
         excludesfile = /Users/ryan/.gitignore
         editor = vim
-        pager = diff-so-fancy | less --tabs=4 -RFX
+      	pager = diff-so-fancy | less --tabs=4 -RFX
 [diff]
         #tool = Kaleidoscope
-        tool = vimdiff
+        # tool = vimdiff
+        tool = delta
 [difftool]
         prompt = false
 [difftool "vimdiff"]
@@ -76,11 +77,18 @@
 #        protocol = https
 [init]
         hints = false
-[interactive]
-        diffFilter = diff-so-fancy --patch
 
-
-
-
-
-
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+	first-run = false

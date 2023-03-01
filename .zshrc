@@ -68,6 +68,18 @@ COMPLETION_WAITING_DOTS="true"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
+export HISTFILE=~/.zsh_history                         # Set history file location
+export HISTSIZE=10000                                  # More history in memory
+export SAVEHIST=10000                                  # More history on disk
+setopt INC_APPEND_HISTORY                              # Append history incrementally
+setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
+
+# ================ Hub =====================================
+
+# Delete Git's official completions to allow Zsh's official Git completions to work.
+# This is also necessary for hub's Zsh completions to work:
+# https://github.com/github/hub/issues/1956
+[ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
