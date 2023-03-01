@@ -154,6 +154,20 @@ alias ohmyzsh="e ~/.oh-my-zsh"
 alias config=dotbare
 source $HOME/.aliases.zsh
 
+# ================ Better Versions =========================
+
+alias git='hub'
+alias cat='bat'
+alias less='bat'
+# alias diff='delta'
+alias find='fdfind'
+alias top='htop'
+alias ps='procs'
+alias ls='exa'
+alias grep='rg'
+alias ping='prettyping --nolegend'
+alias df='duf'
+alias du='dust'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
