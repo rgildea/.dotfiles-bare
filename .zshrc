@@ -88,6 +88,11 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 # Source asdf completions prior to oh-my-zsh running it's own compinit.
 fpath=($HOME/.asdf/completions $fpath)
 
+# ngrok completions
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion &>/dev/null)"
+fi
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/

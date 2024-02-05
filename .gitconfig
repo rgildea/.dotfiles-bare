@@ -92,3 +92,49 @@
 	whitespace = red reverse
 [diff-so-fancy]
 	first-run = false
+[push]
+        # See `git help config` (search for push.default)
+        # for more information on different options of the below setting.
+        #
+        # Setting to git 2.0 default to suppress warning message
+        default = simple
+[credential]
+	helper = osxkeychain
+
+[diff]
+	tool = Kaleidoscope
+
+[difftool]
+	prompt = false
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+	tool = Kaleidoscope
+
+[mergetool]
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
+
+[commit]
+	template = /Users/ryan/.stCommitMsg
+	gpgsign = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[user]
+	name = Ryan Gildea
+	email = ryangildea@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPl3BvmPDHLgP/b/sKhYaBRE+ZTGzveAa00D4DIwZXPs
+[init]
+	hints = false
+[pull]
+	rebase = true
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
