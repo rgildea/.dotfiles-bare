@@ -100,64 +100,47 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	1password
-	git
+	ag
+	alias-finder
+	aliases
+	#git
 	dotbare
 	asdf
 	colored-man-pages
 	colorize
 	pip
-	python
+	# python
 	brew
-	common-aliases
-	web-search
+	#common-aliases
+	#web-search
 	copyfile
 	macos
+	thefuck
 )
-
-
 
 source $ZSH/oh-my-zsh.sh
 eval "$(op completion zsh)"; compdef _op op
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-
-# bindkey "[D" backward-word # ALT-left-arrow  ⌥ + ←
-# bindkey "[C" forward-word  # ALT-right-arrow ⌥ + →
-
 export DOTBARE_DIR="$HOME/.cfg"
 export DOTBARE_TREE="$HOME"
+# export DOTBARE_FZF_DEFAULT_OPTS="--preview-window=right:65%"
+export DOTBARE_DIFF_PAGER="delta --diff-so-fancy --line-numbers"
 export FZF_DEFAULT_COMMAND="fd . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-
+export FZF_DEFAULT_OPTS='--layout=reverse --border'
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-alias e="vim"
-alias zshconfig="vim ~/.zshrc"
+alias e="code"
+alias zshconfig="e ~/.zshrc"
 alias ohmyzsh="e ~/.oh-my-zsh"
 #alias dotbare='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config=dotbare
-source $HOME/.aliases.zsh
+# source $HOME/.aliases.zsh
 
 # ================ Better Versions =========================
 
@@ -168,11 +151,11 @@ alias less='bat'
 alias find='fdfind'
 alias top='htop'
 alias ps='procs'
-alias ls='exa'
+# alias ls='eza'
 alias grep='rg'
 alias ping='prettyping --nolegend'
-alias df='duf'
-alias du='dust'
+# alias df='duf'
+# alias du='dust'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

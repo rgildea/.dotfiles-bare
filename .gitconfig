@@ -2,19 +2,17 @@
 [include]
         path = ~/.gitconfig.local
 [user]
-        name = Ryan Gildea
+	name = Ryan Gildea
         email = ryangildea@gmail.com
+        signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPl3BvmPDHLgP/b/sKhYaBRE+ZTGzveAa00D4DIwZXPs
 [credential]
         helper = osxkeychain
+[gpg]
+        format = ssh
+[gpg "ssh"]
+        program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [url "git@github.com:"]
         insteadOf = https://github.com/
-[merge]
-        tool = Kaleidoscope
-[mergetool]
-        keepBackup = false
-        prompt = false
-[mergetool "Kaleidoscope"]
-        cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
 [pull]
         rebase = true
 [push]
@@ -24,7 +22,6 @@
         prune = true
 [rebase]
         autoSquash = true
-        autosquash = true
 [log]
         abbrevCommit = true
         decorate = auto
@@ -56,28 +53,39 @@
         branch = auto
 	ui = true
 [commit]
-        template = /Users/ryan/.stCommitMsg
+	template = /Users/ryan/.stCommitMsg
+	gpgsign = true
 [core]
         excludesfile = /Users/ryan/.gitignore
-        editor = vim
-      	pager = diff-so-fancy | less --tabs=4 -RFX
+        editor = code
+        pager = delta # diff-so-fancy | less --tabs=4 -RFX
+        whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [diff]
-        #tool = Kaleidoscope
-        # tool = vimdiff
-        tool = delta
+	# tool = Kaleidoscope
+        colorMoved = default
 [difftool]
-        prompt = false
-[difftool "vimdiff"]
-        cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+	prompt = false
+	trustExitCode = true
 [difftool "Kaleidoscope"]
-        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[interactive]
+        diffFilter = delta --color-only
+        # diffFilter = diff-so-fancy --patch
+[delta]
+        navigate = true    # use n and N to move between diff sections
+        light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+        line-numbers = true
+        side-by-side = true
+[merge]
+        conflictstyle = diff3
+	# tool = Kaleidoscope
+[mergetool]
+	prompt = false
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
 [help]
         autocorrect = 1
-[hub]
-#        protocol = https
-[init]
-        hints = false
-
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -90,51 +98,3 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[diff-so-fancy]
-	first-run = false
-[push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
-        default = simple
-[credential]
-	helper = osxkeychain
-
-[diff]
-	tool = Kaleidoscope
-
-[difftool]
-	prompt = false
-
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-
-[merge]
-	tool = Kaleidoscope
-
-[mergetool]
-	prompt = false
-
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
-
-[commit]
-	template = /Users/ryan/.stCommitMsg
-	gpgsign = true
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[user]
-	name = Ryan Gildea
-	email = ryangildea@gmail.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPl3BvmPDHLgP/b/sKhYaBRE+ZTGzveAa00D4DIwZXPs
-[init]
-	hints = false
-[pull]
-	rebase = true
-[interactive]
-	diffFilter = diff-so-fancy --patch
-[gpg]
-	format = ssh
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

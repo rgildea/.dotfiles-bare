@@ -4,14 +4,6 @@ tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "ngrok/ngrok"
-<<<<<<< HEAD
-tap "romkatv/powerlevel10k"
-brew "ack"
-brew "readline", link: true
-brew "asdf"
-brew "bat"
-brew "openssl@1.1"
-=======
 tap "puma/puma"
 tap "romkatv/powerlevel10k"
 brew "ack"
@@ -19,26 +11,21 @@ brew "antigen"
 brew "asdf"
 brew "python@3.11"
 brew "awscli"
->>>>>>> 16d2a59 (minor updates)
 brew "ctags"
 brew "diff-so-fancy"
 brew "duf"
 brew "dust"
-brew "exa"
+brew "eza"
 brew "fd"
 brew "fzf"
 brew "gawk"
 brew "gh"
 brew "git"
-<<<<<<< HEAD
 brew "git-delta"
-=======
 brew "git-flow"
->>>>>>> 16d2a59 (minor updates)
 brew "gnupg"
 brew "grc"
 brew "highlight"
-<<<<<<< HEAD
 brew "htop"
 brew "hub"
 brew "libzip"
@@ -46,12 +33,8 @@ brew "most"
 brew "postgresql@14"
 brew "prettyping"
 brew "procs"
-brew "python@3.10"
-brew "redis", restart_service: true
 brew "ripgrep"
 brew "srt"
-brew "starship"
-=======
 brew "hub"
 brew "jenv"
 brew "mkcert"
@@ -63,7 +46,6 @@ brew "pyenv"
 brew "rbenv"
 brew "redis", restart_service: true
 brew "ssh-copy-id"
->>>>>>> 16d2a59 (minor updates)
 brew "the_silver_searcher"
 brew "tldr"
 brew "tree"
@@ -81,23 +63,18 @@ brew "romkatv/powerlevel10k/powerlevel10k"
 cask "1password"
 cask "1password-cli"
 cask "alfred"
-<<<<<<< HEAD
 cask "cheatsheet"
 cask "docker"
 cask "kaleidoscope"
 cask "ngrok"
 cask "postman"
-=======
 cask "alt-tab"
 cask "caffeine"
 cask "cheatsheet"
 cask "ngrok"
->>>>>>> 16d2a59 (minor updates)
 cask "stats"
 cask "tiles"
 cask "visual-studio-code"
-<<<<<<< HEAD
-=======
 vscode "alefragnani.project-manager"
 vscode "architect.architect"
 vscode "burkeholland.simple-react-snippets"
@@ -149,4 +126,3 @@ vscode "ugross.vscode-react-snippets"
 vscode "vincaslt.highlight-matching-tag"
 vscode "wingrunr21.vscode-ruby"
 vscode "zignd.html-css-class-completion"
->>>>>>> 16d2a59 (minor updates)
