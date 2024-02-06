@@ -1,5 +1,5 @@
-ruby 3.1.2
+ruby 3.2.0
 nodejs lts
 yarn 1.22.19
-sqlite 3.39.2
-python 3.10.5
+sqlite 3.45.1
+python 3.12.1
