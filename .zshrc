@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -90,7 +90,7 @@ fpath=($HOME/.asdf/completions $fpath)
 
 # ngrok completions
 if command -v ngrok &>/dev/null; then
-  eval "$(ngrok completion &>/dev/null)"
+	eval "$(ngrok completion &>/dev/null)"
 fi
 
 # Which plugins would you like to load?
@@ -103,13 +103,13 @@ plugins=(
 	ag
 	alias-finder
 	aliases
-	#git
+	git
 	dotbare
 	asdf
 	colored-man-pages
 	colorize
 	pip
-	# python
+	#python
 	brew
 	#common-aliases
 	#web-search
@@ -151,7 +151,7 @@ alias less='bat'
 alias find='fdfind'
 alias top='htop'
 alias ps='procs'
-# alias ls='eza'
+alias ls='eza'
 alias grep='rg'
 alias ping='prettyping --nolegend'
 # alias df='duf'
