@@ -61,7 +61,6 @@
         pager = delta # diff-so-fancy | less --tabs=4 -RFX
         whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [diff]
-	# tool = Kaleidoscope
         colorMoved = default
 [difftool]
 	prompt = false
@@ -78,7 +77,6 @@
         side-by-side = true
 [merge]
         conflictstyle = diff3
-	# tool = Kaleidoscope
 [mergetool]
 	prompt = false
 [mergetool "Kaleidoscope"]
@@ -87,7 +85,7 @@
 [help]
         autocorrect = 1
 [hub]
-#        protocol = https
+        protocol = https
 [init]
         hints = false
 	defaultBranch = main
