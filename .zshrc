@@ -140,7 +140,7 @@ alias zshconfig="e ~/.zshrc"
 alias ohmyzsh="e ~/.oh-my-zsh"
 #alias dotbare='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config=dotbare
-# source $HOME/.aliases.zsh
+source $HOME/.aliases.zsh
 
 # ================ Better Versions =========================
 
