@@ -45,6 +45,7 @@
         unstage                 = reset --quiet HEAD
         uncommit                = reset --mixed HEAD~
         wtf                     = !$ZSH/bin/git-wtf
+	ahead = log origin/main..HEAD --oneline --stat
 [apply]
         whitespace = nowarn
 [color]
