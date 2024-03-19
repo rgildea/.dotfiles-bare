@@ -2,7 +2,7 @@
 [include]
         path = ~/.gitconfig.local
 [user]
-	name = Ryan Gildea
+        name = Ryan Gildea
         email = ryangildea@gmail.com
         signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPl3BvmPDHLgP/b/sKhYaBRE+ZTGzveAa00D4DIwZXPs
 [credential]
@@ -22,6 +22,8 @@
         prune = true
 [rebase]
         autoSquash = true
+[branch]
+        autoSetupRebase = always
 [log]
         abbrevCommit = true
         decorate = auto
@@ -31,75 +33,73 @@
         short = true
         branch = true
 [alias]
-        count                   = !git shortlog -sn
-        force-push              = push --force-with-lease
-        br                      = branch
-        ci                      = commit
-        co                      = checkout
-        cp                      = cherry-pick
-        fp                      = force-push
-        promote                 = !$ZSH/bin/git-promote
-        rank-contributors       = !$ZSH/bin/git-rank-contributors
-        rb                      = rebase
-        st                      = status
-        unstage                 = reset --quiet HEAD
-        uncommit                = reset --mixed HEAD~
-        wtf                     = !$ZSH/bin/git-wtf
-	ahead = log origin/main..HEAD --oneline --stat
+        count = !git shortlog -sn
+        force-push = push --force-with-lease
+        br = branch∏
+        ci = commit
+        co = checkout
+        cp = cherry-pick
+        fp = force-push
+        promote = !$ZSH/bin/git-promote
+        rank-contributors = !$ZSH/bin/git-rank-contributors
+        rb = rebase
+        st = status
+        unstage = reset --quiet HEAD
+        uncommit = reset --mixed HEAD~
+        wtf = !$ZSH/bin/git-wtf
+        ahead = log origin/main..HEAD --oneline --stat
 [apply]
         whitespace = nowarn
 [color]
         diff = auto
         status = auto
         branch = auto
-	ui = true
+        ui = true
 [commit]
-	template = /Users/ryan/.stCommitMsg
-	gpgsign = true
+        template = /Users/ryan/.stCommitMsg
+        gpgsign = true
 [core]
         excludesfile = /Users/ryan/.gitignore
         editor = code
-        pager = delta # diff-so-fancy | less --tabs=4 -RFX
+        pager = delta -- --theme="night-owl"
         whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [diff]
         colorMoved = default
 [difftool]
-	prompt = false
-	trustExitCode = true
+        prompt = false
+        trustExitCode = true
 [difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [interactive]
         diffFilter = delta --color-only
-        # diffFilter = diff-so-fancy --patch
 [delta]
-        navigate = true    # use n and N to move between diff sections
-        light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+        navigate = true# use n and N to move between diff sections
+        light = false# set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
         line-numbers = true
         side-by-side = true
 [merge]
         conflictstyle = diff3
 [mergetool]
-	prompt = false
+        prompt = false
 [mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
+        cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+        trustExitCode = true
 [help]
         autocorrect = 1
 [hub]
         protocol = https
 [init]
         hints = false
-	defaultBranch = main
-
+        defaultBranch = main
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+        oldNormal = red bold
+        oldHighlight = red bold 52
+        newNormal = green bold
+        newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+        meta = yellow
+        frag = magenta bold
+        commit = yellow bold
+        old = red bold
+        new = green bold
+        whitespace = red reverse
