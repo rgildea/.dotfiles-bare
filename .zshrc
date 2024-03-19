@@ -158,6 +158,9 @@ alias ping='prettyping --nolegend'
 # alias df='duf'
 # alias du='dust'
 
+# custom functions (thnanks Kent C. Dodds)
+killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

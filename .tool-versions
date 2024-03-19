@@ -1,5 +1,5 @@
-ruby 3.2.0
-nodejs 18.4.0
+ruby 3.3.0
+nodejs 21.6.2
 yarn 1.22.19
 sqlite 3.45.1
 python 3.12.1
