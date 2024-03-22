@@ -82,7 +82,6 @@ alias ohmyzsh="e ~/.oh-my-zsh"
 #alias dotbare='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 source $HOME/.aliases.zsh
 
-<<<<<<< HEAD
 # ================ Better Versions =========================
 
 alias git='hub'
@@ -101,24 +100,6 @@ alias ping='prettyping --nolegend'
 # custom functions (thnanks Kent C. Dodds)
 killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
 
-||||||| parent of ad06f97 (update aliases, git config, clean up zshconfig)
-# ================ Better Versions =========================
-
-alias git='hub'
-alias cat='bat'
-alias less='bat'
-# alias diff='delta'
-alias find='fdfind'
-alias top='htop'
-alias ps='procs'
-alias ls='eza'
-alias grep='rg'
-alias ping='prettyping --nolegend'
-# alias df='duf'
-# alias du='dust'
-
-=======
->>>>>>> ad06f97 (update aliases, git config, clean up zshconfig)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
