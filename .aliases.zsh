@@ -40,6 +40,8 @@ alias rmn="rm -rf node_modules";
 alias flush-npm="rm -rf node_modules package-lock.json && npm i && say NPM is done";
 alias nicache="npm install --prefer-offline";
 alias nioff="npm install --offline";
+alias nbs="npm run build && npm run start";
+
 
 alias config=dotbare
 alias e="code"
