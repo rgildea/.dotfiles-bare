@@ -50,7 +50,6 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	1password
-	ag
 	alias-finder
 	aliases
 	git
