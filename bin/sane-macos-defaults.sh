@@ -100,7 +100,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 # Always open everything in Finder's list view
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+defaults write com.apple.Finder FXPreferredViewStyle -string "Nlsv"
 
 # Allow selection of text in quicklook windows.
 defaults write com.apple.finder QLEnableTextSelection -bool true
@@ -135,12 +135,34 @@ defaults write com.apple.dock show-process-indicators -bool true
 # Remove the auto-hiding Dock delay.
 defaults write com.apple.Dock autohide-delay -float 0
 
+# Remove the animation when hiding/showing the Dock.
+defaults write com.apple.dock autohide-time-modifier -float 0
+
 # Automatically hide and show the Dock.
 defaults write com.apple.dock autohide -bool true
 
 # Disable expose animation.
 defaults write com.apple.dock expose-animation-duration -float 0
 
+# Dock: Make it popup faster
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -int 1
+
+# Remove everything
+dockutil --remove all > /dev/null 2>&1
+
+# Minimal setup
+dockutil --add /Applications/iTerm.app > /dev/null 2>&1
+dockutil --add /Applications/Visual%20Studio%20Code.app > /dev/null 2>&1
+dockutil --add /Applications/AppCleaner.app > /dev/null 2>&1
+dockutil --add /System/Applications/App\ Store.app > /dev/null 2>&1
+dockutil --add /System/Applications/Messages.app > /dev/null 2>&1
+dockutil --add /System/Applications/System\ Preferences.app > /dev/null 2>&1
+dockutil --add /Applications/Safari.app > /dev/null 2>&1
+dockutil --add /Applications/Google\ Chrome.app > /dev/null 2>&1
 
 ## Screen Saver
 
@@ -209,10 +231,28 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 
 # Enable tap to click (Trackpad), also for login menu.
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 sudo defaults write com.apple.AppleMultitouchTrackpad Clicking 1
 
+# Trackpad: Two-Finger-Tap
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+
+# Keyboard key repeat
+defaults write -g InitialKeyRepeat -int 10
+defaults write -g KeyRepeat -int 1
+
+
+# Auto correct off & Auto capitalize off
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -int 0
 
 ## Flags
 
@@ -235,8 +275,21 @@ defaults write com.apple.screencapture location "~/Screenshots"
 defaults write com.apple.Preview ApplePersistenceIgnoreState YES
 
 
+# Hot corners
+# Possible values: 0 no-op; 2 Mission Control; 3 Show application windows;
+# 4 Desktop; 5 Start screen saver; 6 Disable screen saver; 7 Dashboard;
+# 10 Put display to sleep; 11 Launchpad; 12 Notification Center
+# defaults write com.apple.dock wvous-tl-corner -int 3
+# defaults write com.apple.dock wvous-tl-modifier -int 0
 
+# defaults write com.apple.dock wvous-tr-corner -int 4
+# defaults write com.apple.dock wvous-tr-modifier -int 0
 
+# defaults write com.apple.dock wvous-bl-corner -int 2
+# defaults write com.apple.dock wvous-bl-modifier -int 0
+
+defaults write com.apple.dock wvous-br-corner -int 5
+defaults write com.apple.dock wvous-br-modifier -int 0
 
 # Kill affected applications.
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
