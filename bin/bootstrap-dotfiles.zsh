@@ -48,7 +48,6 @@ if [[ -d $HOME/.cfg ]]
 then
     output "dotfiles already installed...skipping."
 else
-  
     output "installing dotfiles..."
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
 fi
@@ -97,14 +96,6 @@ else
     git clone --bare
 fi
 
-
-# # set up vim
-# # - install vim-plug
-# if [[ $DRY_RUN = false && ! -e $HOME/.vim/autoload/plug.vim ]]
-# then
-#     output "installing vim-plug..."
-#     # curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# fi
 
 # reload zsh config
 source $ZSH/oh-my-zsh.sh
