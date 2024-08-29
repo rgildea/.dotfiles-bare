@@ -39,8 +39,9 @@ then
   output "dotbare already installed to $(type -p "dotbare"), skipping."
 else
   output "installing dotbare..."
-  brew install dotbare
+  
   source $HOME/dotbare/dotbare.plugin.zsh
+  echo "source $HOME/dotbare/dotbare.plugin.zsh" >> ~/.zshrc
 fi
 
 # set up dotfiles
@@ -49,6 +50,8 @@ then
     output "dotfiles already installed...skipping."
 else
     output "installing dotfiles..."
+    git clone https://github.com/kazhala/dotbare.git $HOME/.dotbare
+    source $HOME/.dotbare/dotbare.plugin.zsh
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
 fi
 
