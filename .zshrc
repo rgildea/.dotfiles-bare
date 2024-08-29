@@ -78,23 +78,8 @@ export FZF_DEFAULT_OPTS='--layout=reverse --border'
 # Aliases
 alias zshconfig="e ~/.zshrc"
 alias ohmyzsh="e ~/.oh-my-zsh"
-#alias dotbare='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
 source $HOME/.aliases.zsh
-
-# ================ Better Versions =========================
-
-alias git='hub'
-alias cat='bat'
-alias less='bat'
-# alias diff='delta'
-alias find='fdfind'
-alias top='htop'
-alias ps='procs'
-alias ls='eza'
-alias grep='rg'
-alias ping='prettyping --nolegend'
-# alias df='duf'
-# alias du='dust'
 
 # custom functions (thnanks Kent C. Dodds)
 killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
@@ -103,16 +88,16 @@ killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Set up syntax highlighting
-source $HOME/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-#Set up zsh-autosuggestions
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Set up zsh-autosuggestions
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
-
-#Set up zsh-autocomplete
-source $HOME/repos/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
+# Set up zsh-autocomplete
+source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# Set up fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up thefuck
+eval $(thefuck --alias)
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -123,4 +108,3 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 base16_darktooth
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
