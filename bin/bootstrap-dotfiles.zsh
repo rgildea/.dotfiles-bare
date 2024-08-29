@@ -5,7 +5,7 @@ DRY_RUN=false
 VERBOSE=false
 
 function output {
- if [[ $VERBOSE = true ]]; then echo $1; fi
+ if (( $VERBOSE = true )); then echo $1; fi
 }
 
 while getopts 'dv' OPTION; do
@@ -25,27 +25,32 @@ done
 shift "$(($OPTIND -1))"
 
 # install homebrew
-if [[  $+commands[brew] ]]
+if (( $+commands[brew] ))
 then
   output "homebrew already installed to $(type -p "brew"), skipping."
 else
   output "installing homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zshrc
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo "done installing homebrew"
 fi
 
 # install dotbare
-if [[  $+commands[dotbare] ]]
+if (( -d ~/dotbare ))
 then
-  output "dotbare already installed to $(type -p "dotbare"), skipping."
-else
-  output "installing dotbare..."
-  
-  source $HOME/dotbare/dotbare.plugin.zsh
-  echo "source $HOME/dotbare/dotbare.plugin.zsh" >> ~/.zshrc
+  output "dotbare already installed to $(type -p "dotbare"), skipping." 
+else 
+  output "installing dotbare..." 
+  git clone https://github.com/kazhala/dotbare.git $HOME/dotbare
+  output "cloned into ${pwd}"
+
+  echo "source $HOME/dotbare/dotbare.plugin.zsh" >> $HOME/.zshrc
+  source $HOME/.zshrc
 fi
 
 # set up dotfiles
-if [[ -d $HOME/.cfg ]]
+if (( -d ~/.cfg ))
 then
     output "dotfiles already installed...skipping."
 else
@@ -64,12 +69,12 @@ output "brew bundle"
 brew bundle
 
 # install oh-my-zsh
-if [ -d $HOME/.oh-my-zsh ]
+if [ -d ~/.oh-my-zsh ]
 then
   output "oh-my-zsh already installed...skipping."
-else
+elseter 
   output "installing oh-my-zsh"
-  if [[ ! $DRY_RUN = true ]]
+  if (( ! $DRY_RUN = true ))
   then
   output "installing oh-my-zsh"
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -77,30 +82,27 @@ else
 fi
 
 # Link custom zsh plugins
-if [ -L $HOME/repos/* ]
+if [ -L ~/repos/* ]
 then
   ln -s $HOME/repos/* $HOME/.oh-my-zsh/custom/plugins/
 fi
 
 # configure asdf
-if [[ -d $HOME/.asdf ]]
+if (( -d ~/.asdf ))
 then output "asdf already setup...skipping."
 else
   output "configuring asdf..."
   asdf install
 fi
 
-# set up dotfiles
-if [[ -d $HOME/.cfg ]]
-then
-    output "dotfiles already installed...skipping."
-else
-    output "installing dotfiles..."
-    git clone --bare
-fi
-
+# cleanup
+output "cleaning up..."
+rm -rf $HOME/.zcompdump*
+rm -rf $HOME/.zsh_history
+rm -rf $HOME/dotbare
+brew cleanup
 
 # reload zsh config
-source $ZSH/oh-my-zsh.sh
+source $HOME/.zshrc
 output "DONE!"
 
