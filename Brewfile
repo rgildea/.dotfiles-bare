@@ -26,7 +26,6 @@ brew "gnupg"
 brew "highlight"
 brew "htop"
 brew "hub"
-brew "mas"
 brew "mkcert"
 brew "most"
 brew "neonctl"
@@ -69,18 +68,6 @@ cask "sketch"
 cask "stats"
 cask "tiles"
 cask "visual-studio-code"
-mas "1Password for Safari", id: 1569813296
-mas "Bear", id: 1091189122
-mas "Boop", id: 1518425043
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Planny", id: 1515324201
-mas "System Designer", id: 1102494854
-mas "Trello", id: 1278508951
-mas "UTM", id: 1538878817
 vscode "alefragnani.project-manager"
 vscode "austenc.tailwind-docs"
 vscode "bceskavich.theme-dracula-at-night"
