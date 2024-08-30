@@ -37,7 +37,7 @@ else
 fi
 
 # install dotbare
-if (( -d ~/dotbare ))
+if (( -d "~/dotbare" ))
 then
   output "dotbare already installed to $(type -p "dotbare"), skipping." 
 else 
@@ -50,7 +50,7 @@ else
 fi
 
 # set up dotfiles
-if (( -d ~/.cfg ))
+if (( -d "~/.cfg" ))
 then
     output "dotfiles already installed...skipping."
 else
