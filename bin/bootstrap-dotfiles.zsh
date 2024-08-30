@@ -25,7 +25,7 @@ done
 shift "$(($OPTIND -1))"
 
 # install homebrew
-if (( $+commands[brew] ))
+if [[ $+commands[brew] ]]
 then
   output "homebrew already installed to $(type -p "brew"), skipping."
 else
@@ -50,7 +50,7 @@ else
 fi
 
 # set up dotfiles
-if [[]] -d $HOME/cfg ]]
+if [[-d $HOME/cfg ]]
 then
     output "dotfiles already installed...skipping."
 else
@@ -88,7 +88,7 @@ then
 fi
 
 # configure asdf
-if [[-d $HOME/.asdf ]]
+if [[ -d $HOME/.asdf ]]
 then output "asdf already setup...skipping."
 else
   output "configuring asdf..."
