@@ -36,28 +36,15 @@ else
   echo "done installing homebrew"
 fi
 
-# install dotbare
-if [[ -d $HOME/dotbare ]]
-then
-  output "dotbare already installed to $(type -p "dotbare"), skipping." 
-else 
-  output "installing dotbare..." 
-  git clone https://github.com/kazhala/dotbare.git $HOME/dotbare
-  output "cloned into ${pwd}"
-
-  echo "source $HOME/dotbare/dotbare.plugin.zsh" >> $HOME/.zshrc
-  source $HOME/.zshrc
-fi
-
 # set up dotfiles
 if [[ -d $HOME/.cfg ]]
 then
     output "dotfiles already installed...skipping."
 else
     output "installing dotfiles..."
-    git clone https://github.com/kazhala/dotbare.git $HOME/.dotbare
-    source $HOME/.dotbare/dotbare.plugin.zsh
+    source $HOME/repos/dotbare/dotbare.plugin.zsh
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
+    dotbare submodule update --init --recursive
 fi
 
 # Update homebrew
@@ -78,9 +65,15 @@ else
 fi
 
 # Link custom zsh plugins
-if [[ -L $HOME/repos/* ]]
+if [[ -L $HOME/repos/oh-my-zsh/plugins/* ]]
 then
-  ln -s $HOME/repos/* $HOME/.oh-my-zsh/custom/plugins/
+  ln -s $HOME/repos/oh-my-zsh/plugins/* $HOME/.oh-my-zsh/custom/plugins/
+fi
+
+# Link custom zsh themes
+if [[ -L $HOME/repos/oh-my-zsh/themes/* ]]
+then
+  ln -s $HOME/repos/oh-my-zsh/themes/* $HOME/.oh-my-zsh/custom/themes/
 fi
 
 # configure asdf

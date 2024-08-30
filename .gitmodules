@@ -25,3 +25,9 @@
 [submodule ".janus/vim-prettier"]
 	path = .janus/vim-prettier
 	url = https://github.com/prettier/vim-prettier.git
+[submodule "repos/dotbare"]
+	path = repos/dotbare
+	url = https://github.com/kazhala/dotbare.git
+[submodule "repos/powerlevel10k"]
+	path = repos/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
