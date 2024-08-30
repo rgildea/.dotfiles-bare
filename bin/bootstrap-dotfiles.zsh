@@ -74,9 +74,6 @@ then
   output "oh-my-zsh already installed...skipping."
 else
   output "installing oh-my-zsh"
-  if (( ! $DRY_RUN = true ))
-  then
-  output "installing oh-my-zsh"
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 fi
