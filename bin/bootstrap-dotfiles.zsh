@@ -50,7 +50,7 @@ else
 fi
 
 # set up dotfiles
-if [[-d $HOME/cfg ]]
+if [[-d $HOME/.cfg ]]
 then
     output "dotfiles already installed...skipping."
 else
