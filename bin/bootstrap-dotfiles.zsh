@@ -37,7 +37,7 @@ else
 fi
 
 # install dotbare
-if (( -d "~/dotbare" ))
+if [[ -d $HOME/dotbare ]]
 then
   output "dotbare already installed to $(type -p "dotbare"), skipping." 
 else 
@@ -50,7 +50,7 @@ else
 fi
 
 # set up dotfiles
-if (( -d "~/.cfg" ))
+if [[]] -d $HOME/cfg ]]
 then
     output "dotfiles already installed...skipping."
 else
@@ -69,7 +69,7 @@ output "brew bundle"
 brew bundle
 
 # install oh-my-zsh
-if [ -d ~/.oh-my-zsh ]
+if [[ -d $HOME/.oh-my-zsh ]]
 then
   output "oh-my-zsh already installed...skipping."
 elseter 
@@ -82,13 +82,13 @@ elseter
 fi
 
 # Link custom zsh plugins
-if [ -L ~/repos/* ]
+if [[ -L $HOME/repos/* ]]
 then
   ln -s $HOME/repos/* $HOME/.oh-my-zsh/custom/plugins/
 fi
 
 # configure asdf
-if (( -d ~/.asdf ))
+if [[-d $HOME/.asdf ]]
 then output "asdf already setup...skipping."
 else
   output "configuring asdf..."
