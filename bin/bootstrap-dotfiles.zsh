@@ -72,7 +72,7 @@ brew bundle
 if [[ -d $HOME/.oh-my-zsh ]]
 then
   output "oh-my-zsh already installed...skipping."
-elseter 
+else
   output "installing oh-my-zsh"
   if (( ! $DRY_RUN = true ))
   then
