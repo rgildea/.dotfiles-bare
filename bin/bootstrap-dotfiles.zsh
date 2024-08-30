@@ -88,6 +88,13 @@ if [[ -d $HOME/.asdf ]]
 then output "asdf already setup...skipping."
 else
   output "configuring asdf..."
+  asdf plugin add nodejs
+  asdf plugin add python
+  asdf plugin add ruby
+  asdf plugin add sqlite
+  asdf plugin add yarn
+  
+ # install them according to the versions in the .tool-versions file
   asdf install
 fi
 
