@@ -33,7 +33,7 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 [ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
 
 # Source asdf completions prior to oh-my-zsh running it's own compinit.
 fpath=($HOME/.asdf/completions $fpath)

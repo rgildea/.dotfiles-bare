@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 set -e
 DRY_RUN=false
 VERBOSE=false
@@ -67,12 +77,14 @@ fi
 # Link custom zsh plugins
 if [[ -L $HOME/repos/oh-my-zsh/plugins/* ]]
 then
+  output "linking custom zsh plugins..."
   ln -s $HOME/repos/oh-my-zsh/plugins/* $HOME/.oh-my-zsh/custom/plugins/
 fi
 
 # Link custom zsh themes
 if [[ -L $HOME/repos/oh-my-zsh/themes/* ]]
 then
+  output "linking custom zsh themes..."
   ln -s $HOME/repos/oh-my-zsh/themes/* $HOME/.oh-my-zsh/custom/themes/
 fi
 
