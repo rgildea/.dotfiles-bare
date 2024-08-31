@@ -52,7 +52,7 @@ then
     output "dotfiles already installed...skipping."
 else
     output "installing dotfiles..."
-    source $HOME/repos/dotbare/dotbare.plugin.zsh
+    source $HOME/repos/oh-my-zsh/custom/plugins/dotbare/dotbare.plugin.zsh
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
     dotbare submodule update --init --recursive
 fi
