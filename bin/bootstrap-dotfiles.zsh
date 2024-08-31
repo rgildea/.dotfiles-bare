@@ -74,19 +74,19 @@ else
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-# Link custom zsh plugins
-if [[ -L $HOME/repos/oh-my-zsh/plugins/* ]]
-then
-  output "linking custom zsh plugins..."
-  ln -s $HOME/repos/oh-my-zsh/plugins/* $HOME/.oh-my-zsh/custom/plugins/
-fi
+# # Link custom zsh plugins
+# if [[ -L $HOME/repos/oh-my-zsh/plugins/* ]]
+# then
+#   output "linking custom zsh plugins..."
+#   ln -s $HOME/repos/oh-my-zsh/plugins/* $HOME/.oh-my-zsh/custom/plugins/
+# fi
 
-# Link custom zsh themes
-if [[ -L $HOME/repos/oh-my-zsh/themes/* ]]
-then
-  output "linking custom zsh themes..."
-  ln -s $HOME/repos/oh-my-zsh/themes/* $HOME/.oh-my-zsh/custom/themes/
-fi
+# # Link custom zsh themes
+# if [[ -L $HOME/repos/oh-my-zsh/themes/* ]]
+# then
+#   output "linking custom zsh themes..."
+#   ln -s $HOME/repos/oh-my-zsh/themes/* $HOME/.oh-my-zsh/custom/themes/
+# fi
 
 # configure asdf
 if [[ -d $HOME/.asdf ]]
