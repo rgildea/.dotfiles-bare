@@ -46,7 +46,8 @@ else
   echo "done installing homebrew"
 fi
 
-$DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
+# set up dotbare 
+DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
 mkdir -p $DOTBARE_TMP_DIR
 
 # set up dotfiles
