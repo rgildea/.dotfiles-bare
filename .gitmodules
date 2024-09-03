@@ -31,3 +31,12 @@
 [submodule "repos/powerlevel10k"]
 	path = repos/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "repos/base16-shell"]
+	path = repos/base16-shell
+	url = git@github.com:chriskempson/base16-shell.git
+[submodule "repos/oh-my-zsh/custom/plugins/dotbare"]
+	path = repos/oh-my-zsh/custom/plugins/dotbare
+	url = https://github.com/kazhala/dotbare
+[submodule "repos/oh-my-zsh/custom/themes/powerlevel10k"]
+	path = repos/oh-my-zsh/custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
