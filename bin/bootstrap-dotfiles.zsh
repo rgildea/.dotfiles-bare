@@ -47,6 +47,8 @@ else
 fi
 
 $DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
+mkdir -p $DOTBARE_TMP_DIR
+
 # set up dotfiles
 if [[ -d $HOME/.cfg ]]
 then
