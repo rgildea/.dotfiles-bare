@@ -46,13 +46,16 @@ else
   echo "done installing homebrew"
 fi
 
+$DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
 # set up dotfiles
 if [[ -d $HOME/.cfg ]]
 then
     output "dotfiles already installed...skipping."
 else
     output "installing dotfiles..."
-    source $HOME/repos/oh-my-zsh/custom/plugins/dotbare/dotbare.plugin.zsh
+    # git clone --bare https://www.github.com/rgildea/.dotfiles-bare.git $HOME/.cfg
+    git clone https://github.com/kazhala/dotbare.git $DOTBARE_TMP_DIR
+    source $DOTBARE_TMP_DIR/dotbare.plugin.zsh
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
     dotbare submodule update --init --recursive
 fi
@@ -74,20 +77,6 @@ else
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-# # Link custom zsh plugins
-# if [[ -L $HOME/repos/oh-my-zsh/plugins/* ]]
-# then
-#   output "linking custom zsh plugins..."
-#   ln -s $HOME/repos/oh-my-zsh/plugins/* $HOME/.oh-my-zsh/custom/plugins/
-# fi
-
-# # Link custom zsh themes
-# if [[ -L $HOME/repos/oh-my-zsh/themes/* ]]
-# then
-#   output "linking custom zsh themes..."
-#   ln -s $HOME/repos/oh-my-zsh/themes/* $HOME/.oh-my-zsh/custom/themes/
-# fi
-
 # configure asdf
 if [[ -d $HOME/.asdf ]]
 then output "asdf already setup...skipping."
@@ -105,12 +94,12 @@ fi
 
 # cleanup
 output "cleaning up..."
-rm -rf $HOME/.zcompdump*
-rm -rf $HOME/.zsh_history
-rm -rf $HOME/dotbare
+rm -rf $DOTBARE_TMP_DIR
 brew cleanup
 
 # reload zsh config
 source $HOME/.zshrc
-output "DONE!"
+output "DONE! opening iTerm..."
 
+# open iTerm and set up the prompt
+open -a iTerm --args -e "p10k configure"
