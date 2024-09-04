@@ -50,7 +50,7 @@ fi
 DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
 mkdir -p $DOTBARE_TMP_DIR
 
-if[[ xcode-select -p ]]
+if [[ xcode-select -p ]]
 then
   output "xcode dev tools already installed...skipping."
 else
