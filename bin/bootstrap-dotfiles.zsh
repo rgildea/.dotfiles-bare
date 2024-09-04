@@ -56,21 +56,35 @@ else
   xcode-select --install || true
 fi
 
-OP_BIN=$(which op)
-OP_SCRATCH_DIR = $HOME/.1password
+
 # install one-password ssh integration
+OP_BIN=$(which op)
+OP_SCRATCH_DIR=$HOME/.1password
+
 if [[ -x $(which op) ]]
 then
   output "1Password already installed..skipping."
 else
   output "Installing 1Password..."
   brew  install --cask 1password 1password-cli
+
+  # create a scratch directory for the 1password socket
   rm -rf mkdir -p ~/.1password
   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
 
-  ssh-keygen -q -t rsa -b 4096 -C "key for installing dotfiles" -f $HOME/.ssh/id_rsa -N ""
-  eval $(ssh-agent -s)
-  ssh-add ~/.ssh/id_rsa
+  # sign in to 1password
+  eval $(op signin)
+
+  # Enable 1Password SSH Agent
+  export SSH_AUTH_SOCK=$(op inject --path ~/.1password/agent.sock)
+
+  # test the 1password ssh agent
+  if ssh -T git@github.com; then
+    output "1Password SSH Agent is working"
+  else
+    output "1Password SSH Agent is not working"
+    exit 1
+  fi
 fi
 
 # install dotbare temp installation -- need it to install dotfiles
@@ -126,6 +140,15 @@ else
   
  # install them according to the versions in the .tool-versions file
   asdf install
+fi
+
+# install janus for vim
+if [[ -d $HOME/.vim/janus ]]
+then
+  output "janus already installed...skipping."
+else
+  output "installing janus..."
+  curl -L https://bit.ly/janus-bootstrap | bash
 fi
 
 # cleanup
