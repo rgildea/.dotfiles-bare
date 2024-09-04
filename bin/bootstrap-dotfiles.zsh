@@ -46,9 +46,6 @@ else
   output "done installing homebrew"
 fi
 
-# set up dotbare 
-DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
-mkdir -p $DOTBARE_TMP_DIR || true
 
 # install xcode dev tools
 if [[ -n "$(xcode-select -p)" ]]
@@ -59,7 +56,9 @@ else
   xcode-select --install || true
 fi
 
-# install dotbare
+
+# install dotbare temp installation -- need it to install dotfiles
+DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
 if [[ -x $(which dotbare) ]]
 then
     output "dotbare already installed...skipping."
