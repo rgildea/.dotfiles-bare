@@ -75,8 +75,6 @@ then
     output "dotfiles already installed...skipping."
 else
     output "installing dotfiles..."
-    git clone https://github.com/kazhala/dotbare.git $DOTBARE_TMP_DIR
-    source $DOTBARE_TMP_DIR/dotbare.plugin.zsh
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
     dotbare submodule update --init --recursive
 fi
