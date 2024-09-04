@@ -59,6 +59,7 @@ fi
 
 # install dotbare temp installation -- need it to install dotfiles
 DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
+rm -rf $DOTBARE_TMP_DIR
 if [[ -x $(which dotbare) ]]
 then
     output "dotbare already installed...skipping."
