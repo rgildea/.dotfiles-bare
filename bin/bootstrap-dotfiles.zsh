@@ -56,12 +56,18 @@ else
   xcode-select --install || true
 fi
 
-# generate ssh key
-if [[ -f $HOME/.ssh/id_rsa ]]
+OP_BIN=$(which op)
+OP_SCRATCH_DIR = $HOME/.1password
+# install one-password ssh integration
+if [[ -x $(which op) ]]
 then
-  output "ssh key already exists...skipping."
+  output "1Password already installed..skipping."
 else
-  output "generating ssh key..."
+  output "Installing 1Password..."
+  brew  install --cask 1password 1password-cli
+  rm -rf mkdir -p ~/.1password
+  ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+
   ssh-keygen -q -t rsa -b 4096 -C "key for installing dotfiles" -f $HOME/.ssh/id_rsa -N ""
   eval $(ssh-agent -s)
   ssh-add ~/.ssh/id_rsa
