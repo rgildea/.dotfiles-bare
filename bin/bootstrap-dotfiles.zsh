@@ -35,7 +35,7 @@ done
 shift "$(($OPTIND -1))"
 
 # install homebrew
-if [[ $+commands[brew] ]]
+if [[ -x $(which brew) ]]
 then
   output "homebrew already installed to $(type -p "brew"), skipping."
 else
@@ -43,20 +43,37 @@ else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zshrc
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  echo "done installing homebrew"
+  output "done installing homebrew"
 fi
 
 # set up dotbare 
 DOTBARE_TMP_DIR=$HOME/.dotbare-tmp
 mkdir -p $DOTBARE_TMP_DIR
 
-# set up dotfiles
+if[ ! xcode-select -p ]
+then
+  output "installing xcode-select..."
+  xcode-select --install || true
+else
+  output "xcode-select already installed...skipping."
+fi
+
+# install dotbare
+if [[-x $(which dotbare) ]]
+then
+    output "dotbare already installed...skipping."
+else
+    output "installing dotbare..."
+    git clone https://github.com/kazhala/dotbare.git $DOTBARE_TMP_DIR
+    source $DOTBARE_TMP_DIR/dotbare.plugin.zsh
+fi
+
+# install dotfiles
 if [[ -d $HOME/.cfg ]]
 then
     output "dotfiles already installed...skipping."
 else
     output "installing dotfiles..."
-    # git clone --bare https://www.github.com/rgildea/.dotfiles-bare.git $HOME/.cfg
     git clone https://github.com/kazhala/dotbare.git $DOTBARE_TMP_DIR
     source $DOTBARE_TMP_DIR/dotbare.plugin.zsh
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
@@ -81,7 +98,7 @@ else
 fi
 
 # configure asdf
-if [[ -d $HOME/.asdf ]]
+if [[ -x $(which asdf) ]]
 then output "asdf already setup...skipping."
 else
   output "configuring asdf..."
