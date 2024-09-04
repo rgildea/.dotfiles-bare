@@ -56,10 +56,21 @@ else
   xcode-select --install || true
 fi
 
+# generate ssh key
+if [[ -f $HOME/.ssh/id_rsa ]]
+then
+  output "ssh key already exists...skipping."
+else
+  output "generating ssh key..."
+  ssh-keygen -q -t rsa -b 4096 -C "key for installing dotfiles" -f $HOME/.ssh/id_rsa -N ""
+  eval $(ssh-agent -s)
+  ssh-add ~/.ssh/id_rsa
+fi
 
 # install dotbare temp installation -- need it to install dotfiles
-DOTBARE_TMP_DIR=$HOME/.dotbare-tmp-$( date +%s )
-rm -rf $DOTBARE_TMP_DIR
+DOTBARE_FILE_ROOT=$HOME/.dotbare-tmp-
+DOTBARE_TMP_DIR=$DOTBARE_FILE_ROOT$( date +%s )
+rm -rf $HOME/.dotbare-tmp-* || true
 if [[ -x $(which dotbare) ]]
 then
     output "dotbare already installed...skipping."
