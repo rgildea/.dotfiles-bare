@@ -83,7 +83,9 @@ else
 
   # test the 1password ssh agent
   ssh -T git@github.com > /dev/null 2>&1
+  
   echo "heh"
+
   if [ $? -eq 255 ]; then
     echo "1Password SSH Agent is not working"
   else
