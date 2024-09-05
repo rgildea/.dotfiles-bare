@@ -134,6 +134,7 @@ then
   echo "oh-my-zsh already installed...skipping."
 else
   echo "installing oh-my-zsh"
+  mv .zshrc $HOME/.zshrc.backup
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
@@ -167,6 +168,8 @@ rm -rf $DOTBARE_TMP_DIR
 brew cleanup
 
 # reload zsh config
+mv $HOME/.zshrc $HOME/.zshrc.omz-generated
+mv $HOME/.zshrc.backup $HOME/.zshrc
 source $HOME/.zshrc
 echo "DONE! opening iTerm..."
 
