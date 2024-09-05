@@ -77,14 +77,12 @@ else
   fi
 
   # Sign in to 1Password
-  echo "Please sign in to 1Password, and enable the SSH Agent in Settings->Developer. Press enter to continue..."
-  read
+  read "?Please sign in to 1Password, and enable the SSH Agent in Settings->Developer. Press enter to continue..."
   open -a "1Password"
-  echo "Press enter to continue..."
-  read
+  read "?Press enter to continue..."
 
   # test the 1password ssh agent
-  ssh -T git@github.com 2> /dev/null > /dev/null
+  ssh -T git@github.com > /dev/null 2>&1
 
   if [ $? -eq 255 ]; then
     echo "1Password SSH Agent is not working"
