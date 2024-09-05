@@ -77,10 +77,12 @@ else
   fi
 
   # Sign in to 1Password
-  read -p "Please sign in to 1Password and press enter to continue..."
+  echo "Please sign in to 1Password. Press enter to continue..."
+  read
   open -a "1Password"
-  read -p "Press enter to continue..."
-  
+  echo "Press enter to continue..."
+  read
+
   # test the 1password ssh agent
   if ssh -T git@github.com; then
     echo "1Password SSH Agent is working"
