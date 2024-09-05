@@ -23,9 +23,12 @@ while getopts 'dfv' OPTION; do
   case "$OPTION" in
     d)
       DRY_RUN=true
+      echo "dry run mode on"
       ;;
     f)
       FORCE_INSTALL=true
+      echo "force instsall mode on"
+      ;;
     v)
       VERBOSE=true
       echo "verbose mode on"
