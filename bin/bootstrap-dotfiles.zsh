@@ -168,6 +168,7 @@ fi
 echo "cleaning up..."
 rm -rf $DOTBARE_TMP_DIR
 brew cleanup
+echo "done cleaning up"
 
 # reload zsh config
 source $HOME/.zshrc
