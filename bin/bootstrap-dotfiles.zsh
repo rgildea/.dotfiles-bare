@@ -67,17 +67,18 @@ then
 else
   output "Installing 1Password..."
   brew  install --cask 1password 1password-cli
-
-  # create a scratch directory for the 1password socket
-  rm -rf mkdir -p ~/.1password
+  
+  # create a scratch directory for 1password
+  [[ ! -d $OP_SCRATCH_DIR ]] && mkdir -p $OP_SCRATCH_DIR
+  
   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+  SSH_AUTH_SOCK=~/.1password/agent.sock
 
   # sign in to 1password
-  eval $(op signin)
-
-  # Enable 1Password SSH Agent
-  export SSH_AUTH_SOCK=$(op inject --path ~/.1password/agent.sock)
-
+  input "Please sign in to 1Password and press enter to continue..."
+  open -a "1Password"
+  input "Press enter to continue..."
+  
   # test the 1password ssh agent
   if ssh -T git@github.com; then
     output "1Password SSH Agent is working"
@@ -162,3 +163,4 @@ output "DONE! opening iTerm..."
 
 # open iTerm and set up the prompt
 open -a iTerm --args -e "p10k configure"
+
