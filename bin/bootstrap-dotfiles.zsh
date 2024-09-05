@@ -12,17 +12,20 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 set -e
 DRY_RUN=false
-VERBOSE=true
+VERBOSE=false
+FORCE_INSTALL=false
 
-# function output {
-#  if (( $VERBOSE  = true )); then echo $1; fi
-# }
+function output {
+ if (( $VERBOSE  = true )); then echo $1; fi
+}
 
-while getopts 'dv' OPTION; do
+while getopts 'dfv' OPTION; do
   case "$OPTION" in
     d)
       DRY_RUN=true
       ;;
+    f)
+      FORCE_INSTALL=true
     v)
       VERBOSE=true
       echo "verbose mode on"
@@ -70,15 +73,19 @@ then
   echo "1Password already installed..skipping."
 else
   echo "Installing 1Password..."
-  brew  install 1password 1password-cli
-  
-  # # create a scratch directory for 1password
-  # [[ ! -d $OP_SCRATCH_DIR ]] && mkdir -p $OP_SCRATCH_DIR
-  
-  # ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
-  # SSH_AUTH_SOCK=~/.1password/agent.sock
+  if ! brew list 1password &> /dev/null || [[ "$FORCE_INSTALL" == true ]]; then
+    brew install 1password
+  else
+    echo "1Password package already installed...skipping."
+  fi
 
-  # sign in to 1password
+  if ! brew list 1password-cli &> /dev/null || [[ "$FORCE_INSTALL" == true ]]; then
+    brew install 1password-cli
+  else
+    echo "1Password CLI package already installed...skipping."
+  fi
+
+  # Sign in to 1Password
   read -p "Please sign in to 1Password and press enter to continue..."
   open -a "1Password"
   read -p "Press enter to continue..."
