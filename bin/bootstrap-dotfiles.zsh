@@ -84,7 +84,7 @@ else
   read
 
   # test the 1password ssh agent
-  ssh -T git@github.com;
+  ssh -T git@github.com 2> /dev/null
 
   if [ ! $? -eq 255 ]; then
     echo "1Password SSH Agent is working"
