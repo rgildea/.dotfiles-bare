@@ -94,6 +94,8 @@ else
   fi
 fi
 
+echo "installing dotbare..."
+
 # install dotbare temp installation -- need it to install dotfiles
 DOTBARE_FILE_ROOT=$HOME/.dotbare-tmp-
 DOTBARE_TMP_DIR=$DOTBARE_FILE_ROOT$( date +%s )
@@ -106,6 +108,8 @@ else
     git clone https://github.com/kazhala/dotbare.git $DOTBARE_TMP_DIR
     source $DOTBARE_TMP_DIR/dotbare.plugin.zsh
 fi
+
+echo "installing dotfiles..."
 
 # install dotfiles
 if [[ -d $HOME/.cfg ]]
