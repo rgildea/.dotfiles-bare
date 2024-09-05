@@ -163,7 +163,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # Energy saving                                                               #
 ###############################################################################
 
-Enable lid wakeup
+# Enable lid wakeup
 sudo pmset -a lidwake 1
 
 # Restart automatically on power loss
