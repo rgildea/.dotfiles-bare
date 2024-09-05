@@ -173,6 +173,8 @@ brew cleanup
 source $HOME/.zshrc
 echo "DONE! opening iTerm..."
 
+# set up macOS defaults
+echo "setting up macOS defaults..."
 /bin/sh -c "$HOME/bin/sane-macos-defaults.sh"
 
 # open iTerm and set up the prompt
