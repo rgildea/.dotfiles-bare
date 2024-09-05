@@ -64,13 +64,7 @@ else
   xcode-select --install || true
 fi
 
-echo "installing 1Password..."
-# install one-password ssh integration
-echo "installing 1Password..."
-
-OP_SCRATCH_DIR=$HOME/.1password
-
-
+# install 1password
 if [[ -x $(which op) ]]
 then
   echo "1Password already installed..skipping."
@@ -153,7 +147,7 @@ else
   asdf plugin add sqlite
   asdf plugin add yarn
   
- # install them according to the versions in the .tool-versions file
+ # install asdf packages according to the versions in the .tool-versions file
   asdf install
 fi
 
