@@ -71,15 +71,9 @@ then
 else
   echo "Installing 1Password..."
   if ! brew list 1password &> /dev/null || [[ "$FORCE_INSTALL" == true ]]; then
-    brew install 1password
+    brew install 1password 1password-cli
   else
     echo "1Password package already installed...skipping."
-  fi
-
-  if ! brew list 1password-cli &> /dev/null || [[ "$FORCE_INSTALL" == true ]]; then
-    brew install 1password-cli
-  else
-    echo "1Password CLI package already installed...skipping."
   fi
 
   # Sign in to 1Password
