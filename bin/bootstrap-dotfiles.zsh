@@ -88,7 +88,6 @@ else
 
   if [ $? -eq 255 ]; then
     echo "1Password SSH Agent is not working"
-    exit 1
   else
     echo "1Password SSH Agent is working"
   fi
