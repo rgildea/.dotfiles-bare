@@ -63,6 +63,7 @@ plugins=(
 	copyfile
 	macos
 	thefuck
+	tldr
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,3 +116,15 @@ BASE16_SHELL="$HOME/repos/base16-shell/"
 base16_darktooth
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ryan/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ryan/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ryan/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ryan/google-cloud-sdk/completion.zsh.inc'; fi
+export PYTHONWARNINGS="ignore::DeprecationWarning"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/ryan/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
