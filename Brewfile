@@ -1,6 +1,4 @@
 tap "heroku/brew"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "kegworks-app/kegworks"
 tap "ngrok/ngrok"
 tap "puma/puma"
@@ -51,38 +49,12 @@ brew "zsh-syntax-highlighting"
 cask "1password"
 cask "1password-cli"
 cask "alfred"
-<<<<<<< HEAD
-cask "backblaze"
-cask "cheatsheet"
-||||||| parent of 1333fe0 (more minor tool updates)
 cask "caffeine"
-cask "cheatsheet"
-=======
-cask "caffeine"
->>>>>>> 1333fe0 (more minor tool updates)
 cask "cleanmymac"
 cask "discord"
-<<<<<<< HEAD
-cask "font-hack-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
-cask "font-meslo-for-powerlevel10k"
-cask "font-monaspace"
-cask "google-chrome"
-cask "iterm2"
-cask "kegworks"
-cask "ngrok"
-cask "origin"
-cask "postman"
-||||||| parent of 1333fe0 (more minor tool updates)
 cask "docker"
 cask "dropzone"
 cask "gemini"
-cask "ngrok"
-=======
-cask "docker"
-cask "dropzone"
-cask "gemini"
->>>>>>> 1333fe0 (more minor tool updates)
 cask "sketch"
 cask "stats"
 cask "tiles"
