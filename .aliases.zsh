@@ -97,3 +97,6 @@ alias path="echo $PATH | tr ':' '\n'"
 alias ports="netstat -tulpn | grep LISTEN"
 alias weather="curl -s wttr.in"
 alias week="date +%V"
+
+# gcloud
+alias gct='gcloud beta logging tail --project=$(gcloud config get-value project) build-log'

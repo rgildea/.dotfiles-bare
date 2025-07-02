@@ -2,3 +2,5 @@ path=('$HOME/bin' $path)
 export PATH
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
