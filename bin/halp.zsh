@@ -4,32 +4,12 @@ GUIDE="$HOME/GUIDE.md"
 
 show_toc() {
   awk '
-    BEGIN { header = ""; desc = ""; in_code = 0 }
-    /^```/ { in_code = !in_code; next }
-    in_code { next }
-    /^## / {
-      if (header != "") {
-        if (desc == "") desc = "(see section)"
-        printf "- **%s** — %s\n", header, desc
-      }
-      header = substr($0, 4)
-      desc = ""
-      next
-    }
-    header != "" && desc == "" && /[^ \t]/ && !/^---/ && !/^>/ && !/^\|/ {
-      d = $0
-      gsub(/\*\*/, "", d)
-      gsub(/`/, "", d)
-      gsub(/  +/, " ", d)
-      gsub(/^ +| +$/, "", d)
-      sub(/:$/, "", d)
-      if (d != "") desc = d
-    }
-    END {
-      if (header != "") {
-        if (desc == "") desc = "(see section)"
-        printf "- **%s** — %s\n", header, desc
-      }
+    /^<!-- halp:/ {
+      line = $0
+      sub(/^<!-- halp: */, "", line)
+      sub(/ *-->.*/, "", line)
+      n = split(line, parts, / *\| */)
+      printf "- `%-8s` %s\n", parts[1], parts[2]
     }
   ' "$GUIDE" | glow -
 }
@@ -38,19 +18,28 @@ show_section() {
   local keyword="${(L)1}"
   local content
   content=$(awk -v kw="$keyword" '
-    BEGIN { in_section = 0 }
+    BEGIN { in_section = 0; pending = "" }
     /^## / {
-      header = tolower(substr($0, 4))
-      if (index(header, kw) > 0) {
+      if (in_section) exit
+      pending = $0
+      cur_header = tolower(substr($0, 4))
+    }
+    /^<!-- halp:/ {
+      if (pending == "") next
+      line = $0
+      sub(/^<!-- halp: */, "", line)
+      sub(/ *-->.*/, "", line)
+      split(line, parts, / *\| */)
+      slug = tolower(parts[1])
+      if (slug == kw || index(cur_header, kw) > 0) {
         in_section = 1
-        print $0
-        next
-      } else if (in_section) {
-        exit
+        print pending
       }
+      pending = ""
+      next
     }
     /^---/ { if (in_section) exit }
-    in_section { print }
+    in_section && !/^<!-- / { print }
   ' "$GUIDE")
 
   if [[ -z "$content" ]]; then

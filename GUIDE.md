@@ -6,6 +6,7 @@
 ---
 
 ## Dotfiles
+<!-- halp: dots | Manage config files with cfg, cadd, cgp -->
 
 Your config lives in a bare git repo at `~/.cfg`, managed via **dotbare** (`cfg` = `config` = `dotbare`).
 Never use plain `git` from the home directory — use these instead:
@@ -36,6 +37,7 @@ cgp
 ---
 
 ## Homebrew & Brewfile
+<!-- halp: brew | Install packages with brewi/brewci, track in Brewfile -->
 
 The `Brewfile` is the source of truth. Use wrappers so it stays current.
 
@@ -66,6 +68,7 @@ brewsync                  # dumps current state, shows diff
 ---
 
 ## Making a Commit
+<!-- halp: commit | Conventional Commits via gc (interactive) or gac (fast) -->
 
 All commits must follow **Conventional Commits** format.
 A `commit-msg` hook enforces this globally — bad messages are rejected.
@@ -105,6 +108,7 @@ git commit -m "Merge branch 'main'"   # fine, hook allows it
 ---
 
 ## Git Workflow
+<!-- halp: git | Daily aliases, undo, stash, conflict resolution -->
 
 Your gitconfig is opinionated. Here's what it does for you automatically:
 - `git pull` rebases instead of merging
@@ -150,6 +154,7 @@ yours | original | theirs. The original helps you understand intent.
 ---
 
 ## Shell & Navigation
+<!-- halp: shell | Directory jumps and modern tool replacements -->
 
 **Directory shortcuts:**
 ```
@@ -189,6 +194,7 @@ diskspace                 # disk usage (non-virtual)
 ---
 
 ## Version Management (asdf)
+<!-- halp: asdf | Language versions pinned in .tool-versions -->
 
 Languages are managed by **asdf**. Versions are pinned in `~/.tool-versions`.
 
@@ -209,6 +215,7 @@ asdf global nodejs 24.15.0   # set global default
 ---
 
 ## NPM Shortcuts
+<!-- halp: npm | ni, nrd, nrt, rmn and friends -->
 
 Handy aliases for common npm tasks — install, build, dev, test, and nuking `node_modules`.
 
@@ -226,6 +233,7 @@ flush-npm                 # nuke node_modules + lockfile + reinstall
 ---
 
 ## Finding Aliases
+<!-- halp: find | halp, tldr, als — discover shortcuts and docs -->
 
 Tools for discovering what shortcuts exist and jumping to documentation.
 
@@ -252,6 +260,7 @@ Rule of thumb: `halp` for your custom setup, `tldr` for the rest of the Unix uni
 ---
 
 ## Reloading the Shell
+<!-- halp: reload | exec zsh -l for a clean slate after config changes -->
 
 Use `exec zsh -l` (aliased as `reload`) — not `source` — to get a clean slate after config changes.
 
@@ -265,6 +274,7 @@ Use this after editing `.zshrc`, `.aliases.zsh`, or `.zshenv`.
 ---
 
 ## AI / OpenRouter
+<!-- halp: ai | claude and claude-or, keys in .zshrc.local -->
 
 Run Claude via Anthropic API or OpenRouter — keys live in `~/.zshrc.local` (never committed).
 
@@ -276,6 +286,7 @@ claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from 
 ---
 
 ## GCloud
+<!-- halp: gcloud | gct for streaming build logs -->
 
 Quick access to Google Cloud build logs for the current project.
 
@@ -286,6 +297,7 @@ gct                       # tail build logs for current gcloud project
 ---
 
 ## This Guide
+<!-- halp: guide | Navigate with halp, halp me, halp KEYWORD -->
 
 How to navigate this guide — open it, get the TOC, or jump to a section by keyword.
 
