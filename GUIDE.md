@@ -137,7 +137,7 @@ git ahead                 # see commits ahead of main
 
 **Stash workflow:**
 ```
-gsta                      # stash with untracked files
+gstu                      # stash including untracked files
 gstl                      # list stashes
 gstp                      # pop latest stash
 gsts                      # show stash diff
