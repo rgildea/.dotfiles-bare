@@ -35,11 +35,6 @@ fpath=($HOME/.asdf/completions $fpath)
 # Docker completions — must be added before oh-my-zsh calls compinit
 fpath=($HOME/.docker/completions $fpath)
 
-# ngrok completions
-if command -v ngrok &>/dev/null; then
-	eval "$(ngrok completion 2>/dev/null)"
-fi
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -63,7 +58,12 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# completions that require compinit (sourced above via oh-my-zsh)
 eval "$(op completion zsh)"; compdef _op op
+if command -v ngrok &>/dev/null; then
+	eval "$(ngrok completion 2>/dev/null)"
+fi
 
 export DOTBARE_DIR="$HOME/.cfg"
 export DOTBARE_TREE="$HOME"
