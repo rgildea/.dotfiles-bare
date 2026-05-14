@@ -8,7 +8,6 @@ command -v duf >/dev/null 2>&1 && alias df='duf'
 command -v eza >/dev/null 2>&1 && alias ls='eza'
 command -v ffind >/dev/null 2>&1 && alias find='ffind'
 command -v htop >/dev/null 2>&1 && alias top='htop'
-command -v hub >/dev/null 2>&1 && alias git='hub'
 command -v prettyping >/dev/null 2>&1 && alias ping='prettyping --nolegend'
 command -v procs >/dev/null 2>&1 && alias ps='procs'
 command -v rg >/dev/null 2>&1 && alias grep='rg'
@@ -56,12 +55,14 @@ alias gca='git commit -a'
 alias gcb='git copy-branch-name'
 alias gco='git checkout'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.
-alias gf=git-flow
-alias gfb='git flow bugfix'
-alias gff='git flow feature'
-alias gfh='git flow hotfix'
-alias gfr='git flow release'
-alias gfs='git flow support'
+if command -v git-flow &>/dev/null; then
+  alias gf='git flow'
+  alias gfb='git flow bugfix'
+  alias gff='git flow feature'
+  alias gfh='git flow hotfix'
+  alias gfr='git flow release'
+  alias gfs='git flow support'
+fi
 alias gl='git pull --prune'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gp='git push origin HEAD'

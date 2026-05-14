@@ -81,16 +81,6 @@ else
   open -a "1Password"
   read "?Press enter to continue..."
 
-  # # test the 1password ssh agent
-  # ssh -T git@github.com > /dev/null 2>&1
-
-  # echo "heh"
-
-  # if [ $? -eq 255 ]; then
-  #   echo "1Password SSH Agent is not working"
-  # else
-  #   echo "1Password SSH Agent is working"
-  # fi
 fi
 
 echo "installing dotbare..."
