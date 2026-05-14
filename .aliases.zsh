@@ -20,7 +20,7 @@ alias h="history"
 alias j="jobs"
 alias md="mkdir -p"
 alias o="open"
-alias reload="source ~/.zshrc"
+alias reload="exec zsh -l"
 alias v="vim"
 
 # directory shortcuts
