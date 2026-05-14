@@ -26,13 +26,14 @@ export SAVEHIST=10000                                  # More history on disk
 setopt INC_APPEND_HISTORY                              # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
+# Tell oh-my-zsh to skip compinit — zsh-autocomplete calls it after oh-my-zsh loads
+skip_global_compinit=1
+
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
 
-# Source asdf completions prior to oh-my-zsh running it's own compinit.
+# fpath entries must be added before compinit runs (called later by zsh-autocomplete)
 fpath=($HOME/.asdf/completions $fpath)
-
-# Docker completions — must be added before oh-my-zsh calls compinit
 fpath=($HOME/.docker/completions $fpath)
 
 # Which plugins would you like to load?
@@ -58,12 +59,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# completions that require compinit (sourced above via oh-my-zsh)
-eval "$(op completion zsh)"; compdef _op op
-if command -v ngrok &>/dev/null; then
-	eval "$(ngrok completion 2>/dev/null)"
-fi
 
 export DOTBARE_DIR="$HOME/.cfg"
 export DOTBARE_TREE="$HOME"
@@ -96,12 +91,17 @@ source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-syntax-highlighting/zsh-synta
 # Set up zsh-autosuggestions
 source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
-# Set up zsh-autocomplete
+# Set up zsh-autocomplete (calls compinit — must come after syntax-highlighting and autosuggestions)
 source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# completions that require compinit (called above by zsh-autocomplete)
+eval "$(op completion zsh)"; compdef _op op
+if command -v ngrok &>/dev/null; then
+	eval "$(ngrok completion 2>/dev/null)"
+fi
+
 # Set up fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Set up thefuck
-eval "$(thefuck --alias)"
 
 # Base16 Shell
 BASE16_SHELL="$HOME/repos/base16-shell/"

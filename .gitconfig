@@ -86,8 +86,6 @@
         trustExitCode = true
 [help]
         autocorrect = 1
-[hub]
-        protocol = https
 [init]
         hints = false
         defaultBranch = main

@@ -16,7 +16,7 @@ VERBOSE=false
 FORCE_INSTALL=false
 
 function output {
- if (( $VERBOSE  = true )); then echo $1; fi
+ if [[ $VERBOSE == true ]]; then echo $1; fi
 }
 
 while getopts 'dfv' OPTION; do
@@ -27,14 +27,14 @@ while getopts 'dfv' OPTION; do
       ;;
     f)
       FORCE_INSTALL=true
-      echo "force instsall mode on"
+      echo "force install mode on"
       ;;
     v)
       VERBOSE=true
       echo "verbose mode on"
       ;;
     ?)
-      echo "script usage: $(basename \$0) [-d] [-v] [-a somevalue]" >&2
+      echo "script usage: $(basename "$0") [-d] [-f] [-v]" >&2
       exit 1
       ;;
   esac
