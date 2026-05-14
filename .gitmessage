@@ -1,0 +1,13 @@
+# <type>(<scope>): <subject>
+#
+# type:    feat | fix | docs | refactor | test | chore | ci | perf | build
+# scope:   optional context, e.g. auth, api, ui (omit if repo-wide)
+# subject: imperative mood, no period, ≤72 chars
+#          "add OAuth support" not "added OAuth support"
+#
+# Body (optional — explain WHY, not what):
+#
+#
+# Footer (optional):
+#   BREAKING CHANGE: describe what breaks and migration path
+#   Refs: #123

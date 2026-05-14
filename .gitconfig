@@ -16,7 +16,6 @@
 [pull]
         rebase = true
 [push]
-        default = simple
         autoSetupRemote = true
 [fetch]
         prune = true
@@ -27,8 +26,6 @@
 [log]
         abbrevCommit = true
         decorate = auto
-[pretty]
-        pretty = oneline
 [status]
         short = true
         branch = true
@@ -40,28 +37,23 @@
         co = checkout
         cp = cherry-pick
         fp = force-push
-        promote = !$ZSH/bin/git-promote
-        rank-contributors = !$ZSH/bin/git-rank-contributors
         rb = rebase
         st = status
         unstage = reset --quiet HEAD
         uncommit = reset --mixed HEAD~
-        wtf = !$ZSH/bin/git-wtf
         ahead = log origin/main..HEAD --oneline --stat
+        cz = !cz commit
 [apply]
         whitespace = nowarn
 [color]
-        diff = auto
-        status = auto
-        branch = auto
         ui = true
 [commit]
-        template = ~/.stCommitMsg
         gpgsign = true
+        template = ~/.gitmessage
 [core]
         excludesfile = ~/.gitignore
         editor = code
-        pager = delta -- --theme="night-owl"
+        pager = delta
         whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [diff]
         colorMoved = default
@@ -73,31 +65,20 @@
 [interactive]
         diffFilter = delta --color-only
 [delta]
-        navigate = true # use n and N to move between diff sections
-        light = false # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+        navigate = true
+        light = false
         line-numbers = true
         side-by-side = true
+        syntax-theme = night-owl
 [merge]
-        conflictstyle = diff3
+        conflictstyle = zdiff3
 [mergetool]
         prompt = false
 [mergetool "Kaleidoscope"]
         cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
         trustExitCode = true
 [help]
-        autocorrect = 1
+        autocorrect = prompt
 [init]
         hints = false
         defaultBranch = main
-[color "diff-highlight"]
-        oldNormal = red bold
-        oldHighlight = red bold 52
-        newNormal = green bold
-        newHighlight = green bold 22
-[color "diff"]
-        meta = yellow
-        frag = magenta bold
-        commit = yellow bold
-        old = red bold
-        new = green bold
-        whitespace = red reverse
