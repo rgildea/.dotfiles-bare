@@ -49,6 +49,7 @@ alias ll="ls -l --git"
 alias lt="ls -T --git" # tree listing
 
 # git aliases
+alias gc='git cz'
 alias gac='git add -A && git commit -m'
 alias gcopy='git copy-branch-name'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.

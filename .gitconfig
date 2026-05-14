@@ -33,7 +33,7 @@
         count = !git shortlog -sn
         force-push = push --force-with-lease
         br = branch
-        ci = commit
+        ci = !cz commit
         co = checkout
         cp = cherry-pick
         fp = force-push
