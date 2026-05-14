@@ -1,3 +1,5 @@
+typeset -U path  # deduplicate PATH entries automatically
+
 # uv (high priority — prepend so it wins over Homebrew)
 path=("$HOME/.local/bin" $path)
 

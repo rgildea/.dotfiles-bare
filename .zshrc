@@ -105,11 +105,10 @@ fi
 
 # Base16 Shell
 BASE16_SHELL="$HOME/repos/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        source "$BASE16_SHELL/profile_helper.sh"
-
-base16_darktooth
+if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]; then
+  source "$BASE16_SHELL/profile_helper.sh"
+  base16_darktooth
+fi
 
 # Google Cloud SDK — managed via Homebrew cask (brewci gcloud-cli)
 # gcloud binary and completions are wired by Homebrew; this adds components installed via gcloud components install

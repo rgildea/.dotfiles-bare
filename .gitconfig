@@ -42,7 +42,6 @@
         unstage = reset --quiet HEAD
         uncommit = reset --mixed HEAD~
         ahead = log origin/main..HEAD --oneline --stat
-        cz = !cz commit
 [apply]
         whitespace = nowarn
 [color]

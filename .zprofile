@@ -5,5 +5,7 @@ fi
 # Initialize Homebrew only when available so login shells don't fail in sparse envs.
 if command -v brew >/dev/null 2>&1; then
   eval "$(brew shellenv)"
-  FPATH="${HOMEBREW_PREFIX}/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  FPATH="${HOMEBREW_PREFIX}/share/zsh-completions:${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
+  # brew shellenv prepends /opt/homebrew/bin, re-assert high-priority paths
+  path=("$HOME/.local/bin" "$HOME/bin" $path)
 fi
