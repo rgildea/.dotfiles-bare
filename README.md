@@ -96,6 +96,53 @@ Git aliases: `gs`, `gl`, `gp`, `gac`, `glog`, `gb`, `gco`, etc.
 
 See `.aliases.zsh` for the full list.
 
+## Managing Homebrew Packages
+
+The `Brewfile` is the source of truth for installed packages, casks, and VS Code extensions.
+
+### Installing new software
+
+Use the wrapper commands instead of raw `brew install` — they dump the Brewfile automatically:
+
+```bash
+brewi ripgrep          # brew install + dump
+brewci rectangle       # brew install --cask + dump
+brewun unused-tool     # brew uninstall + dump
+```
+
+After any of these, review and commit the updated Brewfile:
+
+```bash
+cstat                  # see that Brewfile is modified
+cdiff Brewfile         # review what changed
+config commit -m "Add ripgrep to Brewfile"
+cgp
+```
+
+### Syncing from current state
+
+If you've installed things with raw `brew` commands and want to catch up the Brewfile:
+
+```bash
+brewsync               # dump current state + show diff against committed version
+```
+
+### Checking for drift
+
+To see what's installed locally but not recorded in the Brewfile:
+
+```bash
+brewdrift              # lists untracked packages (brew bundle cleanup, no --force)
+```
+
+### Installing from Brewfile
+
+On a new machine or after pulling changes:
+
+```bash
+brew bundle            # install everything in the Brewfile
+```
+
 ## Local Overrides
 
 Create `.zshrc.local` for machine-specific settings (not committed):

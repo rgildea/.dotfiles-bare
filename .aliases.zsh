@@ -98,3 +98,13 @@ alias week="date +%V"
 
 # gcloud
 alias gct='gcloud beta logging tail --project=$(gcloud config get-value project) build-log'
+
+# Brewfile management
+# Install and immediately record to Brewfile
+brewi()  { brew install "$@" && brew bundle dump --force }
+brewci() { brew install --cask "$@" && brew bundle dump --force }
+brewun() { brew uninstall "$@" && brew bundle dump --force }
+# Show what's installed locally but missing from the Brewfile
+alias brewdrift="brew bundle cleanup"
+# Dump current state to Brewfile and preview what changed before committing
+alias brewsync="brew bundle dump --force && cdiff Brewfile"
