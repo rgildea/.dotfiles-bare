@@ -210,6 +210,8 @@ asdf global nodejs 24.15.0   # set global default
 
 ## NPM Shortcuts
 
+Handy aliases for common npm tasks — install, build, dev, test, and nuking `node_modules`.
+
 ```
 ni                        # npm install
 nrs                       # npm run start
@@ -225,8 +227,13 @@ flush-npm                 # nuke node_modules + lockfile + reinstall
 
 ## Finding Aliases
 
+Tools for discovering what shortcuts exist and jumping to documentation.
+
 ```
-halp                      # this guide
+halp                      # full guide (paged)
+halp me                   # TOC — section headers with short descriptions
+halp git                  # jump straight to the Git Workflow section
+halp <keyword>            # any section whose title contains the keyword
 als <pattern>             # search all active aliases, e.g. als git
 alias-finder              # type a command, see if an alias exists for it
 ```
@@ -234,6 +241,8 @@ alias-finder              # type a command, see if an alias exists for it
 ---
 
 ## Reloading the Shell
+
+Use `exec zsh -l` (aliased as `reload`) — not `source` — to get a clean slate after config changes.
 
 ```
 reload                    # exec zsh -l — replaces the process, clean slate
@@ -246,6 +255,8 @@ Use this after editing `.zshrc`, `.aliases.zsh`, or `.zshenv`.
 
 ## AI / OpenRouter
 
+Run Claude via Anthropic API or OpenRouter — keys live in `~/.zshrc.local` (never committed).
+
 ```
 claude                    # Claude via Anthropic API (uses key from ~/.zshrc.local)
 claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from ~/.zshrc.local)
@@ -255,6 +266,8 @@ claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from 
 
 ## GCloud
 
+Quick access to Google Cloud build logs for the current project.
+
 ```
 gct                       # tail build logs for current gcloud project
 ```
@@ -263,8 +276,12 @@ gct                       # tail build logs for current gcloud project
 
 ## This Guide
 
+How to navigate this guide — open it, get the TOC, or jump to a section by keyword.
+
 ```
-halp                      # open this guide in glow (terminal markdown renderer)
+halp                      # open full guide in glow (paged)
+halp me                   # TOC with descriptions
+halp <keyword>            # show one section, e.g. halp git, halp brew, halp commit
 e ~/GUIDE.md              # edit in VS Code
 ```
 
