@@ -16,6 +16,38 @@ This is a **bare git repository** using dotbare. Never use raw `git` commands fr
 
 Aliases: `config`, `cfg`, `cadd`, `cstat`, `clog`, `cdiff`
 
+### Commit Messages
+
+All commits must follow [Conventional Commits](https://www.conventionalcommits.org/) format. A `commit-msg` hook enforces this globally — non-conforming messages are rejected.
+
+**Format:** `<type>(<scope>): <subject>`
+
+| Type | When to use |
+|------|-------------|
+| `feat` | New feature or capability |
+| `fix` | Bug fix |
+| `docs` | Documentation only |
+| `refactor` | Code restructure, no behavior change |
+| `chore` | Config, tooling, dependencies |
+| `ci` | CI/CD changes |
+| `perf` | Performance improvement |
+| `test` | Adding or fixing tests |
+| `build` | Build system changes |
+
+**Examples:**
+```
+feat(zsh): add brewi wrapper for auto-dumping Brewfile
+fix(gitconfig): correct corrupted br alias
+chore(Brewfile): remove deprecated hub package
+docs(README): add Homebrew management section
+```
+
+**Rules:**
+- Subject is imperative mood, no period, ≤72 chars
+- Scope is optional but encouraged
+- Breaking changes: append `!` before the colon — `feat!: remove X`
+- Use `dotbare commit -m "..."` not raw `git commit` in this repo
+
 ### File Locations
 
 | File | Purpose |

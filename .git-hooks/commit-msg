@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+commit_msg=$(head -1 "$1")
+
+# Allow merge, revert, fixup, and squash commits
+[[ "$commit_msg" =~ ^(Merge|Revert|fixup!|squash!) ]] && exit 0
+
+# Allow empty messages (git will abort them anyway)
+[[ -z "${commit_msg## }" ]] && exit 0
+
+# Conventional Commits: type(scope)!: subject
+pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?!?: .+'
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+  echo
+  echo "  Invalid commit message. Expected Conventional Commits format:"
+  echo
+  echo "    <type>(<scope>): <subject>"
+  echo
+  echo "    Types: feat | fix | docs | refactor | test | chore | ci | perf | build"
+  echo "    Scope: optional, e.g. feat(auth): ..."
+  echo "    Breaking: append ! before colon, e.g. feat!: ..."
+  echo
+  echo "  Use 'gc' or 'git cz' for an interactive prompt."
+  echo
+  exit 1
+fi
