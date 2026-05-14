@@ -111,11 +111,11 @@ BASE16_SHELL="$HOME/repos/base16-shell/"
 
 base16_darktooth
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+# Google Cloud SDK — managed via Homebrew cask (brewci gcloud-cli)
+# gcloud binary and completions are wired by Homebrew; this adds components installed via gcloud components install
+if [[ -d "${HOMEBREW_PREFIX:-/opt/homebrew}/share/google-cloud-sdk" ]]; then
+  path+=("${HOMEBREW_PREFIX:-/opt/homebrew}/share/google-cloud-sdk/bin")
+fi
 export PYTHONWARNINGS="ignore::DeprecationWarning"
 # Add ~/.zshrc.local
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
