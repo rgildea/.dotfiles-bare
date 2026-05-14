@@ -52,7 +52,7 @@ show_section() {
 }
 
 case "${1:-}" in
-  "")   glow --pager "$GUIDE" ;;
-  "me") show_toc ;;
-  *)    show_section "$1" ;;
+  "")         glow --pager "$GUIDE" ;;
+  "me")       [[ -n "${2:-}" ]] && show_section "$2" || show_toc ;;
+  *)          show_section "$1" ;;
 esac
