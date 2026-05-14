@@ -50,8 +50,6 @@ alias lt="ls -T --git" # tree listing
 
 # git aliases
 alias gac='git add -A && git commit -m'
-alias gc='git commit'
-alias gca='git commit -a'
 alias gcopy='git copy-branch-name'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.
 if command -v git-flow &>/dev/null; then
