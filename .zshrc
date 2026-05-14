@@ -26,22 +26,18 @@ export SAVEHIST=10000                                  # More history on disk
 setopt INC_APPEND_HISTORY                              # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
-# ================ Hub =====================================
-
-# Delete Git's official completions to allow Zsh's official Git completions to work.
-# This is also necessary for hub's Zsh completions to work:
-# https://github.com/github/hub/issues/1956
-[ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
-
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
 
 # Source asdf completions prior to oh-my-zsh running it's own compinit.
 fpath=($HOME/.asdf/completions $fpath)
 
+# Docker completions — must be added before oh-my-zsh calls compinit
+fpath=($HOME/.docker/completions $fpath)
+
 # ngrok completions
 if command -v ngrok &>/dev/null; then
-	eval "$(ngrok completion &>/dev/null)"
+	eval "$(ngrok completion 2>/dev/null)"
 fi
 
 # Which plugins would you like to load?
@@ -83,7 +79,7 @@ alias ohmyzsh="e ~/.oh-my-zsh"
 
 source $HOME/.aliases.zsh
 
-# custom functions (thnanks Kent C. Dodds)
+# custom functions (thanks Kent C. Dodds)
 killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -96,16 +92,16 @@ zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 # Set up syntax highlighting
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Set up zsh-autosuggestions
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 # Set up zsh-autocomplete
-source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # Set up fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Set up thefuck
-eval $(thefuck --alias)
+eval "$(thefuck --alias)"
 
 # Base16 Shell
 BASE16_SHELL="$HOME/repos/base16-shell/"
@@ -116,17 +112,11 @@ BASE16_SHELL="$HOME/repos/base16-shell/"
 base16_darktooth
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ryan/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ryan/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/ryan/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ryan/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 export PYTHONWARNINGS="ignore::DeprecationWarning"
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/ryan/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
 # Add ~/.zshrc.local
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 

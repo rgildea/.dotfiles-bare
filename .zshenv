@@ -1,11 +1,11 @@
-# uv
-export PATH="$HOME/.local/bin:$PATH"
+# uv (high priority — prepend so it wins over Homebrew)
+path=("$HOME/.local/bin" $path)
 
 # Add user's private bin
 path+=("$HOME/bin")
 
 # Added by Antigravity
-export PATH="/Users/ryan/.antigravity/antigravity/bin:$PATH"
+path+=("$HOME/.antigravity/antigravity/bin")
 
 # opencode
-export PATH=/Users/ryan/.opencode/bin:$PATH
+path+=("$HOME/.opencode/bin")

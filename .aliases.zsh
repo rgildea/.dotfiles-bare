@@ -3,7 +3,7 @@
 # Better Versions
 # Check if command exists, then alias it, otherwise keep default
 command -v bat >/dev/null 2>&1 && alias cat='bat'
-command -v bat >/dev/null 2>&1 && alias less='bat'
+command -v bat >/dev/null 2>&1 && alias less='bat --paging=always'
 command -v duf >/dev/null 2>&1 && alias df='duf'
 command -v eza >/dev/null 2>&1 && alias ls='eza'
 command -v ffind >/dev/null 2>&1 && alias find='ffind'
@@ -25,7 +25,7 @@ alias v="vim"
 
 # directory shortcuts
 alias dl="cd ~/Downloads"
-alias dots="cd ~/.dotfiles"
+alias dots="cd ~/.cfg"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 
@@ -56,7 +56,6 @@ alias gca='git commit -a'
 alias gcb='git copy-branch-name'
 alias gco='git checkout'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.
-alias ge='git-edit-new'
 alias gf=git-flow
 alias gfb='git flow bugfix'
 alias gff='git flow feature'
@@ -68,7 +67,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C
 alias gp='git push origin HEAD'
 alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gsubmodules="git config --file .gitmodules --get-regexp path | awk '{ print $3 }'"
-alias gum='git checkout master && git fetch && git pull'
+alias gum='git checkout main && git fetch && git pull'
 alias gup='git pull --rebase'
 
 #heroku
@@ -91,10 +90,9 @@ alias rmn="rm -rf node_modules"
 # utilities
 alias diskspace="df -h | grep -v tmpfs | grep -v devtmpfs"
 alias ip="curl -s ipinfo.io | jq -r '.ip'"
-alias mem="free -h"
 alias now="date +\"%T\""
 alias path="echo $PATH | tr ':' '\n'"
-alias ports="netstat -tulpn | grep LISTEN"
+alias ports="lsof -nP -iTCP -sTCP:LISTEN"
 alias weather="curl -s wttr.in"
 alias week="date +%V"
 
