@@ -238,6 +238,17 @@ als <pattern>             # search all active aliases, e.g. als git
 alias-finder              # type a command, see if an alias exists for it
 ```
 
+**tldr** is the complement to `halp` for standard CLI tools — practical examples instead of exhaustive man pages. Use it when you forget the syntax for something you don't use every day.
+
+```
+tldr tar                  # the extract/create recipes, no flags archaeology
+tldr ssh                  # common ssh usage patterns
+tldr rsync                # the copy/sync incantations you always forget
+tldr <any unix command>   # works for most standard tools
+```
+
+Rule of thumb: `halp` for your custom setup, `tldr` for the rest of the Unix universe.
+
 ---
 
 ## Reloading the Shell
