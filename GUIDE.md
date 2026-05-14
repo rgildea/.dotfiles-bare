@@ -7,14 +7,14 @@
 
 ## Dotfiles
 
-Your config lives in a bare git repo at `~/.cfg`, managed via **dotbare**.
+Your config lives in a bare git repo at `~/.cfg`, managed via **dotbare** (`cfg` = `config` = `dotbare`).
 Never use plain `git` from the home directory — use these instead:
 
 | What | Command |
 |------|---------|
 | See what's changed | `cstat` or `cdiff` |
 | Stage a file | `cadd .zshrc` |
-| Commit | `dotbare commit -m "chore: update zsh config"` |
+| Commit | `cfg commit -m "chore: update zsh config"` |
 | Push | `cgp` |
 | View history | `clog` |
 | Go to repo | `dots` |
@@ -24,8 +24,8 @@ Never use plain `git` from the home directory — use these instead:
 e ~/.aliases.zsh          # edit in VS Code
 cstat                     # confirm what changed
 cdiff .aliases.zsh        # review the diff
-dotbare add .aliases.zsh
-dotbare commit -m "feat(aliases): add brewi wrapper"
+cadd .aliases.zsh
+cfg commit -m "feat(aliases): add brewi wrapper"
 cgp
 ```
 
@@ -52,8 +52,8 @@ The `Brewfile` is the source of truth. Use wrappers so it stays current.
 ```
 brewi fzf                 # installs and dumps Brewfile automatically
 cdiff Brewfile            # review the recorded change
-dotbare add Brewfile
-dotbare commit -m "chore(Brewfile): add fzf"
+cadd Brewfile
+cfg commit -m "chore(Brewfile): add fzf"
 cgp
 ```
 
@@ -92,7 +92,7 @@ gac "feat(ui): add dark mode toggle"   # fast path when you already know the for
 
 **Workflow — interactive commit:**
 ```
-git add -p                # stage selectively
+gapa                      # stage selectively (git add --patch)
 gc                        # launches Commitizen: pick type → scope → subject → body
 gp                        # push
 ```
