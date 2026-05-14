@@ -2,6 +2,8 @@
 
 Portable macOS development environment managed with [dotbare](https://github.com/kazhala/dotbare).
 
+> Already set up? Run `halp` in your terminal for the full workflow guide.
+
 ## Quick Start
 
 ```bash
