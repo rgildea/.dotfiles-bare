@@ -13,6 +13,7 @@ command -v procs >/dev/null 2>&1 && alias ps='procs'
 command -v rg >/dev/null 2>&1 && alias grep='rg'
 
 # commands
+alias a="alias"
 alias c="clear"
 alias e="code" # use vscode instead of vim for editor
 alias h="history"
@@ -49,11 +50,9 @@ alias lt="ls -T --git" # tree listing
 
 # git aliases
 alias gac='git add -A && git commit -m'
-alias gb='git branch'
 alias gc='git commit'
 alias gca='git commit -a'
-alias gcb='git copy-branch-name'
-alias gco='git checkout'
+alias gcopy='git copy-branch-name'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.
 if command -v git-flow &>/dev/null; then
   alias gf='git flow'
