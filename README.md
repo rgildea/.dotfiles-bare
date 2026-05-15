@@ -287,6 +287,7 @@ Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run manually any ti
 1. **1Password**: Sign in and enable SSH agent in Settings → Developer
 2. **iTerm**: Settings → General → Settings → Load from custom folder → `~`
 3. **Git SSH**: 1Password should offer to configure `~/.ssh/config`
+4. **Claude Code**: installed automatically by bootstrap — authenticate with `claude` on first run
 
 ## License
 

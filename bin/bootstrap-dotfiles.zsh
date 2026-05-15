@@ -154,6 +154,14 @@ else
   vim -es -u $HOME/.vimrc -c "PlugInstall --sync" -c "qa"
 fi
 
+# install Claude Code
+if [[ -x "$HOME/.local/bin/claude" ]]; then
+  echo "Claude Code already installed...skipping."
+else
+  echo "installing Claude Code..."
+  curl -fsSL https://claude.ai/install.sh | sh
+fi
+
 # restore agent skills (claude, etc.)
 echo "restoring agent skills..."
 if [[ -f "$HOME/.agents/.skill-lock.json" ]]; then
