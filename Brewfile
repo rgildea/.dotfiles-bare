@@ -1,6 +1,4 @@
 tap "1password/tap"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "ngrok/ngrok"
 tap "romkatv/powerlevel10k"
 brew "asdf"
