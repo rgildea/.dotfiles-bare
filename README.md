@@ -76,6 +76,8 @@ Aliases: `cfg`, `cadd`, `cstat`, `clog`, `cdiff`, `cgp`
 
 80+ aliases for modern CLI tools (`bat`, `eza`, `ripgrep`, `fd`, etc.) plus git shortcuts. Run `halp shell` or `halp git` for the full reference, or `als <pattern>` to search.
 
+Run `halp vim` for the Vim quick reference including custom mappings and a vim/less paging comparison. Run `halp shell` for command-line editing bindings and autosuggestion usage.
+
 ## Managing Homebrew Packages
 
 The `Brewfile` is the source of truth for installed packages, casks, and VS Code extensions. Use `brewi`/`brewci`/`brewun` wrappers instead of raw `brew` commands — they keep the Brewfile in sync automatically. On a new machine: `brew bundle`.
