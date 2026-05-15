@@ -18,7 +18,7 @@ Portable macOS development environment managed with [dotbare](https://github.com
 | Prompt | Powerlevel10k |
 | Package Manager | Homebrew |
 | Version Manager | asdf |
-| Editor | Vim (Janus) + VS Code |
+| Editor | Vim (vim-plug) + VS Code |
 | Terminal | iTerm2 |
 | SSH/Secrets | 1Password |
 
