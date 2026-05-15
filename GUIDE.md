@@ -210,7 +210,7 @@ asdf global nodejs 24.15.0   # set global default
 - Node: 24.15.0
 - Ruby: 3.3.0
 - Python: 3.12.1
-- Yarn: 1.22.19
+- SQLite: 3.45.1
 
 ---
 
@@ -297,6 +297,7 @@ gct                       # tail build logs for current gcloud project
 ---
 
 ## This Guide
+<!-- halp: vim | Modes, motions, plugins, and your custom mappings -->
 <!-- halp: guide | Navigate with halp, halp me, halp KEYWORD -->
 
 How to navigate this guide — open it, get the TOC, or jump to a section by keyword.
@@ -309,3 +310,119 @@ e ~/GUIDE.md              # edit in VS Code
 ```
 
 The guide lives at `~/GUIDE.md` and is tracked in your dotfiles.
+
+---
+
+## Vim
+<!-- halp: vim | Modes, motions, plugins, and your custom mappings -->
+
+One rule: **you are always in Normal mode by default.** Insert mode is temporary.
+Return to Normal with `jk` — it's your escape hatch and it's already wired up.
+
+**Getting unstuck:**
+
+| Symptom | Fix |
+|---------|-----|
+| Nothing I type appears | You're in Normal — that's correct, `i` to insert |
+| Everything looks broken | `jk` then `u` to undo |
+| Stuck in some sub-mode | `<Esc><Esc>` clears it |
+| Accidentally recording a macro | `q` to stop |
+| Can't quit | `:q!` force-quit without saving |
+
+**The two gears:**
+
+```
+Normal → Insert     i (before cursor)  a (after)  o (new line below)  O (above)
+Insert → Normal     jk  or  kj  ← your mappings, faster than reaching for Esc
+Normal → Visual     v (char)   V (line)   <C-v> (block)
+Any → Normal        <Esc>  (fallback)
+```
+
+**Saving:**
+
+```
+<C-s>               save from insert or normal mode (your mapping)
+:w                  also works from Normal
+:wq                 save and quit
+:q!                 quit without saving
+```
+
+**Moving around (Normal mode):**
+
+| Move | Keys |
+|------|------|
+| Left / down / up / right | `h` `j` `k` `l` |
+| Next / prev word | `w` `b` |
+| End of word | `e` |
+| Start / end of line | `0` `$` |
+| First / last line | `gg` `G` |
+| Jump to line 42 | `42G` or `:42` |
+| Next / prev paragraph | `{` `}` |
+| Find char on line | `f<char>` — `;` to repeat |
+| Jump back / forward | `<C-o>` / `<C-i>` |
+
+**Editing — operator + motion:**
+
+```
+d + motion    delete    dw (word)  dd (line)  d$ (to end)  d3j (3 lines)
+c + motion    change    cw (word, drops into insert)  cc (whole line)
+y + motion    yank      yy (line)  y$ (to end)
+p / P         paste     after cursor / before cursor
+x             delete char under cursor
+u / <C-r>     undo / redo
+.             repeat last change  ← use this constantly
+```
+
+**Your custom mappings:**
+
+| What | Keys |
+|------|------|
+| Escape insert mode | `jk` or `kj` |
+| Save | `<C-s>` (insert or normal) |
+| Find files (FZF) | `<Space>F` |
+| Move line down / up | `<A-j>` / `<A-k>` (all modes) |
+| Edit vimrc | `<Space>vr` |
+| Reload vimrc | `<Space>so` |
+
+**Plugins:**
+
+*vim-commentary — toggle comments:*
+```
+gcc             comment/uncomment current line
+gc + motion     comment a range  (gcj = this + next line)
+```
+
+*vim-surround — wrap, change, or delete surrounding chars:*
+```
+cs"'            change surrounding " to '
+ds"             delete surrounding "
+ysiw"           wrap word under cursor in quotes  (ys + motion + char)
+```
+
+*FZF — fuzzy finding:*
+```
+<Space>F        find files in project
+:Buffers        switch between open buffers
+:Rg             ripgrep search across all files
+:GFiles         git-tracked files only
+```
+
+*ALE — linting:*
+```
+]e / [e         jump to next / prev error
+:ALEDetail      show full error message
+```
+
+*Copilot:*
+```
+Tab             accept suggestion
+<C-]>           dismiss suggestion
+:Copilot        check status / enable
+```
+
+**Search:**
+```
+/pattern        search forward  (n next, N prev)
+*               search word under cursor
+:%s/old/new/gc  find and replace with confirmation
+```

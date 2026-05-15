@@ -15,7 +15,13 @@ command -v rg >/dev/null 2>&1 && alias grep='rg'
 # commands
 alias a="alias"
 alias c="clear"
-alias e="code" # use vscode instead of vim for editor
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  export EDITOR="code --wait"
+  alias e="code"
+else
+  export EDITOR="vim"
+  alias e="vim"
+fi
 alias h="history"
 alias j="jobs"
 alias md="mkdir -p"
