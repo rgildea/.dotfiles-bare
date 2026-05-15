@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 GUIDE="$HOME/GUIDE.md"
+HALP_WIDTH="${HALP_WIDTH:-120}"
 
 show_toc() {
   awk '
@@ -11,7 +12,7 @@ show_toc() {
       n = split(line, parts, / *\| */)
       printf "- `%-8s` %s\n", parts[1], parts[2]
     }
-  ' "$GUIDE" | glow -
+  ' "$GUIDE" | glow -w "$HALP_WIDTH" -
 }
 
 show_section() {
@@ -48,11 +49,11 @@ show_section() {
     return 1
   fi
 
-  echo "$content" | glow --pager -
+  echo "$content" | glow --pager -w "$HALP_WIDTH" -
 }
 
 case "${1:-}" in
-  "")         glow --pager "$GUIDE" ;;
+  "")         glow --pager -w "$HALP_WIDTH" "$GUIDE" ;;
   "me")       [[ -n "${2:-}" ]] && show_section "$2" || show_toc ;;
   *)          show_section "$1" ;;
 esac
