@@ -53,14 +53,6 @@ alias gc='git cz'
 alias gac='git add -A && git commit -m'
 alias gcopy='git copy-branch-name'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.
-if command -v git-flow &>/dev/null; then
-  alias gf='git flow'
-  alias gfb='git flow bugfix'
-  alias gff='git flow feature'
-  alias gfh='git flow hotfix'
-  alias gfr='git flow release'
-  alias gfs='git flow support'
-fi
 alias gl='git pull --prune'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gp='git push origin HEAD'
@@ -68,9 +60,6 @@ alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gsubmodules="git config --file .gitmodules --get-regexp path | awk '{ print $3 }'"
 alias gum='git checkout main && git fetch && git pull'
 alias gup='git pull --rebase'
-
-#heroku
-alias gph='git push heroku'
 
 # npm aliases
 alias flush-npm="rm -rf node_modules package-lock.json && npm i && say NPM is done"
