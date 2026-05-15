@@ -195,3 +195,7 @@ If modifying `bin/bootstrap-dotfiles.zsh`:
 1. Test in a fresh macOS VM or spare machine
 2. The script is destructive (overwrites configs, installs software)
 3. Key line: `dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git`
+
+Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → Oh My Zsh → asdf + languages → vim-plug → skills-restore → macOS defaults → open iTerm.
+
+`bin/sane-macos-defaults.sh` is safe to re-run (all `defaults write` calls are idempotent). It covers: UI/UX, trackpad/keyboard, energy, screen/screenshots, Finder, Dock, Safari, iTerm, Time Machine, Activity Monitor, Software Updates. Full details in `README.md`.
