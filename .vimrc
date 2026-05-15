@@ -11,12 +11,15 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 
 " Formatting + linting
-Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile 2>/dev/null || npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'dense-analysis/ale'
 
 " Fuzzy finding (uses Homebrew fzf binary)
 Plug '/opt/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
+
+" Colors
+Plug 'tinted-theming/base16-vim'
 
 " AI
 Plug 'github/copilot.vim'
