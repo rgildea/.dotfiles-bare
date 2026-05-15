@@ -145,6 +145,39 @@ On a new machine or after pulling changes:
 brew bundle            # install everything in the Brewfile
 ```
 
+## Agent Skills
+
+Global agent skills are tracked in `~/.agents/` so they can be restored on new machines.
+
+Skills live in `~/.agents/skills/` (canonical cross-agent location). Agent-specific symlinks (e.g. `~/.claude/skills/`) are not tracked — they are recreated by running `skills-restore`.
+
+### Installing a new skill
+
+```bash
+npx skills add <owner/repo> -g -y
+```
+
+Then commit the updated files:
+
+```bash
+dotbare add ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
+dotbare commit -m "chore(skills): add <name> skill"
+```
+
+### Restoring skills on a new machine
+
+After dotfiles checkout, recreate all agent symlinks in one command:
+
+```bash
+skills-restore
+```
+
+This reads `~/.agents/.skill-lock.json` and replays `npx skills add -g` for every entry.
+
+### Discovering skills
+
+Browse and install from [skills.sh](https://skills.sh) or search GitHub for repos tagged `agent-skills`.
+
 ## Local Overrides
 
 Create `.zshrc.local` for machine-specific settings (not committed):

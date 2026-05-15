@@ -152,6 +152,28 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 | `Brewfile` | `~/.ssh/config` |
 | `.config/git/ignore` | `~/.config/*` (mostly cache) |
 | `bin/*.zsh` scripts | Scripts with API keys/secrets |
+| `.agents/.skill-lock.json` | Agent cache, symlinks |
+| `.agents/skills/*/SKILL.md` | |
+
+### Agent Skills
+
+Global agent skills live in `~/.agents/skills/` and are tracked in dotfiles. Agent-specific symlinks (e.g. `~/.claude/skills/`) are **not** tracked — they are recreated on demand.
+
+**Install a new skill (adds to lock file + creates symlinks):**
+```bash
+npx skills add <owner/repo> -g -y
+```
+
+**After dotfiles checkout on a new machine:**
+```bash
+skills-restore   # replays npx skills add -g for every entry in ~/.agents/.skill-lock.json
+```
+
+**After installing a new skill, commit the updated files:**
+```bash
+dotbare add ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
+dotbare commit -m "chore(skills): add <name> skill"
+```
 
 ### Submodules
 
