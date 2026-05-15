@@ -58,92 +58,29 @@ Configuration follows Zsh's load order (earliest to latest):
 
 ## Managing Dotfiles
 
-The repo uses a bare git repository at `~/.cfg`, managed via `dotbare`:
+The repo uses a bare git repository at `~/.cfg`, managed via [dotbare](https://github.com/kazhala/dotbare):
 
 ```bash
-# View status
-dotbare status
-
-# Add files
-dotbare add ~/.config/some-tool/config
-
-# Commit changes
-dotbare commit -m "Add some-tool config"
-
-# Push
-dotbare push origin main
-
-# View diff
-dotbare diff
+cfg status
+cadd ~/.config/some-tool/config
+cfg commit -m "chore(zsh): update aliases"
+cgp
+cdiff
 ```
 
-Aliases are available: `config`, `cfg`, `cadd`, `cstat`, `clog`, etc.
+All commits follow [Conventional Commits](https://www.conventionalcommits.org/) format — a `commit-msg` hook enforces this. Use `cfg cz` for an interactive prompt. Run `halp commit` for the full reference.
+
+Aliases: `cfg`, `cadd`, `cstat`, `clog`, `cdiff`, `cgp`
 
 ## Tools & Aliases
 
-Modern CLI replacements (auto-aliased when installed):
-
-| Default | Replacement | Command |
-|---------|-------------|---------|
-| `cat` | `bat` | `cat` |
-| `ls` | `eza` | `ls`, `ll`, `la`, `lt` |
-| `grep` | `ripgrep` | `grep` |
-| `find` | `fd` | `find` |
-| `df` | `duf` | `df` |
-| `top` | `htop` | `top` |
-| `ping` | `prettyping` | `ping` |
-| `ps` | `procs` | `ps` |
-
-Git aliases: `gs`, `gl`, `gp`, `gac`, `glog`, `gb`, `gco`, etc.
-
-See `.aliases.zsh` for the full list.
+80+ aliases for modern CLI tools (`bat`, `eza`, `ripgrep`, `fd`, etc.) plus git shortcuts. Run `halp shell` or `halp git` for the full reference, or `als <pattern>` to search.
 
 ## Managing Homebrew Packages
 
-The `Brewfile` is the source of truth for installed packages, casks, and VS Code extensions.
+The `Brewfile` is the source of truth for installed packages, casks, and VS Code extensions. Use `brewi`/`brewci`/`brewun` wrappers instead of raw `brew` commands — they keep the Brewfile in sync automatically. On a new machine: `brew bundle`.
 
-### Installing new software
-
-Use the wrapper commands instead of raw `brew install` — they dump the Brewfile automatically:
-
-```bash
-brewi ripgrep          # brew install + dump
-brewci rectangle       # brew install --cask + dump
-brewun unused-tool     # brew uninstall + dump
-```
-
-After any of these, review and commit the updated Brewfile:
-
-```bash
-cstat                  # see that Brewfile is modified
-cdiff Brewfile         # review what changed
-config commit -m "Add ripgrep to Brewfile"
-cgp
-```
-
-### Syncing from current state
-
-If you've installed things with raw `brew` commands and want to catch up the Brewfile:
-
-```bash
-brewsync               # dump current state + show diff against committed version
-```
-
-### Checking for drift
-
-To see what's installed locally but not recorded in the Brewfile:
-
-```bash
-brewdrift              # lists untracked packages (brew bundle cleanup, no --force)
-```
-
-### Installing from Brewfile
-
-On a new machine or after pulling changes:
-
-```bash
-brew bundle            # install everything in the Brewfile
-```
+Run `halp brew` for workflows and drift-checking commands.
 
 ## Agent Skills
 
@@ -160,8 +97,8 @@ npx skills add <owner/repo> -g -y
 Then commit the updated files:
 
 ```bash
-dotbare add ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
-dotbare commit -m "chore(skills): add <name> skill"
+cadd ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
+cfg commit -m "chore(skills): add <name> skill"
 ```
 
 ### Restoring skills on a new machine

@@ -8,13 +8,15 @@ This is a **bare git repository** using dotbare. Never use raw `git` commands fr
 
 | Wrong | Right |
 |-------|-------|
-| `git status` | `dotbare status` or `cfg status` |
-| `git add` | `dotbare add` or `cadd` |
-| `git commit` | `dotbare commit` or `config commit` |
-| `git diff` | `dotbare diff` or `cdiff` |
-| `git push` | `dotbare push` or `cgp` |
+| `git status` | `cfg status` |
+| `git add` | `cadd` |
+| `git commit` | `cfg commit` |
+| `git diff` | `cdiff` |
+| `git push` | `cgp` |
 
 Aliases: `config`, `cfg`, `cadd`, `cstat`, `clog`, `cdiff`
+
+**Always use the most compact alias available.** Prefer `cfg` over `config` over `dotbare`; prefer `cadd`, `cdiff`, `cstat`, `clog`, `cgp` over their longer forms.
 
 ### Commit Messages
 
@@ -46,7 +48,7 @@ docs(README): add Homebrew management section
 - Subject is imperative mood, no period, ≤72 chars
 - Scope is optional but encouraged
 - Breaking changes: append `!` before the colon — `feat!: remove X`
-- Use `dotbare commit -m "..."` not raw `git commit` in this repo
+- Use `cfg commit -m "..."` not raw `git commit` in this repo
 
 ### File Locations
 
@@ -172,8 +174,8 @@ skills-restore   # replays npx skills add -g -y for every entry in ~/.agents/.sk
 
 **After installing a new skill, commit the updated files:**
 ```bash
-dotbare add ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
-dotbare commit -m "chore(skills): add <name> skill"
+cadd ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
+cfg commit -m "chore(skills): add <name> skill"
 ```
 
 ### Submodules
@@ -185,8 +187,8 @@ This repo uses git submodules:
 
 Update with:
 ```bash
-dotbare submodule update --init --recursive
-dotbare submodule update --remote
+cfg submodule update --init --recursive
+cfg submodule update --remote
 ```
 
 ### Bootstrap Testing
