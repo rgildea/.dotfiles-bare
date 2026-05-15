@@ -5,9 +5,9 @@
 
 ---
 
-### Intro
+## Intro
 
-## This Guide
+### This Guide
 <!-- halp: guide | Navigate with halp, halp me, halp KEYWORD -->
 
 How to navigate this guide — open it, get the TOC, or jump to a section by keyword.
@@ -23,15 +23,18 @@ The guide lives at `~/GUIDE.md` and is tracked in your dotfiles.
 
 ---
 
-## Shell & Navigation
+### Shell & Navigation
 <!-- halp: shell | Directory jumps, command line editing, autosuggestions, and modern tool replacements -->
 
 **Directory shortcuts:**
 ```
+home                      # ~
+p                         # ~/projects
+bin                       # ~/bin
+agents                    # ~/.agents
 dl                        # ~/Downloads
 dt                        # ~/Desktop
-p                         # ~/projects
-dots                      # ~/.cfg (dotfiles repo)
+docs                      # ~/Documents
 ```
 
 **Command line editing (Zsh emacs mode):**
@@ -100,7 +103,7 @@ reload                    # exec zsh -l — replaces the process, clean slate
 
 ---
 
-## Finding Aliases
+### Finding Aliases
 <!-- halp: find | halp, tldr, als — discover shortcuts and docs -->
 
 Tools for discovering what shortcuts exist and jumping to documentation.
@@ -127,9 +130,9 @@ Rule of thumb: `halp` for your custom setup, `tldr` for the rest of the Unix uni
 
 ---
 
-### Dotfiles & Package Management
+## Dotfiles & Package Management
 
-## Dotfiles
+### Dotfiles
 <!-- halp: dots | Manage config files with cfg, cadd, cgp -->
 
 Your config lives in a bare git repo at `~/.cfg`, managed via **dotbare** (`cfg` = `config` = `dotbare`).
@@ -160,7 +163,7 @@ cgp
 
 ---
 
-## Homebrew & Brewfile
+### Homebrew & Brewfile
 <!-- halp: brew | Install packages with brewi/brewci, track in Brewfile -->
 
 The `Brewfile` is the source of truth. Use wrappers so it stays current.
@@ -191,7 +194,7 @@ brewsync                  # dumps current state, shows diff
 
 ---
 
-## Version Management (asdf)
+### Version Management (asdf)
 <!-- halp: asdf | Language versions pinned in .tool-versions -->
 
 Languages are managed by **asdf**. Versions are pinned in `~/.tool-versions`.
@@ -212,9 +215,9 @@ asdf global nodejs 24.15.0   # set global default
 
 ---
 
-### Daily Workflow
+## Daily Workflow
 
-## Git Workflow
+### Git Workflow
 <!-- halp: git | Daily aliases, undo, stash, conflict resolution -->
 
 Your gitconfig is opinionated. Here's what it does for you automatically:
@@ -260,7 +263,7 @@ yours | original | theirs. The original helps you understand intent.
 
 ---
 
-## Making a Commit
+### Making a Commit
 <!-- halp: commit | Conventional Commits via gc (interactive) or gac (fast) -->
 
 All commits must follow **Conventional Commits** format.
@@ -300,7 +303,7 @@ git commit -m "Merge branch 'main'"   # fine, hook allows it
 
 ---
 
-## Vim
+### Vim
 <!-- halp: vim | Modes, motions, plugins, and your custom mappings -->
 
 One rule: **you are always in Normal mode by default.** Insert mode is temporary.
@@ -433,9 +436,9 @@ Both share the same core bindings. `Space`/`b` exist in less but can't be used i
 
 ---
 
-### Tools & Domain-Specific
+## Tools & Domain-Specific
 
-## NPM Shortcuts
+### NPM Shortcuts
 <!-- halp: npm | ni, nrd, nrt, rmn and friends -->
 
 Handy aliases for common npm tasks — install, build, dev, test, and nuking `node_modules`.
@@ -453,7 +456,7 @@ flush-npm                 # nuke node_modules + lockfile + reinstall
 
 ---
 
-## AI / OpenRouter
+### AI / OpenRouter
 <!-- halp: ai | claude and claude-or, keys in .zshrc.local -->
 
 Run Claude via Anthropic API or OpenRouter — keys live in `~/.zshrc.local` (never committed).
@@ -465,7 +468,7 @@ claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from 
 
 ---
 
-## GCloud
+### GCloud
 <!-- halp: gcloud | gct for streaming build logs -->
 
 Quick access to Google Cloud build logs for the current project.

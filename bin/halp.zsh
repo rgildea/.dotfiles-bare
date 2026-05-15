@@ -20,10 +20,10 @@ show_section() {
   local content
   content=$(awk -v kw="$keyword" '
     BEGIN { in_section = 0; pending = "" }
-    /^## / {
+    /^### / {
       if (in_section) exit
       pending = $0
-      cur_header = tolower(substr($0, 4))
+      cur_header = tolower(substr($0, 5))
     }
     /^<!-- halp:/ {
       if (pending == "") next

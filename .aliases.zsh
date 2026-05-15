@@ -30,10 +30,13 @@ alias reload="exec zsh -l"
 alias v="vim"
 
 # directory shortcuts
-alias dl="cd ~/Downloads"
-alias dots="cd ~/.cfg"
-alias dt="cd ~/Desktop"
+alias home="cd ~"
 alias p="cd ~/projects"
+alias bin="cd ~/bin"
+alias agents="cd ~/.agents"
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias docs="cd ~/Documents"
 
 # dotfiles
 alias cadd="config add"
