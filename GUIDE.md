@@ -32,7 +32,7 @@ cgp
 
 **What's tracked vs. ignored:**
 - Tracked: `.zshrc`, `.zshenv`, `.aliases.zsh`, `Brewfile`, `.gitconfig`, `bin/*.zsh`
-- Never tracked: `.zshrc.local` (API keys, machine config), `bin/claude-or.zsh`
+- Never tracked: `.zshrc.local` (API keys, machine config)
 
 ---
 
