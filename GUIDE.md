@@ -91,6 +91,19 @@ now                       # current time
 diskspace                 # disk usage (non-virtual)
 ```
 
+**Navigating less (git diffs, halp, man pages, etc.):**
+
+| Action | Keys |
+|--------|------|
+| Quit | `q` |
+| Forward / back one page | `Ctrl+F` / `Ctrl+B` |
+| Forward / back one line | `j` / `k` |
+| Start / end of file | `g` / `G` |
+| Search forward | `/pattern` |
+| Next / prev match | `n` / `N` |
+
+See the Vim section for a full vim/less comparison.
+
 **Reloading the shell:**
 
 Use `exec zsh -l` (aliased as `reload`) — not `source` — to get a clean slate after config changes.
