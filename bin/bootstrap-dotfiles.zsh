@@ -139,19 +139,19 @@ else
   asdf plugin add python
   asdf plugin add ruby
   asdf plugin add sqlite
-  asdf plugin add yarn
-  
- # install asdf packages according to the versions in the .tool-versions file
+  # install asdf packages according to the versions in the .tool-versions file
   asdf install
 fi
 
-# install janus for vim
-if [[ -d $HOME/.vim/janus ]]
+# install vim-plug
+if [[ -f $HOME/.vim/autoload/plug.vim ]]
 then
-  echo "janus already installed...skipping."
+  echo "vim-plug already installed...skipping."
 else
-  echo "installing janus..."
-  curl -L https://bit.ly/janus-bootstrap | bash
+  echo "installing vim-plug..."
+  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  vim -es -u $HOME/.vimrc -c "PlugInstall --sync" -c "qa"
 fi
 
 # cleanup
