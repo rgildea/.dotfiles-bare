@@ -297,7 +297,6 @@ gct                       # tail build logs for current gcloud project
 ---
 
 ## This Guide
-<!-- halp: vim | Modes, motions, plugins, and your custom mappings -->
 <!-- halp: guide | Navigate with halp, halp me, halp KEYWORD -->
 
 How to navigate this guide — open it, get the TOC, or jump to a section by keyword.
