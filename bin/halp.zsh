@@ -48,7 +48,7 @@ show_section() {
     return 1
   fi
 
-  echo "$content" | glow -
+  echo "$content" | glow --pager -
 }
 
 case "${1:-}" in
