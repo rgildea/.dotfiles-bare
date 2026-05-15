@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 GUIDE="$HOME/GUIDE.md"
-HALP_WIDTH="${HALP_WIDTH:-120}"
+HALP_WIDTH="${HALP_WIDTH:-100}"
 
 show_toc() {
   awk '
