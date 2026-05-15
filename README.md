@@ -166,7 +166,7 @@ dotbare commit -m "chore(skills): add <name> skill"
 
 ### Restoring skills on a new machine
 
-After dotfiles checkout, recreate all agent symlinks in one command:
+The bootstrap script runs `skills-restore` automatically. If you need to run it manually (e.g. after pulling new skills on an existing machine):
 
 ```bash
 skills-restore

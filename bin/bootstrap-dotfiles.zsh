@@ -154,6 +154,14 @@ else
   vim -es -u $HOME/.vimrc -c "PlugInstall --sync" -c "qa"
 fi
 
+# restore agent skills (claude, etc.)
+echo "restoring agent skills..."
+if [[ -f "$HOME/.agents/.skill-lock.json" ]]; then
+  zsh "$HOME/bin/skills-restore.zsh"
+else
+  echo "no skill lock file found, skipping agent skills restore"
+fi
+
 # cleanup
 echo "cleaning up..."
 rm -rf $DOTBARE_TMP_DIR

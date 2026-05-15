@@ -165,8 +165,9 @@ npx skills add <owner/repo> -g -y
 ```
 
 **After dotfiles checkout on a new machine:**
+The bootstrap script runs `skills-restore` automatically. To run it manually (e.g. after pulling new skills on an existing machine):
 ```bash
-skills-restore   # replays npx skills add -g for every entry in ~/.agents/.skill-lock.json
+skills-restore   # replays npx skills add -g -y for every entry in ~/.agents/.skill-lock.json
 ```
 
 **After installing a new skill, commit the updated files:**
