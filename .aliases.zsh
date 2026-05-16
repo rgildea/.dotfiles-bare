@@ -56,7 +56,7 @@ alias config=dotbare
 alias l.="ls -d .*" # show only dotfiles
 alias la="ls -la --git"
 alias ll="ls -l --git"
-alias lt="ls -T --git" # tree listing
+alias lt="ls -T --git --level=2"
 
 # git aliases
 alias gc='git cz'
