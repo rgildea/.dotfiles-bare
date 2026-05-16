@@ -14,6 +14,7 @@ command -v rg >/dev/null 2>&1 && alias grep='rg'
 
 # commands
 alias a="alias"
+alias af="alias-finder"
 alias c="clear"
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   export EDITOR="code --wait"
