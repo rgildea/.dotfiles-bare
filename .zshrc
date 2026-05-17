@@ -26,8 +26,9 @@ export SAVEHIST=100000                                 # More history on disk
 setopt INC_APPEND_HISTORY                              # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
-# Tell oh-my-zsh to skip compinit — zsh-autocomplete calls it after oh-my-zsh loads
-skip_global_compinit=1
+# zsh-autocomplete calls compinit itself and must load last.
+# Only skip OMZ's compinit if the plugin is actually present.
+[[ -f "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]] && skip_global_compinit=1
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
@@ -85,13 +86,14 @@ zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
 zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
-# Set up syntax highlighting
-source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# Set up zsh-autosuggestions
-source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+_brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
+# Load order matters: syntax-highlighting → autosuggestions → autocomplete (owns compinit)
+[[ -f "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -f "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^ ' autosuggest-accept
-# Set up zsh-autocomplete (calls compinit — must come after syntax-highlighting and autosuggestions)
-source ${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# Must come last — calls compinit; if missing, OMZ falls back to calling compinit itself
+[[ -f "$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]] && source "$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+unset _brew_share
 
 # completions that require compinit (called above by zsh-autocomplete)
 eval "$(op completion zsh)"; compdef _op op
