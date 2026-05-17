@@ -19,6 +19,27 @@ DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubuserc
 
 The script will pause and prompt you to sign in to 1Password and enable **Settings → Developer → SSH Agent** before continuing.
 
+## Bootstrap Testing Protocol
+
+Use [Tart](https://tart.run) to test bootstrap changes on Apple Silicon:
+
+```bash
+# One-time: pull a clean base image and save a snapshot
+tart clone ghcr.io/cirruslabs/macos-sequoia-vanilla:latest sequoia-base
+tart run sequoia-base  # enable SSH, create your user account, then stop
+tart clone sequoia-base sequoia-test  # clone fresh for each test run
+```
+
+Each test run:
+```bash
+tart clone sequoia-base sequoia-test  # always start from the clean snapshot
+tart run sequoia-test --no-graphics
+ssh admin@$(tart ip sequoia-test)
+# then run the bootstrap from the GUI (requires physical access for 1Password)
+```
+
+**Important:** the dotfiles install step is skipped if `~/.cfg` already exists — bootstrap is idempotent by design. Always start from a fresh VM clone to test the full flow. Never reuse a VM instance that has already been bootstrapped.
+
 ## Overview
 
 | Component | Tool |
