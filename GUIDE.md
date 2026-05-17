@@ -539,7 +539,7 @@ claude mcp list           # verify MCP servers are connected
 
 **Keys in `.zshrc.local`** (never committed):
 ```
-ANTHROPIC_API_KEY         # required for Claude Code and Zed assistant
+ANTHROPIC_API_KEY         # required for Zed assistant panel (not Claude Code — that uses interactive login)
 GITHUB_PERSONAL_ACCESS_TOKEN  # written by bootstrap via op read
 ```
 
