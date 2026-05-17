@@ -22,7 +22,7 @@ Items identified during review, ordered roughly by ROI.
 
 - [ ] **Docker Desktop → OrbStack** — Same containers, fraction of the CPU/RAM overhead, better macOS-native experience. Replace `cask "docker-desktop"` with `cask "orbstack"`.
 
-- [ ] **Alfred → Raycast** — Alfred development has stalled. Raycast is free, more extensible, where the developer community has moved. Replace `cask "alfred"` with `cask "raycast"`.
+- [x] **Alfred → Raycast** — Alfred development has stalled. Raycast is free, more extensible, where the developer community has moved. Replace `cask "alfred"` with `cask "raycast"`.
 
 ### Medium ROI
 

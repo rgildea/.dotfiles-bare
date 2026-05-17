@@ -38,7 +38,7 @@ brew "zsh-syntax-highlighting"
 brew "zoxide"
 cask "1password"
 cask "1password-cli"
-cask "alfred"
+cask "raycast"
 cask "discord"
 cask "docker-desktop"
 cask "font-monaspace-nf"               # Monaspace Nerd Font — terminal, Zed, VS Code
