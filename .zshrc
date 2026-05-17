@@ -98,10 +98,11 @@ _brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
 [[ -f "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 (( $+widgets[autosuggest-accept] )) && bindkey '^ ' autosuggest-accept
 _zsh_autocomplete="$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+autoload -U compinit && compinit -u  # always init with -u before zsh-autocomplete can do it without
 if [[ -f "$_zsh_autocomplete" ]]; then
-  source "$_zsh_autocomplete"       # calls compinit itself
+  source "$_zsh_autocomplete"
 else
-  autoload -U compinit && compinit -u  # fallback: compinit if plugin is missing
+  : # compinit already called above
 fi
 unset _brew_share _zsh_autocomplete
 
