@@ -6,7 +6,7 @@ BRANCH="${2:-main}"
 
 IP=$(tart ip "$VM" 2>/dev/null) || { echo "error: could not get IP for '$VM'" >&2; exit 1 }
 
-ssh "admin@$IP" << ENDSSH
+ssh -T "admin@$IP" << ENDSSH
 cat > \$HOME/bootstrap.sh << 'ENDSCRIPT'
 export DOTFILES_BRANCH=$BRANCH && /bin/zsh -c "\$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/\$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
 ENDSCRIPT
