@@ -40,7 +40,7 @@ cask "1password"
 cask "1password-cli"
 cask "raycast"
 cask "discord"
-cask "docker-desktop"
+cask "orbstack"
 cask "font-monaspace-nf"               # Monaspace Nerd Font — terminal, Zed, VS Code
 cask "gcloud-cli"
 cask "ghostty"
