@@ -95,7 +95,7 @@ _brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
 [[ -f "$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]] && source "$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 unset _brew_share
 
-# completions that require compinit (called above by zsh-autocomplete)
+# completions that require compinit (provided above by zsh-autocomplete when available, otherwise by OMZ)
 eval "$(op completion zsh)"; compdef _op op
 if command -v ngrok &>/dev/null; then
 	eval "$(ngrok completion 2>/dev/null)"
