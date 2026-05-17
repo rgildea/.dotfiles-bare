@@ -60,7 +60,7 @@ docs(README): add Homebrew management section
 | `.zshrc.local` | **Machine-specific, do not track** |
 | `.aliases.zsh` | Aliases for modern tools |
 | `Brewfile` | Homebrew packages + VS Code extensions |
-| `.tool-versions` | asdf language versions |
+| `.tool-versions` | mise/asdf language versions (compatible format) |
 | `bin/` | Scripts auto-aliased in shell |
 
 ### Shell Architecture
@@ -105,7 +105,7 @@ Current order (earliest wins for conflicts):
 - Keep it minimal—only what needs to be available before `.zshrc`
 
 **Brewfile changes:**
-- Don't add `node` (use asdf)
+- Don't add `node`, `python`, or `ruby` (use mise — managed via `.tool-versions`)
 - Remove VS Code extensions you've uninstalled
 - Use `brew bundle dump --force` if regenerating
 
@@ -191,6 +191,63 @@ cfg submodule update --init --recursive
 cfg submodule update --remote
 ```
 
+### MCP Servers
+
+Claude Code reads MCP server config from `~/.claude.json` (not tracked — may contain tokens).
+
+**Servers to configure:**
+- `filesystem` — read/write to `$HOME` and `$HOME/projects`
+- `github` — GitHub API via Personal Access Token (pull from 1Password)
+- `fetch` — URL retrieval for docs/research during sessions
+
+**Create `~/.claude.json`:**
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/rgildea", "/Users/rgildea/projects"],
+      "env": {}
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<token>"
+      }
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "env": {}
+    }
+  }
+}
+```
+
+**Get GitHub token from 1Password:**
+```bash
+op read "op://Personal/GitHub Personal Access Token/credential"
+```
+
+**Verify after setup:**
+```bash
+claude mcp list
+```
+
+The bootstrap script (`bin/bootstrap-dotfiles.zsh`) creates this file automatically using `op read`.
+
+### Zed Editor
+
+Config lives at `~/.config/zed/settings.json` (not tracked — per `~/.config/*` convention).
+
+Key settings to configure:
+- Font: JetBrains Mono (already in Brewfile as Nerd Font)
+- Assistant provider: Anthropic, model `claude-sonnet-4-6`
+- Requires `ANTHROPIC_API_KEY` in `.zshrc.local`
+
+The bootstrap script creates a minimal stub if the file doesn't exist.
+
 ### Bootstrap Testing
 
 If modifying `bin/bootstrap-dotfiles.zsh`:
@@ -198,6 +255,6 @@ If modifying `bin/bootstrap-dotfiles.zsh`:
 2. The script is destructive (overwrites configs, installs software)
 3. Key line: `dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git`
 
-Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → Oh My Zsh → asdf + languages → vim-plug → Claude Code → skills-restore → macOS defaults → open iTerm.
+Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → Oh My Zsh → mise + languages (reads `.tool-versions`) → vim-plug → Claude Code → MCP servers → skills-restore → macOS defaults → open iTerm.
 
 `bin/sane-macos-defaults.sh` is safe to re-run (all `defaults write` calls are idempotent). It covers: UI/UX, trackpad/keyboard, energy, screen/screenshots, Finder, Dock, Safari, iTerm, Time Machine, Activity Monitor, Software Updates. Full details in `README.md`.
