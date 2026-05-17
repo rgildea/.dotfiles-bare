@@ -28,6 +28,7 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # OMZ must not call compinit — we handle it explicitly below (zsh-autocomplete or fallback)
 skip_global_compinit=1
+ZSH_DISABLE_COMPFIX=true
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
