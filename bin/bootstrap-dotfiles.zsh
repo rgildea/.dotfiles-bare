@@ -79,7 +79,7 @@ fi
 
 # always prompt — SSH agent must be enabled before submodule clone
 open "/Applications/1Password.app"
-read "?Sign in to 1Password and enable Settings → Developer → SSH Agent, then press Enter..."
+read "?Sign in to 1Password, then enable Settings → Developer → SSH Agent and Settings → Developer → CLI Integration, then press Enter..."
 
 echo "installing dotbare..."
 
