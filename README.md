@@ -17,9 +17,9 @@ Portable macOS development environment managed with [dotbare](https://github.com
 | Shell | Zsh + Oh My Zsh |
 | Prompt | Powerlevel10k |
 | Package Manager | Homebrew |
-| Version Manager | asdf |
-| Editor | Vim (vim-plug) + VS Code |
-| Terminal | iTerm2 |
+| Version Manager | mise |
+| Editor | Vim (vim-plug) + VS Code + Zed |
+| Terminal | iTerm2 / Ghostty |
 | SSH/Secrets | 1Password |
 
 ## Structure
@@ -49,7 +49,7 @@ Configuration follows Zsh's load order (earliest to latest):
 ├── .gitconfig          # Git settings + delta pager
 ├── .config/git/ignore  # Global git ignore
 ├── Brewfile            # Homebrew packages + VS Code extensions
-├── .tool-versions      # asdf language versions
+├── .tool-versions      # mise language versions (Node, Ruby, Python, SQLite)
 └── bin/
     ├── bootstrap-dotfiles.zsh  # One-command setup
     ├── sane-macos-defaults.sh  # macOS preferences
