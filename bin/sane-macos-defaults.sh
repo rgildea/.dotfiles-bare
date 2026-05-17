@@ -468,6 +468,9 @@ defaults write com.apple.Safari AutoFillMiscellaneousForms -bool true
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+# Load preferences from dotfiles
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/com.googlecode.iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 ###############################################################################
 # Time Machine                                                                #
