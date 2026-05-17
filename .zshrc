@@ -21,8 +21,8 @@ zstyle ':omz:update' mode auto
 COMPLETION_WAITING_DOTS="true"
 
 export HISTFILE=~/.zsh_history                         # Set history file location
-export HISTSIZE=10000                                  # More history in memory
-export SAVEHIST=10000                                  # More history on disk
+export HISTSIZE=100000                                 # More history in memory
+export SAVEHIST=100000                                 # More history on disk
 setopt INC_APPEND_HISTORY                              # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
@@ -54,7 +54,6 @@ plugins=(
 	brew
 	copyfile
 	macos
-	thefuck
 	tldr
 )
 
