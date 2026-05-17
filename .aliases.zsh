@@ -11,6 +11,7 @@ command -v htop >/dev/null 2>&1 && alias top='htop'
 command -v prettyping >/dev/null 2>&1 && alias ping='prettyping --nolegend'
 command -v procs >/dev/null 2>&1 && alias ps='procs'
 grep --color=auto /dev/null 2>/dev/null && alias grep='grep --color=auto'
+command -v zoxide >/dev/null 2>&1 && alias zi='zoxide query --interactive'
 
 # commands
 alias a="alias"
@@ -70,6 +71,7 @@ alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gsubmodules="git config --file .gitmodules --get-regexp path | awk '{ print $3 }'"
 alias gum='git checkout main && git fetch && git pull'
 alias gup='git pull --rebase'
+command -v lazygit >/dev/null 2>&1 && alias lg='lazygit'
 
 # npm aliases
 alias flush-npm="rm -rf node_modules package-lock.json && npm i && say NPM is done"
