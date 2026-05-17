@@ -287,7 +287,7 @@ Your gitconfig is opinionated. Here's what it does for you automatically:
 | Status (compact) | `gs` |
 | Pull + prune | `gl` |
 | Push to origin | `gp` |
-| Diff (diff-so-fancy) | `gd` |
+| Diff (delta) | `gd` |
 | Log (visual graph) | `glog` |
 | Checkout | `gco branch-name` |
 | New branch | `gcb new-feature` |
@@ -519,6 +519,33 @@ Run Claude via Anthropic API or OpenRouter — keys live in `~/.zshrc.local` (ne
 claude                    # Claude via Anthropic API (uses key from ~/.zshrc.local)
 claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from ~/.zshrc.local)
 ```
+
+---
+
+### Ghostty
+<!-- halp: ghostty | Fast GPU-rendered terminal -->
+
+Ghostty is the primary terminal — GPU-rendered, fast startup, native macOS feel.
+
+**Configuration** lives at `~/.config/ghostty/config` (not tracked). Minimal example:
+```
+font-family = Monaspace Neon
+font-size = 14
+theme = dark
+```
+
+**Built-in tab and split management** (no tmux needed for basic use):
+
+| What | Keys |
+|------|------|
+| New tab | `⌘T` |
+| Close tab | `⌘W` |
+| Next / prev tab | `⌘⇧]` / `⌘⇧[` |
+| Split right | `⌘D` |
+| Split down | `⌘⇧D` |
+| Navigate splits | `⌘⌥` + arrow |
+
+iTerm2 remains installed alongside Ghostty — switch if you need features not yet in Ghostty.
 
 ---
 
