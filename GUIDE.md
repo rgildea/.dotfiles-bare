@@ -522,6 +522,27 @@ claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from 
 
 ---
 
+### Agent Skills
+<!-- halp: skills | Install and restore agent skills across machines -->
+
+Global agent skills live in `~/.agents/skills/` and are tracked in dotfiles. Agent-specific symlinks (e.g. `~/.claude/skills/`) are not tracked — recreated on demand.
+
+```
+npx skills add <owner/repo> -g -y   # install a skill
+skills-restore                       # replay all skills from lock file
+```
+
+After installing a new skill, commit the updated files:
+```
+cadd ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
+cfg commit -m "chore(skills): add <name> skill"
+cgp
+```
+
+Browse skills at [skills.sh](https://skills.sh) or search GitHub for repos tagged `agent-skills`.
+
+---
+
 ### Claude Code
 <!-- halp: claude | Agentic coding with Claude Code and MCP servers -->
 

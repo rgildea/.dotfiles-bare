@@ -120,36 +120,7 @@ Run `halp brew` for workflows and drift-checking commands.
 
 ## Agent Skills
 
-Global agent skills are tracked in `~/.agents/` so they can be restored on new machines.
-
-Skills live in `~/.agents/skills/` (canonical cross-agent location). Agent-specific symlinks (e.g. `~/.claude/skills/`) are not tracked — they are recreated by running `skills-restore`.
-
-### Installing a new skill
-
-```bash
-npx skills add <owner/repo> -g -y
-```
-
-Then commit the updated files:
-
-```bash
-cadd ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
-cfg commit -m "chore(skills): add <name> skill"
-```
-
-### Restoring skills on a new machine
-
-The bootstrap script runs `skills-restore` automatically. If you need to run it manually (e.g. after pulling new skills on an existing machine):
-
-```bash
-skills-restore
-```
-
-This reads `~/.agents/.skill-lock.json` and replays `npx skills add -g` for every entry.
-
-### Discovering skills
-
-Browse and install from [skills.sh](https://skills.sh) or search GitHub for repos tagged `agent-skills`.
+Global agent skills are tracked in `~/.agents/` and restored automatically by bootstrap. Run `halp skills` for the full reference.
 
 ## Local Overrides
 
