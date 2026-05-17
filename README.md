@@ -14,7 +14,7 @@ Portable macOS development environment managed with [dotbare](https://github.com
 
 To test a feature branch end-to-end:
 ```bash
-DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
+export DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
 ```
 
 The script will pause and prompt you to sign in to 1Password and enable **Settings → Developer → SSH Agent** before continuing.
