@@ -157,36 +157,14 @@ else
   curl -fsSL https://claude.ai/install.sh | sh
 fi
 
-# configure MCP servers for Claude Code
-echo "configuring MCP servers for Claude Code..."
-if [[ ! -f "$HOME/.claude.json" ]]; then
+# write GitHub token to .zshrc.local for MCP server environment
+echo "writing GitHub token to ~/.zshrc.local..."
+if ! grep -q "GITHUB_PERSONAL_ACCESS_TOKEN" "$HOME/.zshrc.local" 2>/dev/null; then
   GITHUB_TOKEN=$(op read "op://Personal/GitHub Personal Access Token/credential" 2>/dev/null || echo "REPLACE_WITH_GITHUB_TOKEN")
-  cat > "$HOME/.claude.json" << MCPEOF
-{
-  "mcpServers": {
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "$HOME", "$HOME/projects"],
-      "env": {}
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "$GITHUB_TOKEN"
-      }
-    },
-    "fetch": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"],
-      "env": {}
-    }
-  }
-}
-MCPEOF
-  echo "MCP config written to ~/.claude.json"
+  echo "\nexport GITHUB_PERSONAL_ACCESS_TOKEN=\"$GITHUB_TOKEN\"" >> "$HOME/.zshrc.local"
+  echo "GitHub token written to ~/.zshrc.local"
 else
-  echo "~/.claude.json already exists...skipping."
+  echo "GITHUB_PERSONAL_ACCESS_TOKEN already set in ~/.zshrc.local...skipping."
 fi
 
 # create Zed settings stub if not present

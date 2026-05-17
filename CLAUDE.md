@@ -193,49 +193,19 @@ cfg submodule update --remote
 
 ### MCP Servers
 
-Claude Code reads MCP server config from `~/.claude.json` (not tracked — may contain tokens).
+Claude Code reads MCP server config from `~/.claude.json` (tracked in dotfiles — no secrets).
 
-**Servers to configure:**
+**Servers configured:**
 - `filesystem` — read/write to `$HOME` and `$HOME/projects`
-- `github` — GitHub API via Personal Access Token (pull from 1Password)
+- `github` — GitHub API; reads `GITHUB_PERSONAL_ACCESS_TOKEN` from shell environment
 - `fetch` — URL retrieval for docs/research during sessions
 
-**Create `~/.claude.json`:**
-```json
-{
-  "mcpServers": {
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/rgildea", "/Users/rgildea/projects"],
-      "env": {}
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "<token>"
-      }
-    },
-    "fetch": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"],
-      "env": {}
-    }
-  }
-}
-```
-
-**Get GitHub token from 1Password:**
-```bash
-op read "op://Personal/GitHub Personal Access Token/credential"
-```
+`~/.claude.json` is safe to track because the GitHub token is not stored in it — it is read from `GITHUB_PERSONAL_ACCESS_TOKEN` in the shell environment, which bootstrap writes to `~/.zshrc.local` (untracked) via `op read`.
 
 **Verify after setup:**
 ```bash
 claude mcp list
 ```
-
-The bootstrap script (`bin/bootstrap-dotfiles.zsh`) creates this file automatically using `op read`.
 
 ### Zed Editor
 
