@@ -80,6 +80,18 @@ As you type, a grey ghost suggestion appears from your history.
 | `ping` | `prettyping` | Visual ping output |
 | `ps` | `procs` | Readable process list |
 
+**Directory jumping (zoxide):**
+
+zoxide learns which directories you visit and lets you jump to them by partial name.
+
+```
+z projects                # jump to ~/projects (or wherever you go most)
+z dot                     # jumps to ~/.dotfiles-bare or similar
+zi                        # interactive fuzzy picker (fzf-powered)
+```
+
+> `z` is separate from `cd` — use `cd` for explicit paths, `z` for frecency-based jumps.
+
 **Useful one-liners:**
 ```
 killport 3000             # kill whatever's on port 3000
@@ -207,28 +219,57 @@ brewsync                  # dumps current state, shows diff
 
 ---
 
-### Version Management (asdf)
-<!-- halp: asdf | Language versions pinned in .tool-versions -->
+### Version Management (mise)
+<!-- halp: mise | Language versions pinned in .tool-versions -->
 
-Languages are managed by **asdf**. Versions are pinned in `~/.tool-versions`.
+Languages are managed by **mise** (replaces asdf — faster, same `.tool-versions` format).
 
 ```
-asdf current              # see active versions of everything
-asdf list nodejs          # see installed Node versions
-asdf install nodejs 22.0.0   # install a version
-asdf local nodejs 22.0.0     # pin for current project (.tool-versions)
-asdf global nodejs 24.15.0   # set global default
+mise current              # see active versions of everything
+mise list node            # see installed Node versions
+mise install node@22.0.0  # install a version
+mise use node@22.0.0      # pin for current project (.tool-versions)
+mise use --global node@24.15.0  # set global default
 ```
 
-**Active versions:**
+**Active versions** (from `~/.tool-versions`):
 - Node: 24.15.0
 - Ruby: 3.3.0
 - Python: 3.12.1
 - SQLite: 3.45.1
 
+> mise is a drop-in replacement for asdf. All existing `.tool-versions` files work unchanged.
+
 ---
 
 ## Daily Workflow
+
+### Lazygit
+<!-- halp: lazygit | Visual git TUI — review diffs, stage hunks, manage branches -->
+
+Terminal UI for git — essential for reviewing agent commits before pushing.
+
+```
+lg                        # open lazygit (alias)
+```
+
+**Key bindings inside lazygit:**
+
+| What | Key |
+|------|-----|
+| Navigate panels | `h` `j` `k` `l` / arrow keys |
+| Stage file / hunk | `Space` |
+| Stage all | `a` |
+| Commit | `c` |
+| Push | `P` |
+| Pull | `p` |
+| Checkout branch | `Space` (in branches panel) |
+| View diff | `Enter` on a file |
+| Quit | `q` |
+
+> Use `[` and `]` to switch between panels (Files, Branches, Commits, Stash, etc.)
+
+---
 
 ### Git Workflow
 <!-- halp: git | Daily aliases, undo, stash, conflict resolution -->
