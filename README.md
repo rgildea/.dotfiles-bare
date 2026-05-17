@@ -6,9 +6,13 @@ Portable macOS development environment managed with [dotbare](https://github.com
 
 ## Quick Start
 
+> **Requires physical/GUI access.** Bootstrap cannot be run over SSH — 1Password sign-in and SSH agent setup require the desktop app.
+
 ```bash
 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/main/bin/bootstrap-dotfiles.zsh)"
 ```
+
+The script will pause and prompt you to sign in to 1Password and enable **Settings → Developer → SSH Agent** before continuing.
 
 ## Overview
 
