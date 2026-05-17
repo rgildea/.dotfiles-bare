@@ -33,7 +33,6 @@ skip_global_compinit=1
 ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
 
 # fpath entries must be added before compinit runs
-fpath=($HOME/.asdf/completions $fpath)
 fpath=($HOME/.docker/completions $fpath)
 
 # Which plugins would you like to load?
@@ -47,7 +46,6 @@ plugins=(
 	aliases
 	git
 	dotbare
-	asdf
 	colored-man-pages
 	colorize
 	pip
@@ -58,6 +56,14 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
 export DOTBARE_DIR="$HOME/.cfg"
 export DOTBARE_TREE="$HOME"
