@@ -99,12 +99,14 @@ fi
 echo "installing dotfiles..."
 
 # install dotfiles
+# Override branch for testing: DOTFILES_BRANCH=my-branch /bin/zsh -c "$(curl ...)"
+DOTFILES_BRANCH="${DOTFILES_BRANCH:-main}"
 if [[ -d $HOME/.cfg ]]
 then
     echo "dotfiles already installed...skipping."
 else
-    echo "installing dotfiles..."
-    dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
+    echo "installing dotfiles from branch: $DOTFILES_BRANCH"
+    dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git --branch "$DOTFILES_BRANCH"
     dotbare submodule update --init --recursive
 fi
 
