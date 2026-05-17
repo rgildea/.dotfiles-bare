@@ -75,12 +75,11 @@ else
   else
     echo "1Password package already installed...skipping."
   fi
-
-  # Sign in to 1Password — use full path since Launch Services may not have indexed it yet
-  open "/Applications/1Password.app"
-  read "?Sign in to 1Password and enable Settings → Developer → SSH Agent, then press Enter..."
-
 fi
+
+# always prompt — SSH agent must be enabled before submodule clone
+open "/Applications/1Password.app"
+read "?Sign in to 1Password and enable Settings → Developer → SSH Agent, then press Enter..."
 
 echo "installing dotbare..."
 
