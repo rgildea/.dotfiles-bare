@@ -44,7 +44,7 @@ cask "discord"
 cask "docker-desktop"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-meslo-for-powerlevel10k"
-cask "font-monaspace"
+cask "font-monaspace"                  # Monaspace Neon — VS Code editor font
 cask "gcloud-cli"
 cask "gemini"
 cask "ghostty"
