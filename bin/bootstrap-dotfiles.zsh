@@ -77,8 +77,8 @@ else
   fi
 
   # Sign in to 1Password
-  read "?Please sign in to 1Password, and enable the SSH Agent in Settings->Developer. Press enter to continue..."
   open -a "1Password"
+  read "?Sign in to 1Password and enable Settings → Developer → SSH Agent, then press Enter..."
   read "?Press enter to continue..."
 
 fi
