@@ -136,6 +136,9 @@ else
   echo "mise not found — ensure brew bundle completed successfully" >&2
 fi
 
+# activate mise shims for the remainder of this script (non-interactive shell)
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+
 # install vim-plug
 if [[ -f $HOME/.vim/autoload/plug.vim ]]
 then
