@@ -624,6 +624,8 @@ Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run any time — al
 
 **Dock:** left side, 36px icons, scale minimize, auto-hide no delay, no recent apps, no opening animation, bottom-right hot corner starts screensaver
 
+**Spotlight:** ⌘Space and ⌥⌘Space shortcuts disabled (Raycast claims them)
+
 **Safari:** Develop menu on, search suggestions off (privacy), auto-open downloads off
 
 **iTerm:** no quit confirmation, prefs loaded from `~/.config/com.googlecode.iterm2/`

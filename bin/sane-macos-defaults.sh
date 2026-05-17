@@ -461,6 +461,10 @@ defaults write com.apple.Safari AutoFillMiscellaneousForms -bool true
 # Spotlight                                                                   #
 ###############################################################################
 
+# Disable Spotlight ⌘Space and ⌥⌘Space shortcuts so Raycast can claim them
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (32, 49, 1048576); type = 'standard'; }; }"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "{enabled = 0; value = { parameters = (32, 49, 1572864); type = 'standard'; }; }"
+
 ###############################################################################
 # Terminal & iTerm 2                                                          #
 ###############################################################################

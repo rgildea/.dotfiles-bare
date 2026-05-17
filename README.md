@@ -141,7 +141,7 @@ Applied by `bin/sane-macos-defaults.sh` during bootstrap — safe to re-run any 
 Steps that require manual action after bootstrap completes:
 
 1. **Claude Code**: run `claude` to authenticate on first use
-2. **Raycast**: launch, assign `⌘Space`, disable Spotlight shortcut
+2. **Raycast**: open it and complete onboarding — Spotlight shortcuts are already disabled by `sane-macos-defaults.sh`, so assign `⌘Space` in Raycast settings
 3. **VS Code**: set font to `Monaspace Neon` in Settings → Editor: Font Family
 4. **Zed**: open it — works out of the box. Optionally sign in at zed.dev for AI assistant features (free tier available, no API key needed)
 5. **Git SSH**: 1Password should offer to configure `~/.ssh/config` automatically
