@@ -101,7 +101,7 @@ _zsh_autocomplete="$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 if [[ -f "$_zsh_autocomplete" ]]; then
   source "$_zsh_autocomplete"       # calls compinit itself
 else
-  autoload -U compinit && compinit  # fallback: compinit if plugin is missing
+  autoload -U compinit && compinit -u  # fallback: compinit if plugin is missing
 fi
 unset _brew_share _zsh_autocomplete
 

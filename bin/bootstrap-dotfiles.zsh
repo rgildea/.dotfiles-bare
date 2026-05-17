@@ -178,6 +178,9 @@ if [[ ! -f "$HOME/.config/zed/settings.json" ]]; then
   echo "Zed settings stub created at ~/.config/zed/settings.json"
 fi
 
+# fix Homebrew directory permissions to avoid zsh compinit warnings
+chmod -R go-w "${HOMEBREW_PREFIX:-/opt/homebrew}/share"
+
 # restore agent skills (claude, etc.)
 echo "restoring agent skills..."
 if [[ -f "$HOME/.agents/.skill-lock.json" ]]; then
