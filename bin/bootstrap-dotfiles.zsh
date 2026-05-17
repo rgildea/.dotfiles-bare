@@ -168,7 +168,7 @@ fi
 # create Zed settings stub if not present
 if [[ ! -f "$HOME/.config/zed/settings.json" ]]; then
   mkdir -p "$HOME/.config/zed"
-  echo '{"assistant":{"default_model":{"provider":"anthropic","model":"claude-sonnet-4-6"},"version":"2"}}' > "$HOME/.config/zed/settings.json"
+  echo '{"buffer_font_family":"Monaspace Neon","terminal":{"font_family":"Monaspace Neon"},"assistant":{"default_model":{"provider":"anthropic","model":"claude-sonnet-4-6"},"version":"2"}}' > "$HOME/.config/zed/settings.json"
   echo "Zed settings stub created at ~/.config/zed/settings.json"
 fi
 

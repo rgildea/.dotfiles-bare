@@ -42,9 +42,7 @@ cask "alfred"
 cask "cleanmymac"
 cask "discord"
 cask "docker-desktop"
-cask "font-jetbrains-mono-nerd-font"
-cask "font-meslo-for-powerlevel10k"
-cask "font-monaspace"                  # Monaspace Neon — VS Code editor font
+cask "font-monaspace-nf"               # Monaspace Nerd Font — terminal, Zed, VS Code
 cask "gcloud-cli"
 cask "gemini"
 cask "ghostty"

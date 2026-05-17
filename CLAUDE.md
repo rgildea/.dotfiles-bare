@@ -212,7 +212,7 @@ claude mcp list
 Config lives at `~/.config/zed/settings.json` (not tracked — per `~/.config/*` convention).
 
 Key settings to configure:
-- Font: JetBrains Mono (already in Brewfile as Nerd Font)
+- Font: Monaspace Neon (already in Brewfile as `font-monaspace-nf`)
 - Assistant provider: Anthropic, model `claude-sonnet-4-6`
 - Requires `ANTHROPIC_API_KEY` in `.zshrc.local`
 
