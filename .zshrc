@@ -32,7 +32,7 @@ skip_global_compinit=1
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
 
-# fpath entries must be added before compinit runs (called later by zsh-autocomplete)
+# fpath entries must be added before compinit runs
 fpath=($HOME/.asdf/completions $fpath)
 fpath=($HOME/.docker/completions $fpath)
 
