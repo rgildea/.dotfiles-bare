@@ -1,6 +1,5 @@
 tap "1password/tap"
 tap "cirruslabs/cli"
-tap "ngrok/ngrok"
 tap "romkatv/powerlevel10k"
 brew "awscli"
 brew "bat"

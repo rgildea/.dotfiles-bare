@@ -16,7 +16,7 @@ How to navigate this guide — open it, get the TOC, or jump to a section by key
 halp                      # open full guide in glow (paged)
 halp me                   # TOC with descriptions
 halp <keyword>            # show one section, e.g. halp git, halp brew, halp commit
-e ~/GUIDE.md              # edit in VS Code
+e ~/GUIDE.md              # edit in your editor
 ```
 
 The guide lives at `~/GUIDE.md` and is tracked in your dotfiles.
@@ -174,7 +174,7 @@ Never use plain `git` from the home directory — use these instead:
 
 **Workflow — editing a config file:**
 ```
-e ~/.aliases.zsh          # edit in VS Code
+e ~/.aliases.zsh          # edit in your editor
 cstat                     # confirm what changed
 cdiff .aliases.zsh        # review the diff
 cadd .aliases.zsh
@@ -518,6 +518,29 @@ Run Claude via Anthropic API or OpenRouter — keys live in `~/.zshrc.local` (ne
 ```
 claude                    # Claude via Anthropic API (uses key from ~/.zshrc.local)
 claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from ~/.zshrc.local)
+```
+
+---
+
+### Claude Code
+<!-- halp: claude | Agentic coding with Claude Code and MCP servers -->
+
+Claude Code is the primary agentic coding tool. Runs in the terminal, operates on your codebase, and has access to MCP servers for GitHub, filesystem, and web fetch.
+
+```
+claude                    # start a session
+claude mcp list           # verify MCP servers are connected
+```
+
+**MCP servers configured** (via `~/.claude.json`):
+- `filesystem` — read/write to `$HOME` and `$HOME/projects`
+- `github` — GitHub API (token from `GITHUB_PERSONAL_ACCESS_TOKEN` in `.zshrc.local`)
+- `fetch` — URL retrieval for docs and research
+
+**Keys in `.zshrc.local`** (never committed):
+```
+ANTHROPIC_API_KEY         # required for Claude Code and Zed assistant
+GITHUB_PERSONAL_ACCESS_TOKEN  # written by bootstrap via op read
 ```
 
 ---

@@ -17,7 +17,7 @@ To test a feature branch end-to-end:
 export DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
 ```
 
-The script will pause and prompt you to sign in to 1Password and enable **Settings → Developer → SSH Agent** before continuing.
+The script will pause and prompt you to sign in to 1Password and enable **Settings → Developer → SSH Agent** and **Settings → Developer → CLI Integration** before continuing.
 
 ## Bootstrap Testing Protocol
 
@@ -77,12 +77,16 @@ Configuration follows Zsh's load order (earliest to latest):
 ├── .aliases.zsh        # Aliases for bat, eza, fd, etc.
 ├── .p10k.zsh           # Prompt theme
 ├── .gitconfig          # Git settings + delta pager
-├── .config/git/ignore  # Global git ignore
+├── .claude.json        # Claude Code MCP server config (no secrets)
+├── .config/
+│   ├── git/ignore      # Global git ignore
+│   └── com.googlecode.iterm2/  # iTerm2 preferences (tracked)
 ├── Brewfile            # Homebrew packages + VS Code extensions
 ├── .tool-versions      # mise language versions (Node, Ruby, Python, SQLite)
 └── bin/
     ├── bootstrap-dotfiles.zsh  # One-command setup
     ├── sane-macos-defaults.sh  # macOS preferences
+    ├── tart-prep.zsh           # Write bootstrap command to Tart VM via SSH
     └── reset_luna_prefs.sh     # Luna Display reset
 ```
 
@@ -253,10 +257,12 @@ Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run manually any ti
 
 ## Post-Install
 
-1. **1Password**: Sign in and enable SSH agent in Settings → Developer
-2. **iTerm**: Settings → General → Settings → Load from custom folder → `~`
-3. **Git SSH**: 1Password should offer to configure `~/.ssh/config`
-4. **Claude Code**: installed automatically by bootstrap — authenticate with `claude` on first run
+1. **1Password**: Sign in, enable Settings → Developer → SSH Agent and Settings → Developer → CLI Integration
+2. **iTerm**: Prefs folder is set automatically by bootstrap (`~/.config/com.googlecode.iterm2`)
+3. **VS Code**: Set font to `Monaspace Neon` in Settings → Editor: Font Family
+4. **Git SSH**: 1Password should offer to configure `~/.ssh/config`
+5. **Claude Code**: installed automatically by bootstrap — authenticate with `claude` on first run
+6. **Raycast**: launch and complete onboarding — disable Spotlight shortcut, assign `⌘Space` to Raycast
 
 ## License
 
