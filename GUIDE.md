@@ -545,6 +545,32 @@ GITHUB_PERSONAL_ACCESS_TOKEN  # written by bootstrap via op read
 
 ---
 
+### Zed
+<!-- halp: zed | Fast editor with built-in AI assistant -->
+
+Zed is a fast, GPU-rendered editor. Works out of the box — open a file or project and go.
+
+```
+zed .                     # open current directory
+zed ~/.aliases.zsh        # open a specific file
+```
+
+**AI Assistant panel** (`Ctrl+?` or via menu):
+- Sign in at zed.dev for a free tier (no API key needed)
+- Or add `ANTHROPIC_API_KEY` to `.zshrc.local` and set `provider: anthropic` in settings
+
+**Settings** live at `~/.config/zed/settings.json` (not tracked). The bootstrap creates a stub with Monaspace Neon and Claude as the assistant model. To edit:
+```
+zed ~/.config/zed/settings.json
+```
+
+**Key differences from VS Code:**
+- No extension marketplace — language servers install automatically via built-in support
+- Vim mode available: `"vim_mode": true` in settings
+- Multibuffer editing — open multiple files in one surface
+
+---
+
 ### GCloud
 <!-- halp: gcloud | gct for streaming build logs -->
 
@@ -553,3 +579,32 @@ Quick access to Google Cloud build logs for the current project.
 ```
 gct                       # tail build logs for current gcloud project
 ```
+
+---
+
+### macOS Defaults
+<!-- halp: macos | System preferences applied by sane-macos-defaults.sh -->
+
+Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run any time — all idempotent.
+
+```bash
+~/bin/sane-macos-defaults.sh
+```
+
+**General UI/UX:** boot sound off, scrollbars always visible, save panels expanded, no iCloud default save, app resume off, auto-correct/capitalize/dashes/quotes all off
+
+**Trackpad & Keyboard:** tap to click, two-finger right-click, fast key repeat (rate 2, delay 15), press-and-hold off
+
+**Energy:** wake on lid open, auto-restart on power loss or freeze, display sleep 15 min
+
+**Screen & Screenshots:** password required immediately after sleep, screenshots to `~/Screenshots` as PNG, no drop shadow
+
+**Finder:** hidden files shown, all extensions shown, path bar visible, full POSIX path in title, folders sorted to top, search defaults to current folder, list view default
+
+**Dock:** left side, 36px icons, scale minimize, auto-hide no delay, no recent apps, no opening animation, bottom-right hot corner starts screensaver
+
+**Safari:** Develop menu on, search suggestions off (privacy), auto-open downloads off
+
+**iTerm:** no quit confirmation, prefs loaded from `~/.config/com.googlecode.iterm2/`
+
+**Other:** TextEdit plain text mode, Photos won't auto-open, Time Machine won't use new disks, daily software update checks

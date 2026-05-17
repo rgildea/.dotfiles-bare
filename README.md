@@ -163,106 +163,17 @@ export OPENAI_API_KEY="..."
 
 ## macOS Defaults
 
-Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run manually any time — all settings are idempotent.
-
-```bash
-/bin/sh ~/bin/sane-macos-defaults.sh
-```
-
-### General UI/UX
-- Boot sound disabled
-- Menu bar transparency disabled
-- Scrollbars always visible
-- Save and print panels expanded by default
-- New documents save to disk, not iCloud
-- "Are you sure you want to open this app?" dialog disabled
-- App Resume disabled (windows don't reopen on login)
-- Auto-capitalization, smart dashes, smart quotes, auto-correct all disabled
-- Window resize animation accelerated
-
-### Trackpad & Keyboard
-- Tap to click enabled (trackpad + login screen)
-- Two-finger tap = right-click
-- Ctrl+scroll to zoom, follows keyboard focus
-- Press-and-hold disabled in favor of key repeat
-- Key repeat rate: fast (rate 2, initial delay 15)
-- Bluetooth audio: higher bitrate
-
-### Energy
-- Wake on lid open
-- Auto-restart on power loss or freeze
-- Display sleep: 15 minutes
-
-### Screen & Screenshots
-- Password required immediately after sleep or screensaver
-- Screenshots saved to `~/Screenshots` as PNG, no drop shadow
-- HiDPI display modes enabled
-
-### Finder
-- Hidden files shown
-- All file extensions shown
-- Status bar and path bar visible
-- Full POSIX path shown in window title
-- Folders sorted to top
-- Search defaults to current folder
-- No warning when changing file extension
-- No `.DS_Store` files on network or USB volumes
-- List view as default
-- No "Empty Trash" warning
-- `~/Library` and `/Volumes` unhidden
-- Text selection enabled in Quick Look
-
-### Dock
-- Position: left side of screen
-- Icon size: 36px
-- Minimize effect: scale (into app icon)
-- Auto-hide with no delay
-- Hidden apps shown as translucent
-- Open app indicators shown
-- No recent apps section
-- No opening animation
-- Mission Control animation: fast
-- Default app icons wiped on fresh setup
-- Bottom-right hot corner: start screensaver
-- Spacers added on left and right sides
-
-### Safari
-- Develop menu enabled
-- Universal search and search suggestions disabled (privacy)
-- Auto-open safe downloads disabled
-- AutoFill enabled
-
-### iTerm
-- No quit confirmation prompt
-
-### Time Machine
-- Won't offer to use new disks as backup volumes
-- Local backups disabled
-
-### Activity Monitor
-- Opens main window on launch
-- CPU usage shown in Dock icon
-- Shows all processes, sorted by CPU
-
-### Software Updates
-- Daily auto-check enabled
-- Background download of updates
-- Auto-install of critical and security updates
-- App Store auto-update enabled
-
-### Other
-- TextEdit: plain text mode, UTF-8 encoding
-- Photos: won't auto-open when a device is plugged in
-- Disk Utility: debug menu enabled
+Applied by `bin/sane-macos-defaults.sh` during bootstrap — safe to re-run any time, all settings are idempotent. Run `halp macos` for the full reference.
 
 ## Post-Install
 
-1. **1Password**: Sign in, enable Settings → Developer → SSH Agent and Settings → Developer → CLI Integration
-2. **iTerm**: Prefs folder is set automatically by bootstrap (`~/.config/com.googlecode.iterm2`)
-3. **VS Code**: Set font to `Monaspace Neon` in Settings → Editor: Font Family
-4. **Git SSH**: 1Password should offer to configure `~/.ssh/config`
-5. **Claude Code**: installed automatically by bootstrap — authenticate with `claude` on first run
-6. **Raycast**: launch and complete onboarding — disable Spotlight shortcut, assign `⌘Space` to Raycast
+Steps that require manual action after bootstrap completes:
+
+1. **Claude Code**: run `claude` to authenticate on first use
+2. **Raycast**: launch, assign `⌘Space`, disable Spotlight shortcut
+3. **VS Code**: set font to `Monaspace Neon` in Settings → Editor: Font Family
+4. **Zed**: open it — works out of the box. Optionally sign in at zed.dev for AI assistant features (free tier available, no API key needed)
+5. **Git SSH**: 1Password should offer to configure `~/.ssh/config` automatically
 
 ## License
 
