@@ -106,7 +106,8 @@ then
     echo "dotfiles already installed...skipping."
 else
     echo "installing dotfiles from branch: $DOTFILES_BRANCH"
-    dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git --branch "$DOTFILES_BRANCH"
+    dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
+    dotbare checkout "$DOTFILES_BRANCH"
     dotbare submodule update --init --recursive
 fi
 
