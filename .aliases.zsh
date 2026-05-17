@@ -6,11 +6,11 @@ command -v bat >/dev/null 2>&1 && alias cat='bat'
 command -v bat >/dev/null 2>&1 && alias less='bat --paging=always'
 command -v duf >/dev/null 2>&1 && alias df='duf'
 command -v eza >/dev/null 2>&1 && alias ls='eza'
-command -v ffind >/dev/null 2>&1 && alias find='ffind'
+command -v fd >/dev/null 2>&1 && alias find='fd'
 command -v htop >/dev/null 2>&1 && alias top='htop'
 command -v prettyping >/dev/null 2>&1 && alias ping='prettyping --nolegend'
 command -v procs >/dev/null 2>&1 && alias ps='procs'
-command -v rg >/dev/null 2>&1 && alias grep='rg'
+grep --color=auto /dev/null 2>/dev/null && alias grep='grep --color=auto'
 
 # commands
 alias a="alias"
@@ -59,7 +59,7 @@ alias ll="ls -l --git"
 alias lt="ls -T --git --level=2"
 
 # git aliases
-alias gc='git cz'
+alias gcz='git cz'
 alias gac='git add -A && git commit -m'
 alias gcopy='git copy-branch-name'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.
