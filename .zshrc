@@ -90,7 +90,7 @@ _brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
 # Load order matters: syntax-highlighting → autosuggestions → autocomplete (owns compinit)
 [[ -f "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 [[ -f "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-bindkey '^ ' autosuggest-accept
+(( $+widgets[autosuggest-accept] )) && bindkey '^ ' autosuggest-accept
 # Must come last — calls compinit; if missing, OMZ falls back to calling compinit itself
 [[ -f "$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]] && source "$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 unset _brew_share
