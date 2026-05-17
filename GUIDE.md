@@ -234,9 +234,9 @@ mise use --global node@24.15.0  # set global default
 
 **Active versions** (from `~/.tool-versions`):
 - Node: 24.15.0
-- Ruby: 3.3.0
+- Ruby: 3.4.9
 - Python: 3.13.2
-- SQLite: 3.45.1
+- SQLite: 3.53.1
 
 > mise is a drop-in replacement for asdf. All existing `.tool-versions` files work unchanged.
 
