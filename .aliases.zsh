@@ -10,7 +10,7 @@ command -v fd >/dev/null 2>&1 && alias find='fd'
 command -v htop >/dev/null 2>&1 && alias top='htop'
 command -v prettyping >/dev/null 2>&1 && alias ping='prettyping --nolegend'
 command -v procs >/dev/null 2>&1 && alias ps='procs'
-alias grep='grep --color=auto'
+grep --color=auto /dev/null 2>/dev/null && alias grep='grep --color=auto'
 
 # commands
 alias a="alias"
