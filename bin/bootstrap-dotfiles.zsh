@@ -130,17 +130,12 @@ else
   mv $HOME/.zshrc.pre-oh-my-zsh $HOME/.zshrc
 fi
 
-# configure asdf
-if [[ -x $(which asdf) ]]
-then echo "asdf already setup...skipping."
+# configure mise (replaces asdf — reads .tool-versions natively)
+if command -v mise &>/dev/null; then
+  echo "configuring mise..."
+  mise install
 else
-  echo "configuring asdf..."
-  asdf plugin add nodejs
-  asdf plugin add python
-  asdf plugin add ruby
-  asdf plugin add sqlite
-  # install asdf packages according to the versions in the .tool-versions file
-  asdf install
+  echo "mise not found — ensure brew bundle completed successfully" >&2
 fi
 
 # install vim-plug
@@ -160,6 +155,45 @@ if [[ -x "$HOME/.local/bin/claude" ]]; then
 else
   echo "installing Claude Code..."
   curl -fsSL https://claude.ai/install.sh | sh
+fi
+
+# configure MCP servers for Claude Code
+echo "configuring MCP servers for Claude Code..."
+if [[ ! -f "$HOME/.claude.json" ]]; then
+  GITHUB_TOKEN=$(op read "op://Personal/GitHub Personal Access Token/credential" 2>/dev/null || echo "REPLACE_WITH_GITHUB_TOKEN")
+  cat > "$HOME/.claude.json" << MCPEOF
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "$HOME", "$HOME/projects"],
+      "env": {}
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "$GITHUB_TOKEN"
+      }
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "env": {}
+    }
+  }
+}
+MCPEOF
+  echo "MCP config written to ~/.claude.json"
+else
+  echo "~/.claude.json already exists...skipping."
+fi
+
+# create Zed settings stub if not present
+if [[ ! -f "$HOME/.config/zed/settings.json" ]]; then
+  mkdir -p "$HOME/.config/zed"
+  echo '{"assistant":{"default_model":{"provider":"anthropic","model":"claude-sonnet-4-6"},"version":"2"}}' > "$HOME/.config/zed/settings.json"
+  echo "Zed settings stub created at ~/.config/zed/settings.json"
 fi
 
 # restore agent skills (claude, etc.)
