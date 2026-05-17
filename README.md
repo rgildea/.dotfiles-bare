@@ -34,8 +34,8 @@ Each test run:
 ```bash
 tart clone sequoia-base sequoia-test  # always start from the clean snapshot
 tart run sequoia-test --no-graphics
-ssh admin@$(tart ip sequoia-test)
-# then run the bootstrap from the GUI (requires physical access for 1Password)
+tart-prep sequoia-test your-branch    # writes bootstrap command to ~/bootstrap.sh on the VM
+# open the VM GUI, open Terminal, run: zsh ~/bootstrap.sh
 ```
 
 **Important:** the dotfiles install step is skipped if `~/.cfg` already exists — bootstrap is idempotent by design. Always start from a fresh VM clone to test the full flow. Never reuse a VM instance that has already been bootstrapped.
