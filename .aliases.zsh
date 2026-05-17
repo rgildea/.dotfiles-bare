@@ -11,7 +11,7 @@ command -v htop >/dev/null 2>&1 && alias top='htop'
 command -v prettyping >/dev/null 2>&1 && alias ping='prettyping --nolegend'
 command -v procs >/dev/null 2>&1 && alias ps='procs'
 grep --color=auto /dev/null 2>/dev/null && alias grep='grep --color=auto'
-command -v zoxide >/dev/null 2>&1 && alias zi='zoxide query --interactive'
+
 
 # commands
 alias a="alias"
