@@ -8,14 +8,13 @@ This is a macOS dotfiles repository using the **bare git repo** pattern with [do
 
 - `~/.cfg/` - Bare git repository (do not delete)
 - `~/bin/` - Custom scripts, auto-aliased in Zsh
-- `~/.janus/` - Vim plugins (managed by Janus)
-- `~/repos/` - Git submodules (base16-shell, oh-my-zsh custom)
+- `~/repos/` - Git submodules (base16-shell, oh-my-zsh custom, fzf-tab, zsh plugins)
 
 ### Shell Load Order
 
 1. `.zshenv` - PATH (uv, ~/bin, antigravity, opencode)
 2. `.zprofile` - Homebrew (if exists)
-3. `.zshrc` - Oh My Zsh, plugins, completions, mise activate, zoxide init
+3. `.zshrc` - Oh My Zsh, plugins, Starship, mise activate, zoxide init, fzf-tab
 4. `.zshrc.local` - Machine-specific (sourced at end)
 
 ### Important Patterns
@@ -28,10 +27,10 @@ This is a macOS dotfiles repository using the **bare git repo** pattern with [do
 ### Tools Used
 
 - **oh-my-zsh** - Shell framework
-- **powerlevel10k** - Prompt theme
+- **Starship** - Prompt theme (replaces Powerlevel10k)
+- **fzf-tab** - fzf-powered completion menu (replaces zsh-autocomplete)
 - **mise** - Version manager (node, ruby, python, sqlite) — reads `.tool-versions`
 - **Homebrew** - Package manager
-- **Janus** - Vim distribution
 - **delta** - Git diff pager
 - **lazygit** - Visual git TUI (`lg`)
 - **zoxide** - Smarter cd (`z`, `zi`)
@@ -39,7 +38,7 @@ This is a macOS dotfiles repository using the **bare git repo** pattern with [do
 - **OrbStack** - Docker/container runtime (replaces Docker Desktop)
 - **Raycast** - Launcher (replaces Alfred)
 - **Ghostty** - Terminal (alongside iTerm2)
-- **Zed** - Editor (alongside VS Code and Vim)
+- **Zed** - Editor (alongside VS Code)
 
 ### MCP Servers
 
@@ -84,20 +83,19 @@ The `bin/bootstrap-dotfiles.zsh` script:
 4. Clones dotbare temporarily
 5. Clones this dotfiles repo (`DOTFILES_BRANCH` env var, defaults to `main`)
 6. Runs `brew bundle`
-7. Installs oh-my-zsh
-8. Installs mise and runs `mise install` (reads `.tool-versions`)
-9. Adds mise shims to PATH for remainder of script
-10. Installs vim-plug
+7. Fixes Homebrew zsh dir permissions (prevents compinit warnings)
+8. Installs oh-my-zsh
+9. Installs mise and runs `mise install` (reads `.tool-versions`)
+10. Adds mise shims to PATH for remainder of script
 11. Installs Claude Code
 12. Writes `GITHUB_PERSONAL_ACCESS_TOKEN` to `~/.zshrc.local` via `op read`
 13. Creates Zed settings stub at `~/.config/zed/settings.json`
 14. Restores agent skills
-15. Applies macOS defaults (including iTerm prefs folder, Raycast, etc.)
-16. Opens iTerm with p10k configure
+15. Applies macOS defaults
+16. Opens iTerm
 
 ### Common Issues
 
 - **dotbare tty error** - Harmless, affects some environments
 - **zcompdump files** - Safe to delete `~/.zcompdump-*`
-- **Janus plugins** - Managed as submodules in `.janus/`, update with `git submodule update`
 - **npx not found during skills-restore** - mise shims must be on PATH; bootstrap handles this automatically
