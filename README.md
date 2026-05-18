@@ -65,7 +65,6 @@ Configuration follows Zsh's load order (earliest to latest):
 | `.zshrc` | Interactive shell config, plugins, aliases |
 | `.zshrc.local` | Machine-specific settings (untracked patterns) |
 | `.aliases.zsh` | 80+ aliases for modern CLI tools |
-| `.p10k.zsh` | Powerlevel10k prompt configuration |
 
 ### Key Files
 
@@ -75,7 +74,6 @@ Configuration follows Zsh's load order (earliest to latest):
 ├── .zshenv             # Early PATH setup
 ├── .zprofile           # Homebrew initialization
 ├── .aliases.zsh        # Aliases for bat, eza, fd, etc.
-├── .p10k.zsh           # Prompt theme
 ├── .gitconfig          # Git settings + delta pager
 ├── .claude.json        # Claude Code MCP server config (no secrets)
 ├── .config/
@@ -110,7 +108,7 @@ Aliases: `cfg`, `cadd`, `cstat`, `clog`, `cdiff`, `cgp`
 
 80+ aliases for modern CLI tools (`bat`, `eza`, `ripgrep`, `fd`, etc.) plus git shortcuts. Run `halp shell` or `halp git` for the full reference, or `als <pattern>` to search.
 
-Run `halp vim` for the Vim quick reference including custom mappings and a vim/less paging comparison. Run `halp shell` for command-line editing bindings and autosuggestion usage.
+Run `halp shell` for command-line editing bindings and autosuggestion usage.
 
 ## Managing Homebrew Packages
 

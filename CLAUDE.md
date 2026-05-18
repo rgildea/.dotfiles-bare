@@ -60,7 +60,7 @@ docs(README): add Homebrew management section
 | `.zshrc.local` | **Machine-specific, do not track** |
 | `.aliases.zsh` | Aliases for modern tools |
 | `Brewfile` | Homebrew packages + VS Code extensions |
-| `.tool-versions` | mise/asdf language versions (compatible format) |
+| `.tool-versions` | mise language versions (node, ruby, python, sqlite) |
 | `bin/` | Scripts auto-aliased in shell |
 
 ### Shell Architecture
@@ -184,7 +184,7 @@ cfg commit -m "chore(skills): add <name> skill"
 This repo uses git submodules:
 - `repos/base16-shell` - Base16 color schemes
 - `repos/oh-my-zsh/custom/plugins/dotbare` - Dotbare plugin
-- `repos/oh-my-zsh/custom/themes/powerlevel10k` - P10k theme
+- `repos/fzf-tab` - fzf-powered completion menu
 
 Update with:
 ```bash
@@ -226,6 +226,6 @@ If modifying `bin/bootstrap-dotfiles.zsh`:
 2. The script is destructive (overwrites configs, installs software)
 3. Key line: `dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git`
 
-Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → Oh My Zsh → mise + languages (reads `.tool-versions`) → vim-plug → Claude Code → MCP servers → skills-restore → macOS defaults → open iTerm.
+Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → chmod brew dirs → Oh My Zsh → mise + languages (reads `.tool-versions`) → Claude Code → GitHub token → Zed stub → skills-restore → macOS defaults → open iTerm.
 
 `bin/sane-macos-defaults.sh` is safe to re-run (all `defaults write` calls are idempotent). It covers: UI/UX, trackpad/keyboard, energy, screen/screenshots, Finder, Dock, Safari, iTerm, Time Machine, Activity Monitor, Software Updates. Full details in `README.md`.
