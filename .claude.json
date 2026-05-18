@@ -2,7 +2,7 @@
   "mcpServers": {
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/rgildea", "/Users/rgildea/projects"],
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${HOME}", "${HOME}/projects"],
       "env": {}
     },
     "github": {
