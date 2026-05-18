@@ -93,8 +93,8 @@ zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 _brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
-# Fix Homebrew's group-writable zsh dirs — root cause of compinit insecure warnings
-chmod go-w "$_brew_share/zsh" "$_brew_share/zsh/site-functions" 2>/dev/null
+# Fix Homebrew's group-writable dirs — root cause of compinit insecure warnings
+chmod -R go-w "${HOMEBREW_PREFIX:-/opt/homebrew}/share" 2>/dev/null
 # Load order matters: syntax-highlighting → autosuggestions → autocomplete (calls compinit)
 [[ -f "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 [[ -f "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh"
