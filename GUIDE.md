@@ -516,7 +516,7 @@ Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run any time — al
 
 **Finder:** hidden files shown, all extensions shown, path bar visible, full POSIX path in title, folders sorted to top, search defaults to current folder, list view default
 
-**Dock:** left side, 36px icons, scale minimize, auto-hide no delay, no recent apps, no opening animation, bottom-right hot corner starts screensaver
+**Dock:** 70px icons, scale minimize, auto-hide no delay, recent apps shown, no opening animation, bottom-right hot corner starts screensaver
 
 **Spotlight:** ⌘Space and ⌥⌘Space shortcuts disabled (Raycast claims them)
 
