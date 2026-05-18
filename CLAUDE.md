@@ -153,6 +153,7 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 | `.aliases.zsh` | `.gitconfig.local` |
 | `Brewfile` | `~/.ssh/config` |
 | `.config/git/ignore` | `~/.config/*` (mostly cache) |
+| `.config/starship.toml` | |
 | `.config/com.googlecode.iterm2/` | |
 | `bin/*.zsh` scripts | Scripts with API keys/secrets |
 | `.agents/.skill-lock.json` | Agent cache, symlinks |

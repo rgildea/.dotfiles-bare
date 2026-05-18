@@ -1,0 +1,10 @@
+[gcloud]
+disabled = true
+
+[custom.gcloud]
+description = "Show active GCP project when in a gcloud-related directory"
+command = "gcloud config get-value project 2>/dev/null"
+when = "test -f app.yaml || test -f cloudbuild.yaml || test -f .gcloudignore || find . -maxdepth 2 -name '*.tf' -quit 2>/dev/null | grep -q ."
+symbol = "☁️  "
+format = "on [$symbol$output]($style) "
+style = "bold cyan"
