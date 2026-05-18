@@ -119,6 +119,10 @@ brew update
 echo "brew bundle"
 brew bundle
 
+# Fix Homebrew's group-writable zsh dirs so compinit doesn't warn on every shell start
+chmod go-w "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh" \
+           "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/site-functions" 2>/dev/null || true
+
 # install oh-my-zsh
 if [[ -d $HOME/.oh-my-zsh ]]
 then
