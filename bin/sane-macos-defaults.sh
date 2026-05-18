@@ -23,7 +23,7 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-set -x  # print each command before running it
+set -e  # exit on error
 
 
 ###############################################################################
