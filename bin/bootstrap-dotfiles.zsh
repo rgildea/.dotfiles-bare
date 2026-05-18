@@ -103,7 +103,7 @@ echo "installing dotfiles..."
 DOTFILES_BRANCH="${DOTFILES_BRANCH:-main}"
 if [[ -d $HOME/.cfg ]]
 then
-    echo "dotfiles already installed...skipping."
+    echo "dotfiles already installed — run \`dotsync\` to pull latest changes and reconcile packages."
 else
     echo "installing dotfiles from branch: $DOTFILES_BRANCH"
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git

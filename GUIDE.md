@@ -182,6 +182,12 @@ cfg commit -m "feat(aliases): add brewi wrapper"
 cgp
 ```
 
+**Syncing an existing machine** (after merging changes to main):
+```
+dotsync                   # pull latest dotfiles, brew bundle, mise install, skills-restore
+dotsync my-branch         # sync a specific branch
+```
+
 **What's tracked vs. ignored:**
 - Tracked: `.zshrc`, `.zshenv`, `.aliases.zsh`, `Brewfile`, `.gitconfig`, `bin/*.zsh`
 - Never tracked: `.zshrc.local` (API keys, machine config)

@@ -23,6 +23,7 @@ This is a macOS dotfiles repository using the **bare git repo** pattern with [do
 - **Aliases in `.aliases.zsh`** - loaded by `.zshrc`, conditional on tool installation
 - **Dotbare commands** - use `dotbare` or alias `config`/`cfg`, not raw git
 - **Bootstrap script** - single-command setup at `bin/bootstrap-dotfiles.zsh`
+- **Sync script** - `dotsync` (or `bin/dotsync.zsh`) — pull + brew bundle + mise install + skills on existing machines
 
 ### Tools Used
 
