@@ -23,11 +23,13 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+set -x  # print each command before running it
 
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+echo ">>> General UI/UX"
 
 # Set computer name (as done via System Preferences → Sharing)
 #sudo scutil --set ComputerName "0x6D746873"
@@ -124,6 +126,7 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
+echo ">>> Trackpad / Keyboard"
 
 ## Bluetooth
 
@@ -162,6 +165,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 ###############################################################################
 # Energy saving                                                               #
 ###############################################################################
+echo ">>> Energy saving"
 
 # Enable lid wakeup
 sudo pmset -a lidwake 1
@@ -194,6 +198,7 @@ sudo pmset -a displaysleep 15
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
+echo ">>> Screen"
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
@@ -221,6 +226,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+echo ">>> Finder"
 
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
@@ -311,6 +317,7 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
+echo ">>> Dock"
 
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
@@ -420,6 +427,7 @@ defaults write com.apple.dock itunes-notifications -bool true
 ###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################
+echo ">>> Safari"
 
 # Include the Develop menu
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
@@ -458,6 +466,7 @@ defaults write com.apple.Safari AutoFillMiscellaneousForms -bool true
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################
+echo ">>> Spotlight"
 
 # Disable Spotlight ⌘Space and ⌥⌘Space shortcuts so Raycast can claim them
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (32, 49, 1048576); type = 'standard'; }; }"
@@ -466,6 +475,7 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "{ena
 ###############################################################################
 # Terminal & iTerm 2                                                          #
 ###############################################################################
+echo ">>> Terminal / iTerm"
 
 
 # Don’t display the annoying prompt when quitting iTerm
@@ -477,6 +487,7 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 ###############################################################################
 # Time Machine                                                                #
 ###############################################################################
+echo ">>> Time Machine"
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -487,6 +498,7 @@ hash tmutil &> /dev/null && sudo tmutil disable local
 ###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
+echo ">>> Activity Monitor"
 
 # Show the main window when launching Activity Monitor
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
@@ -504,6 +516,7 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 ###############################################################################
 # Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #
 ###############################################################################
+echo ">>> TextEdit / Disk Utility / QuickTime"
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
@@ -522,6 +535,7 @@ defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
 ###############################################################################
 # Mac App Store                                                               #
 ###############################################################################
+echo ">>> Mac App Store"
 
 # # Enable the WebKit Developer Tools in the Mac App Store
 # defaults write com.apple.appstore WebKitDeveloperExtras -bool true
@@ -557,6 +571,7 @@ defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
 ###############################################################################
 # Photos                                                                      #
 ###############################################################################
+echo ">>> Photos / Screen Saver / Network"
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
@@ -589,6 +604,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 ##############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
+echo ">>> Killing affected apps"
 
 for app in "Activity Monitor" \
 	"Address Book" \
