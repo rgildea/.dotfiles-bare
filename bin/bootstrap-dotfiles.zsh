@@ -196,8 +196,6 @@ rm -rf $DOTBARE_TMP_DIR
 brew cleanup
 echo "done cleaning up"
 
-# reload zsh config
-source $HOME/.zshrc
 echo "DONE! opening iTerm..."
 
 # set up macOS defaults

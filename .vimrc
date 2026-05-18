@@ -11,7 +11,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 
 " Formatting + linting
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install --legacy-peer-deps' }
 Plug 'dense-analysis/ale'
 
 " Fuzzy finding (uses Homebrew fzf binary)
@@ -73,7 +73,7 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 " --- Copilot ---
-let g:copilot_node_command = expand('~/.asdf/installs/nodejs/lts/bin/node')
+let g:copilot_node_command = trim(system('mise which node 2>/dev/null'))
 
 " --- Auto-create parent dirs on save ---
 augroup BWCCreateDir
