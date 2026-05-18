@@ -128,9 +128,9 @@ then
   echo "oh-my-zsh already installed...skipping."
 else
   echo "installing oh-my-zsh"
-  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  mv $HOME/.zshrc $HOME/.zshrc.omz-generated
-  mv $HOME/.zshrc.pre-oh-my-zsh $HOME/.zshrc
+  mv $HOME/.zshrc $HOME/.zshrc.backup
+  RUNZSH=no CHSH=no /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  mv $HOME/.zshrc.backup $HOME/.zshrc
 fi
 
 # configure mise (replaces asdf — reads .tool-versions natively)
