@@ -45,10 +45,10 @@ tart-prep sequoia-test your-branch    # writes bootstrap command to ~/bootstrap.
 | Component | Tool |
 |-----------|------|
 | Shell | Zsh + Oh My Zsh |
-| Prompt | Powerlevel10k |
+| Prompt | Starship |
 | Package Manager | Homebrew |
 | Version Manager | mise |
-| Editor | Vim (vim-plug) + VS Code + Zed |
+| Editor | VS Code + Zed |
 | Terminal | iTerm2 / Ghostty |
 | SSH/Secrets | 1Password |
 

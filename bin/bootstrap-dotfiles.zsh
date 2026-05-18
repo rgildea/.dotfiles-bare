@@ -144,17 +144,6 @@ fi
 # activate mise shims for the remainder of this script (non-interactive shell)
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 
-# install vim-plug
-if [[ -f $HOME/.vim/autoload/plug.vim ]]
-then
-  echo "vim-plug already installed...skipping."
-else
-  echo "installing vim-plug..."
-  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  vim -es -u $HOME/.vimrc -c "PlugInstall --sync" -c "qa"
-fi
-
 # install Claude Code
 if [[ -x "$HOME/.local/bin/claude" ]]; then
   echo "Claude Code already installed...skipping."

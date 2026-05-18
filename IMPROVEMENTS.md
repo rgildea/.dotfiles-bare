@@ -26,9 +26,9 @@ Items identified during review, ordered roughly by ROI.
 
 ### Medium ROI
 
-- [ ] **Powerlevel10k → Starship** — P10k development has essentially stopped. Starship is cross-shell, written in Rust, actively maintained, no instant prompt needed. Would remove the `romkatv/powerlevel10k` tap, `brew "powerlevel10k"`, `cask "font-meslo-for-powerlevel10k"`, and `.p10k.zsh`. Requires an hour of config work.
+- [x] **Powerlevel10k → Starship** — P10k development has essentially stopped. Starship is cross-shell, written in Rust, actively maintained, no instant prompt needed. Would remove the `romkatv/powerlevel10k` tap, `brew "powerlevel10k"`, `cask "font-meslo-for-powerlevel10k"`, and `.p10k.zsh`. Requires an hour of config work.
 
-- [ ] **`zsh-autocomplete` → `fzf-tab`** — `zsh-autocomplete` is opinionated, occasionally conflicts with things, and owns `compinit` in a way that's caused us trouble. `fzf-tab` routes completions through fzf without the compinit ownership issues.
+- [x] **`zsh-autocomplete` → `fzf-tab`** — `zsh-autocomplete` is opinionated, occasionally conflicts with things, and owns `compinit` in a way that's caused us trouble. `fzf-tab` routes completions through fzf without the compinit ownership issues.
 
 ### Lower ROI / Larger Project
 

@@ -21,15 +21,14 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   export EDITOR="code --wait"
   alias e="code"
 else
-  export EDITOR="vim"
-  alias e="vim"
+  export EDITOR="zed --wait"
+  alias e="zed"
 fi
 alias h="history"
 alias j="jobs"
 alias md="mkdir -p"
 alias o="open"
 alias reload="exec zsh -l"
-alias v="vim"
 
 # directory shortcuts
 alias home="cd ~"
