@@ -332,9 +332,7 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
+# defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
 #defaults write com.apple.dock static-only -bool true
@@ -409,8 +407,8 @@ defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-
 defaults write com.apple.dock wvous-br-corner -int 5
 defaults write com.apple.dock wvous-br-modifier -int 0
 
-# Move Dock to the left side of the screen
-defaults write com.apple.dock "orientation" -string "left" && killall Dock
+# Dock orientation — left/bottom/right; default is bottom
+# defaults write com.apple.dock "orientation" -string "left" && killall Dock
 
 # Make Dock icons of hidden applications translucent.
 defaults write com.apple.dock showhidden -bool true

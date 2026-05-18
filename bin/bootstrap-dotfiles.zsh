@@ -203,5 +203,5 @@ echo "setting up macOS defaults..."
 /bin/sh -c "$HOME/bin/sane-macos-defaults.sh"
 
 # open iTerm and set up the prompt
-open -a iTerm --args -e "p10k configure"
+open -a iTerm
 
