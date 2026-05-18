@@ -62,7 +62,7 @@ As you type, a grey ghost suggestion appears from your history.
 | Accept one char | `Ctrl+F` |
 | Ignore suggestion | Keep typing |
 
-> `Tab` is different — it triggers **completion** (what *could* be valid: files, commands, flags), not history-based autosuggestion. The two systems are independent.
+> `Tab` triggers **completion** (what *could* be valid: files, commands, flags), not history-based autosuggestion. Completions are shown in an interactive fzf picker via **fzf-tab** — use arrow keys or type to filter, `Enter` to accept. The two systems are independent.
 
 **Modern tool replacements** (auto-aliased when installed):
 
@@ -238,7 +238,7 @@ mise use --global node@24.15.0  # set global default
 - Python: 3.13.2
 - SQLite: 3.53.1
 
-> mise is a drop-in replacement for asdf. All existing `.tool-versions` files work unchanged.
+> mise is a drop-in replacement for asdf. Note: mise uses `node` as the tool name where asdf used `nodejs` — update any `.tool-versions` files accordingly.
 
 ---
 
