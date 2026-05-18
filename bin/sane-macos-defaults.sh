@@ -174,7 +174,7 @@ sudo pmset -a lidwake 1
 sudo pmset -a autorestart 1
 
 # Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+# sudo systemsetup -setrestartfreeze on  # deprecated in macOS Ventura+, returns error -99
 
 # Sleep the display after 15 minutes
 sudo pmset -a displaysleep 15
