@@ -526,8 +526,8 @@ Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run any time — al
 
 **Spotlight:** ⌘Space and ⌥⌘Space shortcuts disabled (Raycast claims them)
 
-**Safari:** Develop menu on, search suggestions off (privacy), auto-open downloads off
+**Safari:** configure manually in Safari's UI — `defaults write` for Safari is sandboxed and ignored on macOS Sonoma and later
 
 **iTerm:** no quit confirmation, prefs loaded from `~/.config/com.googlecode.iterm2/`
 
-**Other:** TextEdit plain text mode, Photos won't auto-open, Time Machine won't use new disks, daily software update checks
+**Other:** TextEdit plain text mode, Photos won't auto-open, Time Machine won't prompt for new disks, daily software update checks
