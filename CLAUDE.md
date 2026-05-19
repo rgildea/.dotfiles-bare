@@ -18,7 +18,8 @@
 - No over-engineering. No unnecessary defensive programming. No extra features. Keep it simple.
 - Use latest stable versions of libraries and tools.
 - Use latest idiomatic approaches.
-- No emojis anywhere. Keep READMEs minimal.
+- No emojis anywhere. 
+- Keep README.md concise.
 - Favor clear, precise, and concise docstring comments. Be sparing with comments outside of docstrings.
 - Favor short modules, short methods and functions. Use clear naming conventions.
 
