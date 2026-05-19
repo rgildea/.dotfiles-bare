@@ -5,8 +5,9 @@
 
 set -e
 
-DOTBARE="$HOME/repos/dotbare/dotbare"
-BRANCH="${1:-$(${DOTBARE} branch --show-current)}"
+source "$HOME/repos/oh-my-zsh/custom/plugins/dotbare/dotbare.plugin.zsh"
+
+BRANCH="${1:-$(dotbare branch --show-current)}"
 
 if [[ -z "$BRANCH" ]]; then
   echo "dotsync: could not determine current branch; pass one explicitly: dotsync main" >&2
@@ -14,12 +15,12 @@ if [[ -z "$BRANCH" ]]; then
 fi
 
 echo "→ pulling dotfiles ($BRANCH)..."
-${DOTBARE} fetch origin
-${DOTBARE} checkout --force "$BRANCH"
-${DOTBARE} pull origin "$BRANCH"
+dotbare fetch origin
+dotbare checkout --force "$BRANCH"
+dotbare pull origin "$BRANCH"
 
 echo "→ updating submodules..."
-${DOTBARE} submodule update --init --recursive
+dotbare submodule update --init --recursive
 
 echo "→ brew bundle..."
 brew bundle --file="$HOME/Brewfile"
