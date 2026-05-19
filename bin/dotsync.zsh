@@ -5,8 +5,8 @@
 
 set -e
 
-CFG="git --git-dir=$HOME/.cfg --work-tree=$HOME"
-BRANCH="${1:-$($CFG branch --show-current)}"
+DOTBARE="$HOME/repos/dotbare/dotbare"
+BRANCH="${1:-$(${DOTBARE} branch --show-current)}"
 
 if [[ -z "$BRANCH" ]]; then
   echo "dotsync: could not determine current branch; pass one explicitly: dotsync main" >&2
@@ -14,12 +14,12 @@ if [[ -z "$BRANCH" ]]; then
 fi
 
 echo "→ pulling dotfiles ($BRANCH)..."
-$CFG fetch origin
-$CFG checkout --force "$BRANCH"
-$CFG pull origin "$BRANCH"
+${DOTBARE} fetch origin
+${DOTBARE} checkout --force "$BRANCH"
+${DOTBARE} pull origin "$BRANCH"
 
 echo "→ updating submodules..."
-$CFG submodule update --init --recursive
+${DOTBARE} submodule update --init --recursive
 
 echo "→ brew bundle..."
 brew bundle --file="$HOME/Brewfile"
