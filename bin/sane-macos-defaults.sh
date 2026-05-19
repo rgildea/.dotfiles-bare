@@ -53,9 +53,6 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
-# Enable subpixel font rendering on non-Apple LCDs.
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
-
 # Use “natural” (Lion-style) scrolling.
 # defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
@@ -96,9 +93,6 @@ defaults write com.apple.helpviewer DevMode -bool true
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
-# Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -int 0
-
 # Disable the “reopen windows when logging back in” option
 defaults write com.apple.loginwindow TALLogoutSavesState -bool false
 
@@ -120,9 +114,6 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Speed up window resize time.
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# Expand save panel by default.
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -137,15 +128,12 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-sudo defaults write com.apple.AppleMultitouchTrackpad Clicking 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+sudo defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
 # Trackpad: Two-Finger-Tap
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
-defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
 sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
@@ -350,16 +338,6 @@ defaults write com.apple.dock launchanim -bool false
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
 
-# Don’t group windows by application in Mission Control
-# (i.e. use the old Exposé behavior instead)
-# defaults write com.apple.dock expose-group-by-app -bool false
-
-# Disable Dashboard
-# defaults write com.apple.dashboard mcx-disabled -bool true
-
-# Don’t show Dashboard as a Space
-# defaults write com.apple.dock dashboard-in-overlay -bool true
-
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
@@ -417,52 +395,6 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # Dock orientation — left/bottom/right; default is bottom
 # defaults write com.apple.dock "orientation" -string "left" && killall Dock
 
-# Make Dock icons of hidden applications translucent.
-defaults write com.apple.dock showhidden -bool true
-
-# Enable iTunes track notifications in the Dock.
-defaults write com.apple.dock itunes-notifications -bool true
-
-
-###############################################################################
-# Safari & WebKit                                                             #
-###############################################################################
-echo ">>> Safari"
-
-# Include the Develop menu
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-
-# Include the Internal Debug menu.
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-# Enable WebKit Developer Extras preference key
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-
-# Enable WebKit Developer Extras
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
-
-# Disable universal search because we prefer privacy
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-
-# Suppress search suggestions because we prefer privacy
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
-# Don't open "safe" downloads i.e. don't open files automatically after downloading
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-
-# Disable snapshots i.e. don't use thumbnail cache for History and Top Sites
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
-
-# Enable AutoFill
-defaults write com.apple.Safari AutoFillFromAddressBook -bool true
-defaults write com.apple.Safari AutoFillPasswords -bool true
-defaults write com.apple.Safari AutoFillCreditCardData -bool true
-defaults write com.apple.Safari AutoFillMiscellaneousForms -bool true
-
-###############################################################################
-# Mail                                                                        #
-###############################################################################
-
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################
@@ -491,9 +423,6 @@ echo ">>> Time Machine"
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-
-# Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disable local
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -564,9 +493,6 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Allow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
-# Automatically download apps purchased on other Macs
-defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
-
 
 ###############################################################################
 # Photos                                                                      #
@@ -577,22 +503,10 @@ echo ">>> Photos / Screen Saver / Network"
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 
-## Screen Saver
-
-# Require password immediately after sleep or screen saver begins.
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-
 ## Network Browser
 
 # Use AirDrop over every interface.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
-
-## Desktop Services
-
-# Avoid creating .DS_Store files on network volumes.
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 
 
@@ -613,19 +527,11 @@ for app in "Activity Monitor" \
 	"Contacts" \
 	"Dock" \
 	"Finder" \
-	"Google Chrome Canary" \
 	"Google Chrome" \
 	"Mail" \
 	"Messages" \
-	"Opera" \
 	"Photos" \
 	"Safari" \
-	"SizeUp" \
-	"Spectacle" \
-	"SystemUIServer" \
-	"Transmission" \
-	"Tweetbot" \
-	"Twitter" \
-	"iCal"; do
+	"SystemUIServer"; do
 	killall "${app}" &> /dev/null
 done
