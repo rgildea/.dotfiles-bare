@@ -108,6 +108,7 @@ else
     echo "installing dotfiles from branch: $DOTFILES_BRANCH"
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
     git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" fetch origin
     dotbare checkout --force "$DOTFILES_BRANCH"
     dotbare submodule update --init --recursive
 fi
