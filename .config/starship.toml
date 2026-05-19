@@ -1,3 +1,91 @@
+# Starship prompt — tuned for Monaspace NF
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$golang\
+$cmd_duration\
+$custom\
+$line_break\
+$character"""
+
+right_format = "$time"
+
+[directory]
+truncation_length = 4
+truncate_to_repo = true
+style = "bold cyan"
+
+[git_branch]
+format = "on [$symbol$branch]($style) "
+symbol = " "
+style = "bold purple"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold red"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+modified = "!${count}"
+staged = "+${count}"
+untracked = "?${count}"
+stashed = "*${count}"
+deleted = "✘${count}"
+conflicted = "=${count}"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[cmd_duration]
+min_time = 2_000
+format = "took [$duration]($style) "
+style = "bold yellow"
+
+[time]
+disabled = false
+format = "[$time]($style)"
+style = "dimmed white"
+time_format = "%H:%M"
+
+[username]
+show_always = false
+format = "[$user]($style)@"
+style_user = "bold yellow"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style) in "
+style = "bold green"
+
+[nodejs]
+format = "via [ $version]($style) "
+style = "bold green"
+
+[python]
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+
+[ruby]
+format = "via [ $version]($style) "
+style = "bold red"
+
+[rust]
+format = "via [ $version]($style) "
+style = "bold orange"
+
+[golang]
+format = "via [ $version]($style) "
+style = "bold cyan"
+
 [gcloud]
 disabled = true
 
