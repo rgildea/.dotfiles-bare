@@ -23,11 +23,13 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+set -e  # exit on error
 
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+echo ">>> General UI/UX"
 
 # Set computer name (as done via System Preferences → Sharing)
 #sudo scutil --set ComputerName "0x6D746873"
@@ -50,9 +52,6 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 ## Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
-
-# Enable subpixel font rendering on non-Apple LCDs.
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # Use “natural” (Lion-style) scrolling.
 # defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
@@ -94,9 +93,6 @@ defaults write com.apple.helpviewer DevMode -bool true
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
-# Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -int 0
-
 # Disable the “reopen windows when logging back in” option
 defaults write com.apple.loginwindow TALLogoutSavesState -bool false
 
@@ -118,12 +114,10 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Speed up window resize time.
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# Expand save panel by default.
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
+echo ">>> Trackpad / Keyboard"
 
 ## Bluetooth
 
@@ -134,15 +128,12 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-sudo defaults write com.apple.AppleMultitouchTrackpad Clicking 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+sudo defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
 # Trackpad: Two-Finger-Tap
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
-defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
 sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
@@ -162,6 +153,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 ###############################################################################
 # Energy saving                                                               #
 ###############################################################################
+echo ">>> Energy saving"
 
 # Enable lid wakeup
 sudo pmset -a lidwake 1
@@ -170,7 +162,7 @@ sudo pmset -a lidwake 1
 sudo pmset -a autorestart 1
 
 # Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+# sudo systemsetup -setrestartfreeze on  # deprecated in macOS Ventura+, returns error -99
 
 # Sleep the display after 15 minutes
 sudo pmset -a displaysleep 15
@@ -194,6 +186,7 @@ sudo pmset -a displaysleep 15
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
+echo ">>> Screen"
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
@@ -221,6 +214,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+echo ">>> Finder"
 
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
@@ -311,13 +305,14 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
+echo ">>> Dock"
 
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+defaults write com.apple.dock tilesize -int 70
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -332,9 +327,7 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
+# defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
 #defaults write com.apple.dock static-only -bool true
@@ -344,16 +337,6 @@ defaults write com.apple.dock launchanim -bool false
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
-
-# Don’t group windows by application in Mission Control
-# (i.e. use the old Exposé behavior instead)
-# defaults write com.apple.dock expose-group-by-app -bool false
-
-# Disable Dashboard
-# defaults write com.apple.dashboard mcx-disabled -bool true
-
-# Don’t show Dashboard as a Space
-# defaults write com.apple.dock dashboard-in-overlay -bool true
 
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
@@ -369,8 +352,8 @@ defaults write com.apple.dock autohide -bool true
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
-# Don’t show recent applications in Dock
-defaults write com.apple.dock show-recents -bool false
+# Show recent applications in Dock
+defaults write com.apple.dock show-recents -bool true
 
 # Disable the Launchpad gesture (pinch with thumb and three fingers)
 #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
@@ -409,79 +392,42 @@ defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-
 defaults write com.apple.dock wvous-br-corner -int 5
 defaults write com.apple.dock wvous-br-modifier -int 0
 
-# Move Dock to the left side of the screen
-defaults write com.apple.dock "orientation" -string "left" && killall Dock
-
-# Make Dock icons of hidden applications translucent.
-defaults write com.apple.dock showhidden -bool true
-
-# Enable iTunes track notifications in the Dock.
-defaults write com.apple.dock itunes-notifications -bool true
-
-
-###############################################################################
-# Safari & WebKit                                                             #
-###############################################################################
-
-# Include the Develop menu
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-
-# Include the Internal Debug menu.
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-# Enable WebKit Developer Extras preference key
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-
-# Enable WebKit Developer Extras
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
-
-# Disable universal search because we prefer privacy
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-
-# Suppress search suggestions because we prefer privacy
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
-# Don't open "safe" downloads i.e. don't open files automatically after downloading
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-
-# Disable snapshots i.e. don't use thumbnail cache for History and Top Sites
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
-
-# Enable AutoFill
-defaults write com.apple.Safari AutoFillFromAddressBook -bool true
-defaults write com.apple.Safari AutoFillPasswords -bool true
-defaults write com.apple.Safari AutoFillCreditCardData -bool true
-defaults write com.apple.Safari AutoFillMiscellaneousForms -bool true
-
-###############################################################################
-# Mail                                                                        #
-###############################################################################
+# Dock orientation — left/bottom/right; default is bottom
+# defaults write com.apple.dock "orientation" -string "left" && killall Dock
 
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################
+echo ">>> Spotlight"
+
+# Disable Spotlight ⌘Space and ⌥⌘Space shortcuts so Raycast can claim them
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (32, 49, 1048576); type = 'standard'; }; }"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "{enabled = 0; value = { parameters = (32, 49, 1572864); type = 'standard'; }; }"
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
 ###############################################################################
+echo ">>> Terminal / iTerm"
 
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+# Load preferences from dotfiles
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/com.googlecode.iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 ###############################################################################
 # Time Machine                                                                #
 ###############################################################################
+echo ">>> Time Machine"
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disable local
-
 ###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
+echo ">>> Activity Monitor"
 
 # Show the main window when launching Activity Monitor
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
@@ -489,8 +435,8 @@ defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 # Visualize CPU usage in the Activity Monitor Dock icon
 defaults write com.apple.ActivityMonitor IconType -int 5
 
-# Show all processes in Activity Monitor
-defaults write com.apple.ActivityMonitor ShowCategory -int 0
+# Show network processes in Activity Monitor
+defaults write com.apple.ActivityMonitor ShowCategory -int 100
 
 # Sort Activity Monitor results by CPU usage
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
@@ -499,6 +445,7 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 ###############################################################################
 # Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #
 ###############################################################################
+echo ">>> TextEdit / Disk Utility / QuickTime"
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
@@ -517,6 +464,7 @@ defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
 ###############################################################################
 # Mac App Store                                                               #
 ###############################################################################
+echo ">>> Mac App Store"
 
 # # Enable the WebKit Developer Tools in the Mac App Store
 # defaults write com.apple.appstore WebKitDeveloperExtras -bool true
@@ -545,34 +493,20 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Allow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
-# Automatically download apps purchased on other Macs
-defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
-
 
 ###############################################################################
 # Photos                                                                      #
 ###############################################################################
+echo ">>> Photos / Screen Saver / Network"
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
-
-
-## Screen Saver
-
-# Require password immediately after sleep or screen saver begins.
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 
 ## Network Browser
 
 # Use AirDrop over every interface.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
-
-## Desktop Services
-
-# Avoid creating .DS_Store files on network volumes.
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 
 
@@ -584,6 +518,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 ##############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
+echo ">>> Killing affected apps"
 
 for app in "Activity Monitor" \
 	"Address Book" \
@@ -592,20 +527,11 @@ for app in "Activity Monitor" \
 	"Contacts" \
 	"Dock" \
 	"Finder" \
-	"Google Chrome Canary" \
 	"Google Chrome" \
 	"Mail" \
 	"Messages" \
-	"Opera" \
 	"Photos" \
 	"Safari" \
-	"SizeUp" \
-	"Spectacle" \
-	"SystemUIServer" \
-	"Terminal" \
-	"Transmission" \
-	"Tweetbot" \
-	"Twitter" \
-	"iCal"; do
+	"SystemUIServer"; do
 	killall "${app}" &> /dev/null
 done

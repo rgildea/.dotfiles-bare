@@ -75,13 +75,11 @@ else
   else
     echo "1Password package already installed...skipping."
   fi
-
-  # Sign in to 1Password
-  read "?Please sign in to 1Password, and enable the SSH Agent in Settings->Developer. Press enter to continue..."
-  open -a "1Password"
-  read "?Press enter to continue..."
-
 fi
+
+# always prompt — SSH agent must be enabled before submodule clone
+open "/Applications/1Password.app"
+read "?Sign in to 1Password, then enable Settings → Developer → SSH Agent and Settings → Developer → CLI Integration, then press Enter..."
 
 echo "installing dotbare..."
 
@@ -101,12 +99,18 @@ fi
 echo "installing dotfiles..."
 
 # install dotfiles
+# Override branch for testing: DOTFILES_BRANCH=my-branch /bin/zsh -c "$(curl ...)"
+DOTFILES_BRANCH="${DOTFILES_BRANCH:-main}"
 if [[ -d $HOME/.cfg ]]
 then
-    echo "dotfiles already installed...skipping."
+    echo "dotfiles already installed — run \`dotsync\` to pull latest changes and reconcile packages."
 else
-    echo "installing dotfiles..."
+    echo "installing dotfiles from branch: $DOTFILES_BRANCH"
     dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
+    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" fetch origin
+    dotbare checkout --force "$DOTFILES_BRANCH"
+    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" branch --set-upstream-to="origin/$DOTFILES_BRANCH" "$DOTFILES_BRANCH"
     dotbare submodule update --init --recursive
 fi
 
@@ -118,41 +122,30 @@ brew update
 echo "brew bundle"
 brew bundle
 
+# Fix Homebrew's group-writable dirs — root cause of compinit insecure warnings
+chmod -R go-w "${HOMEBREW_PREFIX:-/opt/homebrew}/share" 2>/dev/null || true
+
 # install oh-my-zsh
 if [[ -d $HOME/.oh-my-zsh ]]
 then
   echo "oh-my-zsh already installed...skipping."
 else
   echo "installing oh-my-zsh"
-  mv .zshrc $HOME/.zshrc.backup
-  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  mv $HOME/.zshrc $HOME/.zshrc.omz-generated
-  mv $HOME/.zshrc.pre-oh-my-zsh $HOME/.zshrc
+  mv $HOME/.zshrc $HOME/.zshrc.backup
+  RUNZSH=no CHSH=no /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  mv $HOME/.zshrc.backup $HOME/.zshrc
 fi
 
-# configure asdf
-if [[ -x $(which asdf) ]]
-then echo "asdf already setup...skipping."
+# configure mise (replaces asdf — reads .tool-versions natively)
+if command -v mise &>/dev/null; then
+  echo "configuring mise..."
+  mise install
 else
-  echo "configuring asdf..."
-  asdf plugin add nodejs
-  asdf plugin add python
-  asdf plugin add ruby
-  asdf plugin add sqlite
-  # install asdf packages according to the versions in the .tool-versions file
-  asdf install
+  echo "mise not found — ensure brew bundle completed successfully" >&2
 fi
 
-# install vim-plug
-if [[ -f $HOME/.vim/autoload/plug.vim ]]
-then
-  echo "vim-plug already installed...skipping."
-else
-  echo "installing vim-plug..."
-  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  vim -es -u $HOME/.vimrc -c "PlugInstall --sync" -c "qa"
-fi
+# activate mise shims for the remainder of this script (non-interactive shell)
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 # install Claude Code
 if [[ -x "$HOME/.local/bin/claude" ]]; then
@@ -160,6 +153,23 @@ if [[ -x "$HOME/.local/bin/claude" ]]; then
 else
   echo "installing Claude Code..."
   curl -fsSL https://claude.ai/install.sh | sh
+fi
+
+# write GitHub token to .zshrc.local for MCP server environment
+echo "writing GitHub token to ~/.zshrc.local..."
+if ! grep -q "GITHUB_PERSONAL_ACCESS_TOKEN" "$HOME/.zshrc.local" 2>/dev/null; then
+  GITHUB_TOKEN=$(op read "op://Personal/GitHub Personal Access Token/credential" 2>/dev/null || echo "REPLACE_WITH_GITHUB_TOKEN")
+  echo "\nexport GITHUB_PERSONAL_ACCESS_TOKEN=\"$GITHUB_TOKEN\"" >> "$HOME/.zshrc.local"
+  echo "GitHub token written to ~/.zshrc.local"
+else
+  echo "GITHUB_PERSONAL_ACCESS_TOKEN already set in ~/.zshrc.local...skipping."
+fi
+
+# create Zed settings stub if not present
+if [[ ! -f "$HOME/.config/zed/settings.json" ]]; then
+  mkdir -p "$HOME/.config/zed"
+  echo '{"buffer_font_family":"Monaspace Neon","terminal":{"font_family":"Monaspace Neon"},"assistant":{"default_model":{"provider":"anthropic","model":"claude-sonnet-4-6"},"version":"2"}}' > "$HOME/.config/zed/settings.json"
+  echo "Zed settings stub created at ~/.config/zed/settings.json"
 fi
 
 # restore agent skills (claude, etc.)
@@ -176,8 +186,6 @@ rm -rf $DOTBARE_TMP_DIR
 brew cleanup
 echo "done cleaning up"
 
-# reload zsh config
-source $HOME/.zshrc
 echo "DONE! opening iTerm..."
 
 # set up macOS defaults
@@ -185,5 +193,5 @@ echo "setting up macOS defaults..."
 /bin/sh -c "$HOME/bin/sane-macos-defaults.sh"
 
 # open iTerm and set up the prompt
-open -a iTerm --args -e "p10k configure"
+open -a iTerm
 

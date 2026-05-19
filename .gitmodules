@@ -1,42 +1,18 @@
-[submodule "repos/zsh-autocomplete"]
-	path = repos/zsh-autocomplete
-	url = https://github.com/marlonrichert/zsh-autocomplete.git
-[submodule ".janus/vim-rails"]
-	path = .janus/vim-rails
-	url = https://github.com/tpope/vim-rails.git
-[submodule ".janus/endwise"]
-	path = .janus/endwise
-	url = https://tpope.io/vim/endwise.git
 [submodule "repos/zsh-syntax-highlighting"]
 	path = repos/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "repos/zsh-autosuggestions"]
 	path = repos/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule ".janus/vim-surround"]
-	path = .janus/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule ".janus/auto-pairs"]
-	path = .janus/auto-pairs
-	url = https://github.com/jiangmiao/auto-pairs.git
-[submodule ".janus/copilot.vim"]
-	path = .janus/copilot.vim
-	url = https://github.com/github/copilot.vim
-[submodule ".janus/vim-prettier"]
-	path = .janus/vim-prettier
-	url = https://github.com/prettier/vim-prettier.git
 [submodule "repos/dotbare"]
 	path = repos/dotbare
 	url = https://github.com/kazhala/dotbare.git
-[submodule "repos/powerlevel10k"]
-	path = repos/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "repos/base16-shell"]
 	path = repos/base16-shell
-	url = git@github.com:chriskempson/base16-shell.git
+	url = https://github.com/chriskempson/base16-shell.git
 [submodule "repos/oh-my-zsh/custom/plugins/dotbare"]
 	path = repos/oh-my-zsh/custom/plugins/dotbare
 	url = https://github.com/kazhala/dotbare
-[submodule "repos/oh-my-zsh/custom/themes/powerlevel10k"]
-	path = repos/oh-my-zsh/custom/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "repos/fzf-tab"]
+	path = repos/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git

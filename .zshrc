@@ -1,19 +1,11 @@
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=""  # Prompt handled by Starship
 
 # update automatically without asking
 zstyle ':omz:update' mode auto
@@ -26,28 +18,22 @@ export SAVEHIST=100000                                 # More history on disk
 setopt INC_APPEND_HISTORY                              # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
-# OMZ must not call compinit — we handle it explicitly below (zsh-autocomplete or fallback)
+# OMZ must not call compinit — we handle it explicitly below
 skip_global_compinit=1
+ZSH_DISABLE_COMPFIX=true
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
 
 # fpath entries must be added before compinit runs
-fpath=($HOME/.asdf/completions $fpath)
 fpath=($HOME/.docker/completions $fpath)
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	1password
 	alias-finder
 	aliases
 	git
 	dotbare
-	asdf
 	colored-man-pages
 	colorize
 	pip
@@ -58,6 +44,18 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
 export DOTBARE_DIR="$HOME/.cfg"
 export DOTBARE_TREE="$HOME"
@@ -76,9 +74,6 @@ source $HOME/.aliases.zsh
 # custom functions (thanks Kent C. Dodds)
 killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 #Set up alias-finder
 zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
 zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
@@ -86,19 +81,15 @@ zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 _brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
-# Load order matters: syntax-highlighting → autosuggestions → autocomplete (calls compinit)
 [[ -f "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 [[ -f "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 (( $+widgets[autosuggest-accept] )) && bindkey '^ ' autosuggest-accept
-_zsh_autocomplete="$_brew_share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-if [[ -f "$_zsh_autocomplete" ]]; then
-  source "$_zsh_autocomplete"       # calls compinit itself
-else
-  autoload -U compinit && compinit  # fallback: compinit if plugin is missing
-fi
-unset _brew_share _zsh_autocomplete
+autoload -U compinit && compinit -u
+# fzf-tab must be sourced after compinit, replaces the default completion menu with fzf
+[[ -f "$HOME/repos/fzf-tab/fzf-tab.plugin.zsh" ]] && source "$HOME/repos/fzf-tab/fzf-tab.plugin.zsh"
+unset _brew_share
 
-# completions that require compinit (provided above by zsh-autocomplete when available, otherwise by OMZ)
+# completions that require compinit
 eval "$(op completion zsh)"; compdef _op op
 if command -v ngrok &>/dev/null; then
 	eval "$(ngrok completion 2>/dev/null)"

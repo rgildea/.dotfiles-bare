@@ -10,7 +10,8 @@ command -v fd >/dev/null 2>&1 && alias find='fd'
 command -v htop >/dev/null 2>&1 && alias top='htop'
 command -v prettyping >/dev/null 2>&1 && alias ping='prettyping --nolegend'
 command -v procs >/dev/null 2>&1 && alias ps='procs'
-grep --color=auto /dev/null 2>/dev/null && alias grep='grep --color=auto'
+grep --color=auto '' /dev/null 2>/dev/null && alias grep='grep --color=auto'
+
 
 # commands
 alias a="alias"
@@ -20,15 +21,14 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   export EDITOR="code --wait"
   alias e="code"
 else
-  export EDITOR="vim"
-  alias e="vim"
+  export EDITOR="zed --wait"
+  alias e="zed"
 fi
 alias h="history"
 alias j="jobs"
 alias md="mkdir -p"
 alias o="open"
 alias reload="exec zsh -l"
-alias v="vim"
 
 # directory shortcuts
 alias home="cd ~"
@@ -62,7 +62,7 @@ alias lt="ls -T --git --level=2"
 alias gcz='git cz'
 alias gac='git add -A && git commit -m'
 alias gcopy='git copy-branch-name'
-alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | diff-so-fancy' # Remove `+` and `-` from start of diff lines; just rely upon color.
+alias gd='git diff'
 alias gl='git pull --prune'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gp='git push origin HEAD'
@@ -70,6 +70,7 @@ alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gsubmodules="git config --file .gitmodules --get-regexp path | awk '{ print $3 }'"
 alias gum='git checkout main && git fetch && git pull'
 alias gup='git pull --rebase'
+command -v lazygit >/dev/null 2>&1 && alias lg='lazygit'
 
 # npm aliases
 alias flush-npm="rm -rf node_modules package-lock.json && npm i && say NPM is done"

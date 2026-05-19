@@ -16,7 +16,7 @@ How to navigate this guide — open it, get the TOC, or jump to a section by key
 halp                      # open full guide in glow (paged)
 halp me                   # TOC with descriptions
 halp <keyword>            # show one section, e.g. halp git, halp brew, halp commit
-e ~/GUIDE.md              # edit in VS Code
+e ~/GUIDE.md              # edit in your editor
 ```
 
 The guide lives at `~/GUIDE.md` and is tracked in your dotfiles.
@@ -62,7 +62,7 @@ As you type, a grey ghost suggestion appears from your history.
 | Accept one char | `Ctrl+F` |
 | Ignore suggestion | Keep typing |
 
-> `Tab` is different — it triggers **completion** (what *could* be valid: files, commands, flags), not history-based autosuggestion. The two systems are independent.
+> `Tab` triggers **completion** (what *could* be valid: files, commands, flags), not history-based autosuggestion. Completions are shown in an interactive fzf picker via **fzf-tab** — use arrow keys or type to filter, `Enter` to accept. The two systems are independent.
 
 **Modern tool replacements** (auto-aliased when installed):
 
@@ -79,6 +79,18 @@ As you type, a grey ghost suggestion appears from your history.
 | `top` | `htop` | Interactive process viewer |
 | `ping` | `prettyping` | Visual ping output |
 | `ps` | `procs` | Readable process list |
+
+**Directory jumping (zoxide):**
+
+zoxide learns which directories you visit and lets you jump to them by partial name.
+
+```
+z projects                # jump to ~/projects (or wherever you go most)
+z dot                     # jumps to ~/.dotfiles-bare or similar
+zi                        # interactive fuzzy picker (fzf-powered)
+```
+
+> `z` is separate from `cd` — use `cd` for explicit paths, `z` for frecency-based jumps.
 
 **Useful one-liners:**
 ```
@@ -102,7 +114,7 @@ diskspace                 # disk usage (non-virtual)
 | Search forward | `/pattern` |
 | Next / prev match | `n` / `N` |
 
-See the Vim section for a full vim/less comparison.
+See [less keybindings](https://man7.org/linux/man-pages/man1/less.1.html) for paging reference.
 
 **Reloading the shell:**
 
@@ -162,12 +174,18 @@ Never use plain `git` from the home directory — use these instead:
 
 **Workflow — editing a config file:**
 ```
-e ~/.aliases.zsh          # edit in VS Code
+e ~/.aliases.zsh          # edit in your editor
 cstat                     # confirm what changed
 cdiff .aliases.zsh        # review the diff
 cadd .aliases.zsh
 cfg commit -m "feat(aliases): add brewi wrapper"
 cgp
+```
+
+**Syncing an existing machine** (after merging changes to main):
+```
+dotsync                   # pull latest dotfiles, brew bundle, mise install, skills-restore
+dotsync my-branch         # sync a specific branch
 ```
 
 **What's tracked vs. ignored:**
@@ -207,28 +225,57 @@ brewsync                  # dumps current state, shows diff
 
 ---
 
-### Version Management (asdf)
-<!-- halp: asdf | Language versions pinned in .tool-versions -->
+### Version Management (mise)
+<!-- halp: mise | Language versions pinned in .tool-versions -->
 
-Languages are managed by **asdf**. Versions are pinned in `~/.tool-versions`.
+Languages are managed by **mise** (replaces asdf — faster, same `.tool-versions` format).
 
 ```
-asdf current              # see active versions of everything
-asdf list nodejs          # see installed Node versions
-asdf install nodejs 22.0.0   # install a version
-asdf local nodejs 22.0.0     # pin for current project (.tool-versions)
-asdf global nodejs 24.15.0   # set global default
+mise current              # see active versions of everything
+mise list node            # see installed Node versions
+mise install node@22.0.0  # install a version
+mise use node@22.0.0      # pin for current project (.tool-versions)
+mise use --global node@24.15.0  # set global default
 ```
 
-**Active versions:**
+**Active versions** (from `~/.tool-versions`):
 - Node: 24.15.0
-- Ruby: 3.3.0
-- Python: 3.12.1
-- SQLite: 3.45.1
+- Ruby: 3.4.9
+- Python: 3.13.2
+- SQLite: 3.53.1
+
+> mise is a drop-in replacement for asdf. Note: mise uses `node` as the tool name where asdf used `nodejs` — update any `.tool-versions` files accordingly.
 
 ---
 
 ## Daily Workflow
+
+### Lazygit
+<!-- halp: lazygit | Visual git TUI — review diffs, stage hunks, manage branches -->
+
+Terminal UI for git — essential for reviewing agent commits before pushing.
+
+```
+lg                        # open lazygit (alias)
+```
+
+**Key bindings inside lazygit:**
+
+| What | Key |
+|------|-----|
+| Navigate panels | `h` `j` `k` `l` / arrow keys |
+| Stage file / hunk | `Space` |
+| Stage all | `a` |
+| Commit | `c` |
+| Push | `P` |
+| Pull | `p` |
+| Checkout branch | `Space` (in branches panel) |
+| View diff | `Enter` on a file |
+| Quit | `q` |
+
+> Use `[` and `]` to switch between panels (Files, Branches, Commits, Stash, etc.)
+
+---
 
 ### Git Workflow
 <!-- halp: git | Daily aliases, undo, stash, conflict resolution -->
@@ -246,7 +293,7 @@ Your gitconfig is opinionated. Here's what it does for you automatically:
 | Status (compact) | `gs` |
 | Pull + prune | `gl` |
 | Push to origin | `gp` |
-| Diff (diff-so-fancy) | `gd` |
+| Diff (delta) | `gd` |
 | Log (visual graph) | `glog` |
 | Checkout | `gco branch-name` |
 | New branch | `gcb new-feature` |
@@ -316,139 +363,6 @@ git commit -m "Merge branch 'main'"   # fine, hook allows it
 
 ---
 
-### Vim
-<!-- halp: vim | Modes, motions, plugins, and your custom mappings -->
-
-One rule: **you are always in Normal mode by default.** Insert mode is temporary.
-Return to Normal with `jk` — it's your escape hatch and it's already wired up.
-
-**Getting unstuck:**
-
-| Symptom | Fix |
-|---------|-----|
-| Nothing I type appears | You're in Normal — that's correct, `i` to insert |
-| Everything looks broken | `jk` then `u` to undo |
-| Stuck in some sub-mode | `<Esc><Esc>` clears it |
-| Accidentally recording a macro | `q` to stop |
-| Can't quit | `:q!` force-quit without saving |
-
-**The two gears:**
-
-```
-Normal → Insert     i (before cursor)  a (after)  o (new line below)  O (above)
-Insert → Normal     jk  or  kj  ← your mappings, faster than reaching for Esc
-Normal → Visual     v (char)   V (line)   <C-v> (block)
-Any → Normal        <Esc>  (fallback)
-```
-
-**Saving:**
-
-```
-<C-s>               save from insert or normal mode (your mapping)
-:w                  also works from Normal
-:wq                 save and quit
-:q!                 quit without saving
-```
-
-**Moving around (Normal mode):**
-
-| Move | Keys |
-|------|------|
-| Left / down / up / right | `h` `j` `k` `l` |
-| Next / prev word | `w` `b` |
-| End of word | `e` |
-| Start / end of line | `0` `$` |
-| First / last line | `gg` `G` |
-| Jump to line 42 | `42G` or `:42` |
-| Next / prev paragraph | `{` `}` |
-| Find char on line | `f<char>` — `;` to repeat |
-| Jump back / forward | `<C-o>` / `<C-i>` |
-
-**Editing — operator + motion:**
-
-```
-d + motion    delete    dw (word)  dd (line)  d$ (to end)  d3j (3 lines)
-c + motion    change    cw (word, drops into insert)  cc (whole line)
-y + motion    yank      yy (line)  y$ (to end)
-p / P         paste     after cursor / before cursor
-x             delete char under cursor
-u / <C-r>     undo / redo
-.             repeat last change  ← use this constantly
-```
-
-**Your custom mappings:**
-
-| What | Keys |
-|------|------|
-| Escape insert mode | `jk` or `kj` |
-| Save | `<C-s>` (insert or normal) |
-| Find files (FZF) | `<Space>F` |
-| Move line down / up | `<A-j>` / `<A-k>` (all modes) |
-| Edit vimrc | `<Space>vr` |
-| Reload vimrc | `<Space>so` |
-
-**Plugins:**
-
-*vim-commentary — toggle comments:*
-```
-gcc             comment/uncomment current line
-gc + motion     comment a range  (gcj = this + next line)
-```
-
-*vim-surround — wrap, change, or delete surrounding chars:*
-```
-cs"'            change surrounding " to '
-ds"             delete surrounding "
-ysiw"           wrap word under cursor in quotes  (ys + motion + char)
-```
-
-*FZF — fuzzy finding:*
-```
-<Space>F        find files in project
-:Buffers        switch between open buffers
-:Rg             ripgrep search across all files
-:GFiles         git-tracked files only
-```
-
-*ALE — linting:*
-```
-]e / [e         jump to next / prev error
-:ALEDetail      show full error message
-```
-
-*Copilot:*
-```
-Tab             accept suggestion
-<C-]>           dismiss suggestion
-:Copilot        check status / enable
-```
-
-**Search:**
-```
-/pattern        search forward  (n next, N prev)
-*               search word under cursor
-:%s/old/new/gc  find and replace with confirmation
-```
-
-**Paging — vim vs. less:**
-
-Both share the same core bindings. `Space`/`b` exist in less but can't be used in vim (taken by other motions).
-
-| Action | vim | less |
-|--------|-----|------|
-| Forward one line | `j` | `j` / `e` / `Enter` |
-| Back one line | `k` | `k` / `y` |
-| Forward one page | `Ctrl+F` | `Ctrl+F` / `Space` |
-| Back one page | `Ctrl+B` | `Ctrl+B` / `b` |
-| Forward half page | `Ctrl+D` | `d` |
-| Back half page | `Ctrl+U` | `u` |
-| Start of file | `gg` | `g` |
-| End of file | `G` | `G` |
-| Search forward | `/pattern` | `/pattern` |
-| Search backward | `?pattern` | `?pattern` |
-
----
-
 ## Tools & Domain-Specific
 
 ### NPM Shortcuts
@@ -481,6 +395,103 @@ claude-or                 # Claude via OpenRouter (uses OPENROUTER_API_KEY from 
 
 ---
 
+### Ghostty
+<!-- halp: ghostty | Fast GPU-rendered terminal -->
+
+Ghostty is the primary terminal — GPU-rendered, fast startup, native macOS feel.
+
+**Configuration** lives at `~/.config/ghostty/config` (not tracked). Minimal example:
+```
+font-family = Monaspace Neon
+font-size = 14
+theme = dark
+```
+
+**Built-in tab and split management** (no tmux needed for basic use):
+
+| What | Keys |
+|------|------|
+| New tab | `⌘T` |
+| Close tab | `⌘W` |
+| Next / prev tab | `⌘⇧]` / `⌘⇧[` |
+| Split right | `⌘D` |
+| Split down | `⌘⇧D` |
+| Navigate splits | `⌘⌥` + arrow |
+
+iTerm2 remains installed alongside Ghostty — switch if you need features not yet in Ghostty.
+
+---
+
+### Agent Skills
+<!-- halp: skills | Install and restore agent skills across machines -->
+
+Global agent skills live in `~/.agents/skills/` and are tracked in dotfiles. Agent-specific symlinks (e.g. `~/.claude/skills/`) are not tracked — recreated on demand.
+
+```
+npx skills add <owner/repo> -g -y   # install a skill
+skills-restore                       # replay all skills from lock file
+```
+
+After installing a new skill, commit the updated files:
+```
+cadd ~/.agents/.skill-lock.json ~/.agents/skills/<name>/SKILL.md
+cfg commit -m "chore(skills): add <name> skill"
+cgp
+```
+
+Browse skills at [skills.sh](https://skills.sh) or search GitHub for repos tagged `agent-skills`.
+
+---
+
+### Claude Code
+<!-- halp: claude | Agentic coding with Claude Code and MCP servers -->
+
+Claude Code is the primary agentic coding tool. Runs in the terminal, operates on your codebase, and has access to MCP servers for GitHub, filesystem, and web fetch.
+
+```
+claude                    # start a session
+claude mcp list           # verify MCP servers are connected
+```
+
+**MCP servers configured** (via `~/.claude.json`):
+- `filesystem` — read/write to `$HOME` and `$HOME/projects`
+- `github` — GitHub API (token from `GITHUB_PERSONAL_ACCESS_TOKEN` in `.zshrc.local`)
+- `fetch` — URL retrieval for docs and research
+
+**Keys in `.zshrc.local`** (never committed):
+```
+ANTHROPIC_API_KEY         # required for Zed assistant panel (not Claude Code — that uses interactive login)
+GITHUB_PERSONAL_ACCESS_TOKEN  # written by bootstrap via op read
+```
+
+---
+
+### Zed
+<!-- halp: zed | Fast editor with built-in AI assistant -->
+
+Zed is a fast, GPU-rendered editor. Works out of the box — open a file or project and go.
+
+```
+zed .                     # open current directory
+zed ~/.aliases.zsh        # open a specific file
+```
+
+**AI Assistant panel** (`Ctrl+?` or via menu):
+- Sign in at zed.dev for a free tier (no API key needed)
+- Or add `ANTHROPIC_API_KEY` to `.zshrc.local` and set `provider: anthropic` in settings
+
+**Settings** live at `~/.config/zed/settings.json` (not tracked). The bootstrap creates a stub with Monaspace Neon and Claude as the assistant model. To edit:
+```
+zed ~/.config/zed/settings.json
+```
+
+**Key differences from VS Code:**
+- No extension marketplace — language servers install automatically via built-in support
+- Vim mode available: `"vim_mode": true` in settings
+- Multibuffer editing — open multiple files in one surface
+
+---
+
 ### GCloud
 <!-- halp: gcloud | gct for streaming build logs -->
 
@@ -489,3 +500,34 @@ Quick access to Google Cloud build logs for the current project.
 ```
 gct                       # tail build logs for current gcloud project
 ```
+
+---
+
+### macOS Defaults
+<!-- halp: macos | System preferences applied by sane-macos-defaults.sh -->
+
+Applied by `bin/sane-macos-defaults.sh` during bootstrap. Re-run any time — all idempotent.
+
+```bash
+~/bin/sane-macos-defaults.sh
+```
+
+**General UI/UX:** boot sound off, scrollbars always visible, save panels expanded, no iCloud default save, app resume off, auto-correct/capitalize/dashes/quotes all off
+
+**Trackpad & Keyboard:** tap to click, two-finger right-click, fast key repeat (rate 2, delay 15), press-and-hold off
+
+**Energy:** wake on lid open, auto-restart on power loss or freeze, display sleep 15 min
+
+**Screen & Screenshots:** password required immediately after sleep, screenshots to `~/Screenshots` as PNG, no drop shadow
+
+**Finder:** hidden files shown, all extensions shown, path bar visible, full POSIX path in title, folders sorted to top, search defaults to current folder, list view default
+
+**Dock:** 70px icons, scale minimize, auto-hide no delay, recent apps shown, no opening animation, bottom-right hot corner starts screensaver
+
+**Spotlight:** ⌘Space and ⌥⌘Space shortcuts disabled (Raycast claims them)
+
+**Safari:** configure manually in Safari's UI — `defaults write` for Safari is sandboxed and ignored on macOS Sonoma and later
+
+**iTerm:** no quit confirmation, prefs loaded from `~/.config/com.googlecode.iterm2/`
+
+**Other:** TextEdit plain text mode, Photos won't auto-open, Time Machine won't prompt for new disks, daily software update checks

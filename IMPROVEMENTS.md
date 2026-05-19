@@ -14,22 +14,21 @@ Items identified during review, ordered roughly by ROI.
 - [x] Remove `gnupg` (unused — commit signing handled by 1Password SSH)
 - [x] Remove `caffeine` (redundant with macOS Sonoma screen wake lock)
 - [x] Remove `ms-azuretools.vscode-containers` (duplicate of `vscode-docker`)
+- [x] **`asdf` → `mise`** — Drop-in replacement, reads existing `.tool-versions`, dramatically faster activation
 
 ## To Do
 
 ### High ROI
 
-- [ ] **`asdf` → `mise`** — Drop-in replacement, reads existing `.tool-versions`, dramatically faster activation, more actively maintained. Requires updating the `asdf` OMZ plugin reference and Brewfile.
+- [x] **Docker Desktop → OrbStack** — Same containers, fraction of the CPU/RAM overhead, better macOS-native experience. Replace `cask "docker-desktop"` with `cask "orbstack"`.
 
-- [ ] **Docker Desktop → OrbStack** — Same containers, fraction of the CPU/RAM overhead, better macOS-native experience. Replace `cask "docker-desktop"` with `cask "orbstack"`.
-
-- [ ] **Alfred → Raycast** — Alfred development has stalled. Raycast is free, more extensible, where the developer community has moved. Replace `cask "alfred"` with `cask "raycast"`.
+- [x] **Alfred → Raycast** — Alfred development has stalled. Raycast is free, more extensible, where the developer community has moved. Replace `cask "alfred"` with `cask "raycast"`.
 
 ### Medium ROI
 
-- [ ] **Powerlevel10k → Starship** — P10k development has essentially stopped. Starship is cross-shell, written in Rust, actively maintained, no instant prompt needed. Would remove the `romkatv/powerlevel10k` tap, `brew "powerlevel10k"`, `cask "font-meslo-for-powerlevel10k"`, and `.p10k.zsh`. Requires an hour of config work.
+- [x] **Powerlevel10k → Starship** — P10k development has essentially stopped. Starship is cross-shell, written in Rust, actively maintained, no instant prompt needed. Would remove the `romkatv/powerlevel10k` tap, `brew "powerlevel10k"`, `cask "font-meslo-for-powerlevel10k"`, and `.p10k.zsh`. Requires an hour of config work.
 
-- [ ] **`zsh-autocomplete` → `fzf-tab`** — `zsh-autocomplete` is opinionated, occasionally conflicts with things, and owns `compinit` in a way that's caused us trouble. `fzf-tab` routes completions through fzf without the compinit ownership issues.
+- [x] **`zsh-autocomplete` → `fzf-tab`** — `zsh-autocomplete` is opinionated, occasionally conflicts with things, and owns `compinit` in a way that's caused us trouble. `fzf-tab` routes completions through fzf without the compinit ownership issues.
 
 ### Lower ROI / Larger Project
 
