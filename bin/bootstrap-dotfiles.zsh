@@ -110,6 +110,7 @@ else
     git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
     git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" fetch origin
     dotbare checkout --force "$DOTFILES_BRANCH"
+    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" branch --set-upstream-to="origin/$DOTFILES_BRANCH" "$DOTFILES_BRANCH"
     dotbare submodule update --init --recursive
 fi
 
