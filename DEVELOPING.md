@@ -14,7 +14,7 @@ This is a **bare git repository** using dotbare. Never use raw `git` commands fr
 | `git diff` | `cdiff` |
 | `git push` | `cgp` |
 
-Aliases: `config`, `cfg`, `cadd`, `cstat`, `clog`, `cdiff`
+Aliases: `config`, `cfg`, `cadd`, `cstat`, `clog`, `cdiff`, `cgs` (status -sb), `cgp` (push)
 
 **Always use the most compact alias available.** Prefer `cfg` over `config` over `dotbare`; prefer `cadd`, `cdiff`, `cstat`, `clog`, `cgp` over their longer forms.
 
@@ -49,6 +49,28 @@ docs(README): add Homebrew management section
 - Scope is optional but encouraged
 - Breaking changes: append `!` before the colon — `feat!: remove X`
 - Use `cfg commit -m "..."` not raw `git commit` in this repo
+
+### Key Directories
+
+- `~/.cfg/` - Bare git repository (do not delete)
+- `~/bin/` - Custom scripts, auto-aliased in Zsh
+- `~/repos/` - Git submodules (base16-shell, oh-my-zsh custom, fzf-tab)
+
+### Tools Used
+
+- **oh-my-zsh** - Shell framework
+- **Starship** - Prompt theme
+- **fzf-tab** - fzf-powered completion menu
+- **mise** - Version manager (node, ruby, python, sqlite) — reads `.tool-versions`
+- **Homebrew** - Package manager
+- **delta** - Git diff pager
+- **lazygit** - Visual git TUI (`lg`)
+- **zoxide** - Smarter cd (`z`, `zi`)
+- **1Password** - SSH keys and secrets
+- **OrbStack** - Docker/container runtime
+- **Raycast** - Launcher
+- **Ghostty** - Terminal (alongside iTerm2)
+- **Zed** - Editor (alongside VS Code)
 
 ### File Locations
 
@@ -230,3 +252,9 @@ If modifying `bin/bootstrap-dotfiles.zsh`:
 Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → chmod brew dirs → Oh My Zsh → mise + languages (reads `.tool-versions`) → Claude Code → GitHub token → Zed stub → skills-restore → macOS defaults → open iTerm.
 
 `bin/sane-macos-defaults.sh` is safe to re-run (all `defaults write` calls are idempotent). It covers: UI/UX, trackpad/keyboard, energy, screen/screenshots, Finder, Dock, Safari, iTerm, Time Machine, Activity Monitor, Software Updates. Full details in `README.md`.
+
+### Common Issues
+
+- **dotbare tty error** - Harmless, affects some environments
+- **zcompdump files** - Safe to delete `~/.zcompdump-*`
+- **npx not found during skills-restore** - mise shims must be on PATH; bootstrap handles this automatically

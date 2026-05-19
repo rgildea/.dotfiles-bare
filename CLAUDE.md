@@ -4,7 +4,8 @@
 
 - **CLAUDE.md** (this file) lives in the user's home director and contains general instructions for Claude. It is part of the dotfiles bare repository.
 - **README.md** contains general instructions for working with the dotfiles.
-- **DEVELOPING.md** contains AGENT-friendly instructions for working on changes to the dotfiles.
+- **DEVELOPING.md** contains AGENT-friendly instructions for working on changes to the dotfiles. ALWAYS use this file when working on changes.
+- **AGENTS.md** contains AGENT-friendly instructions for working with the dotfiles.
 
 ## VERY IMPORTANT
 
