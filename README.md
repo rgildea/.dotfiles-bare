@@ -12,33 +12,7 @@ Portable macOS development environment managed with [dotbare](https://github.com
 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/main/bin/bootstrap-dotfiles.zsh)"
 ```
 
-To test a feature branch end-to-end:
-```bash
-export DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
-```
-
 The script will pause and prompt you to sign in to 1Password and enable **Settings → Developer → SSH Agent** and **Settings → Developer → CLI Integration** before continuing.
-
-## Bootstrap Testing Protocol
-
-Use [Tart](https://tart.run) to test bootstrap changes on Apple Silicon:
-
-```bash
-# One-time: pull a clean base image and save a snapshot
-tart clone ghcr.io/cirruslabs/macos-sequoia-vanilla:latest sequoia-base
-tart run sequoia-base  # enable SSH, create your user account, then stop
-tart clone sequoia-base sequoia-test  # clone fresh for each test run
-```
-
-Each test run:
-```bash
-tart clone sequoia-base sequoia-test  # always start from the clean snapshot
-tart run sequoia-test --no-graphics
-tart-prep sequoia-test your-branch    # writes bootstrap command to ~/bootstrap.sh on the VM
-# open the VM GUI, open Terminal, run: zsh ~/bootstrap.sh
-```
-
-**Important:** the dotfiles install step is skipped if `~/.cfg` already exists — bootstrap is idempotent by design. Always start from a fresh VM clone to test the full flow. Never reuse a VM instance that has already been bootstrapped.
 
 ## Overview
 
@@ -83,9 +57,7 @@ Configuration follows Zsh's load order (earliest to latest):
 ├── .tool-versions      # mise language versions (Node, Ruby, Python, SQLite)
 └── bin/
     ├── bootstrap-dotfiles.zsh  # One-command setup
-    ├── sane-macos-defaults.sh  # macOS preferences
-    ├── tart-prep.zsh           # Write bootstrap command to Tart VM via SSH
-    └── reset_luna_prefs.sh     # Luna Display reset
+    └── sane-macos-defaults.sh  # macOS preferences
 ```
 
 ## Managing Dotfiles
