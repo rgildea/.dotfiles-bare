@@ -245,11 +245,33 @@ The bootstrap script creates a minimal stub if the file doesn't exist.
 ### Bootstrap Testing
 
 If modifying `bin/bootstrap-dotfiles.zsh`:
-1. Test in a fresh macOS VM or spare machine
-2. The script is destructive (overwrites configs, installs software)
-3. Key line: `dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git`
+1. Test in a fresh macOS VM — the script is destructive (overwrites configs, installs software)
+2. Key line: `dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git`
 
 Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → chmod brew dirs → Oh My Zsh → mise + languages (reads `.tool-versions`) → Claude Code → GitHub token → Zed stub → skills-restore → macOS defaults → open iTerm.
+
+**Testing with Tart (Apple Silicon VMs):**
+
+One-time setup — pull a clean base image and save a snapshot:
+```bash
+tart clone ghcr.io/cirruslabs/macos-sequoia-vanilla:latest sequoia-base
+tart run sequoia-base  # enable SSH, create your user account, then stop
+```
+
+Each test run — always start from a fresh clone:
+```bash
+tart clone sequoia-base sequoia-test
+tart run sequoia-test --no-graphics
+tart-prep sequoia-test your-branch   # writes ~/bootstrap.sh on the VM
+# open the VM GUI, open Terminal, run: zsh ~/bootstrap.sh
+```
+
+To test a specific branch:
+```bash
+export DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
+```
+
+**Important:** the dotfiles install step is skipped if `~/.cfg` already exists — bootstrap is idempotent by design. Always start from a fresh VM clone to test the full flow. Never reuse a VM that has already been bootstrapped.
 
 `bin/sane-macos-defaults.sh` is safe to re-run (all `defaults write` calls are idempotent). It covers: UI/UX, trackpad/keyboard, energy, screen/screenshots, Finder, Dock, Safari, iTerm, Time Machine, Activity Monitor, Software Updates. Full details in `README.md`.
 
