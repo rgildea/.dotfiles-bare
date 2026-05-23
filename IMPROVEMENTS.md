@@ -21,6 +21,4 @@ Items identified during review, ordered roughly by ROI.
 
 ## To Do
 
-- [ ] **Remove `ms-azuretools.vscode-containers`** — duplicate of `vscode-docker`; both are still present in Brewfile.
-
 - [ ] **Oh My Zsh → sheldon or zinit** — OMZ is the main source of shell startup latency. A lightweight plugin manager with just the plugins you actually use would be noticeably faster. Real time investment to migrate.
