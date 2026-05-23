@@ -2,7 +2,7 @@
 
 ### NOTE
 
-- **CLAUDE.md** (this file) lives in the user's home directory and contains general instructions for Claude. It is part of the dotfiles bare repository.
+- **CLAUDE.md** (this file) lives in the user's home director and contains general instructions for Claude. It is part of the dotfiles bare repository.
 - **README.md** contains general instructions for working with the dotfiles.
 - **DEVELOPING.md** contains AGENT-friendly instructions for working on changes to the dotfiles. ALWAYS use this file when working on changes.
 - **AGENTS.md** contains AGENT-friendly instructions for working with the dotfiles.
@@ -18,13 +18,14 @@
 - No over-engineering. No unnecessary defensive programming. No extra features. Keep it simple.
 - Use latest stable versions of libraries and tools.
 - Use latest idiomatic approaches.
-- No emojis anywhere. Keep READMEs minimal.
+- No emojis anywhere. 
+- Keep README.md concise.
 - Favor clear, precise, and concise docstring comments. Be sparing with comments outside of docstrings.
 - Favor short modules, short methods and functions. Use clear naming conventions.
 
 ## Development process
 
-- Do not guess or make assumptions about the context scope, size, or complexity of a feature.
+- Do not guess or make assumptions about the contextscope, size, or complexity of a feature.
 - Use the feature-dev plugin/tool for feature development.
 - ALWAYS write tests to cover new production code.
 - Use code-review tool to review changes before merging.

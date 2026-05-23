@@ -9,3 +9,6 @@ if command -v brew >/dev/null 2>&1; then
   # brew shellenv prepends /opt/homebrew/bin, re-assert high-priority paths
   path=("$HOME/.local/bin" "$HOME/bin" $path)
 fi
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
