@@ -24,7 +24,7 @@
 
 ## Development process
 
-- Do not guess or make assumptions about the contextscope, size, or complexity of a feature.
+- Do not guess or make assumptions about the context scope, size, or complexity of a feature.
 - Use the feature-dev plugin/tool for feature development.
 - ALWAYS write tests to cover new production code.
 - Use code-review tool to review changes before merging.
