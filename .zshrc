@@ -122,3 +122,5 @@ if [ -d "$HOME/bin" ]; then
         fi
     done
 fi
+
+test -e /Users/ryan/.iterm2_shell_integration.zsh && source /Users/ryan/.iterm2_shell_integration.zsh || true
