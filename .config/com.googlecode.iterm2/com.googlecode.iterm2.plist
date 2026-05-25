@@ -26,6 +26,8 @@
 	<integer>128000</integer>
 	<key>AitermURL</key>
 	<string>https://api.anthropic.com/v1/messages</string>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>A9DDB3F4-205A-4A6C-B9FA-4D3D37FCC830</string>
 	<key>DisableFullscreenTransparency</key>
@@ -621,7 +623,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>MonaspaceNeonNF-Regular 12</string>
+			<string>MonaspaceNeonNF-Regular 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Open Toolbelt</key>
