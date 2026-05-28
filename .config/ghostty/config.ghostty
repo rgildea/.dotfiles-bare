@@ -1,0 +1,2 @@
+font-family = "Monaspace Neon NF"
+keybind = global:cmd+backquote=toggle_quick_terminal
