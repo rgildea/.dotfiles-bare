@@ -42,8 +42,8 @@ deleted = "✘${count}"
 conflicted = "=${count}"
 
 [character]
-success_symbol = "[❯](bold #3fb950)"
-error_symbol = "[❯](bold #ff7b72)"
+success_symbol = "[❯](bold #95C085)"
+error_symbol = "[❯](bold #FB543F)"
 
 [cmd_duration]
 min_time = 2_000
