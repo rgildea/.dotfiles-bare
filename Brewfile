@@ -1,5 +1,5 @@
-tap "1password/tap"
-tap "cirruslabs/cli"
+tap "1password/tap", trusted: true
+tap "cirruslabs/cli", trusted: true
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -184,6 +184,7 @@ vscode "vincaslt.highlight-matching-tag"
 vscode "yoavbls.pretty-ts-errors"
 vscode "yy0931.gitconfig-lsp"
 vscode "zignd.html-css-class-completion"
+go "github.com/bootdotdev/bootdev"
 cargo "tree-sitter-cli"
 npm "@openai/codex"
 npm "corepack"
