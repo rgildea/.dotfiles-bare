@@ -26,6 +26,9 @@ require("lazy").setup({
 }, lazy_config)
 
 -- load theme
+if not vim.uv.fs_stat(vim.g.base46_cache) then
+  require("base46").compile()
+end
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
@@ -35,3 +38,13 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.api.nvim_create_autocmd("BufDelete", {
+  callback = function()
+    local bufs = vim.t.bufs
+    if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
+      vim.cmd "Nvdash"
+    end
+  end,
+})
+

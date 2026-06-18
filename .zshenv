@@ -11,3 +11,7 @@ path+=("$HOME/.antigravity/antigravity/bin")
 
 # opencode
 path+=("$HOME/.opencode/bin")
+
+# go packages
+path+=("$HOME/go/bin")
+
