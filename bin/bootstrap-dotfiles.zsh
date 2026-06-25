@@ -41,6 +41,19 @@ while getopts 'dfv' OPTION; do
 done
 shift "$(($OPTIND -1))"
 
+# Load user config — copy dotfiles.config.zsh.example to ~/.dotfiles.config.zsh
+[[ -f "$HOME/.dotfiles.config.zsh" ]] && source "$HOME/.dotfiles.config.zsh"
+
+DOTFILES_BRANCH="${DOTFILES_BRANCH:-main}"
+INSTALL_CLAUDE_CODE="${INSTALL_CLAUDE_CODE:-true}"
+INSTALL_ZED_STUB="${INSTALL_ZED_STUB:-true}"
+
+if [[ -z "${DOTFILES_REPO:-}" ]]; then
+  echo "Error: DOTFILES_REPO is not set." >&2
+  echo "Create ~/.dotfiles.config.zsh from dotfiles.config.zsh.example and set DOTFILES_REPO." >&2
+  exit 1
+fi
+
 # install homebrew
 if [[ -x $(which brew) ]]
 then
@@ -81,37 +94,20 @@ fi
 open "/Applications/1Password.app"
 read "?Sign in to 1Password, then enable Settings → Developer → SSH Agent and Settings → Developer → CLI Integration, then press Enter..."
 
-echo "installing dotbare..."
-
-# install dotbare temp installation -- need it to install dotfiles
-DOTBARE_FILE_ROOT=$HOME/.dotbare-tmp-
-DOTBARE_TMP_DIR=$DOTBARE_FILE_ROOT$( date +%s )
-rm -rf $HOME/.dotbare-tmp-* || true
-if [[ -x $(which dotbare) ]]
-then
-    echo "dotbare already installed...skipping."
-else
-    echo "installing dotbare..."
-    git clone https://github.com/kazhala/dotbare.git $DOTBARE_TMP_DIR
-    source $DOTBARE_TMP_DIR/dotbare.plugin.zsh
-fi
-
 echo "installing dotfiles..."
 
 # install dotfiles
-# Override branch for testing: DOTFILES_BRANCH=my-branch /bin/zsh -c "$(curl ...)"
-DOTFILES_BRANCH="${DOTFILES_BRANCH:-main}"
 if [[ -d $HOME/.cfg ]]
 then
     echo "dotfiles already installed — run \`dotsync\` to pull latest changes and reconcile packages."
 else
-    echo "installing dotfiles from branch: $DOTFILES_BRANCH"
-    dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git
-    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" fetch origin
-    dotbare checkout --force "$DOTFILES_BRANCH"
-    git --git-dir="${DOTBARE_DIR:-$HOME/.cfg}" branch --set-upstream-to="origin/$DOTFILES_BRANCH" "$DOTFILES_BRANCH"
-    dotbare submodule update --init --recursive
+    echo "installing dotfiles from $DOTFILES_REPO (branch: $DOTFILES_BRANCH)..."
+    git clone --bare "$DOTFILES_REPO" "$HOME/.cfg"
+    git --git-dir="$HOME/.cfg" --work-tree="$HOME" config core.showUntrackedFiles no
+    git --git-dir="$HOME/.cfg" --work-tree="$HOME" fetch origin
+    git --git-dir="$HOME/.cfg" --work-tree="$HOME" checkout --force "$DOTFILES_BRANCH"
+    git --git-dir="$HOME/.cfg" --work-tree="$HOME" branch --set-upstream-to="origin/$DOTFILES_BRANCH" "$DOTFILES_BRANCH"
+    git --git-dir="$HOME/.cfg" --work-tree="$HOME" submodule update --init --recursive
 fi
 
 # Update homebrew
@@ -147,29 +143,39 @@ fi
 # activate mise shims for the remainder of this script (non-interactive shell)
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 
-# install Claude Code
-if [[ -x "$HOME/.local/bin/claude" ]]; then
-  echo "Claude Code already installed...skipping."
-else
-  echo "installing Claude Code..."
-  curl -fsSL https://claude.ai/install.sh | sh
+# install Claude Code (opt-in via INSTALL_CLAUDE_CODE)
+if [[ "${INSTALL_CLAUDE_CODE}" == "true" ]]; then
+  if [[ -x "$HOME/.local/bin/claude" ]]; then
+    echo "Claude Code already installed...skipping."
+  else
+    echo "installing Claude Code..."
+    curl -fsSL https://claude.ai/install.sh | sh
+  fi
 fi
 
 # write GitHub token to .zshrc.local for MCP server environment
 echo "writing GitHub token to ~/.zshrc.local..."
 if ! grep -q "GITHUB_PERSONAL_ACCESS_TOKEN" "$HOME/.zshrc.local" 2>/dev/null; then
-  GITHUB_TOKEN=$(op read "op://Personal/GitHub Personal Access Token/credential" 2>/dev/null || echo "REPLACE_WITH_GITHUB_TOKEN")
+  if [[ -n "${OP_GITHUB_TOKEN_PATH:-}" ]]; then
+    GITHUB_TOKEN=$(op read "$OP_GITHUB_TOKEN_PATH" 2>/dev/null || echo "REPLACE_WITH_GITHUB_TOKEN")
+  else
+    echo "OP_GITHUB_TOKEN_PATH not set — enter token manually (or leave blank to set later):"
+    read "GITHUB_TOKEN?GitHub Personal Access Token: "
+    GITHUB_TOKEN="${GITHUB_TOKEN:-REPLACE_WITH_GITHUB_TOKEN}"
+  fi
   echo "\nexport GITHUB_PERSONAL_ACCESS_TOKEN=\"$GITHUB_TOKEN\"" >> "$HOME/.zshrc.local"
   echo "GitHub token written to ~/.zshrc.local"
 else
   echo "GITHUB_PERSONAL_ACCESS_TOKEN already set in ~/.zshrc.local...skipping."
 fi
 
-# create Zed settings stub if not present
-if [[ ! -f "$HOME/.config/zed/settings.json" ]]; then
-  mkdir -p "$HOME/.config/zed"
-  echo '{"buffer_font_family":"Monaspace Neon","terminal":{"font_family":"Monaspace Neon"},"assistant":{"default_model":{"provider":"anthropic","model":"claude-sonnet-4-6"},"version":"2"}}' > "$HOME/.config/zed/settings.json"
-  echo "Zed settings stub created at ~/.config/zed/settings.json"
+# create Zed settings stub (opt-in via INSTALL_ZED_STUB)
+if [[ "${INSTALL_ZED_STUB}" == "true" ]]; then
+  if [[ ! -f "$HOME/.config/zed/settings.json" ]]; then
+    mkdir -p "$HOME/.config/zed"
+    echo '{"buffer_font_family":"Monaspace Neon","terminal":{"font_family":"Monaspace Neon"},"assistant":{"default_model":{"provider":"anthropic","model":"claude-sonnet-4-6"},"version":"2"}}' > "$HOME/.config/zed/settings.json"
+    echo "Zed settings stub created at ~/.config/zed/settings.json"
+  fi
 fi
 
 # restore agent skills (claude, etc.)
@@ -182,7 +188,6 @@ fi
 
 # cleanup
 echo "cleaning up..."
-rm -rf $DOTBARE_TMP_DIR
 brew cleanup
 echo "done cleaning up"
 
