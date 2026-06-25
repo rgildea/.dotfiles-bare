@@ -188,3 +188,7 @@ dist
 # Dotfiles per-machine configuration (copy from dotfiles.config.zsh.example)
 dotfiles.config.zsh
 .dotfiles.config.zsh
+
+# iTerm2 shell integration (auto-generated per machine — install via iTerm2 menu)
+.iterm2_shell_integration.zsh
+.iterm2/

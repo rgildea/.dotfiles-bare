@@ -56,9 +56,6 @@ if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
-export DOTBARE_DIR="$HOME/.cfg"
-export DOTBARE_TREE="$HOME"
-export DOTBARE_DIFF_PAGER="delta --diff-so-fancy --line-numbers"
 export FZF_DEFAULT_COMMAND="fd . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
@@ -122,4 +119,4 @@ if [ -d "$HOME/bin" ]; then
     done
 fi
 
-test -e /Users/ryan/.iterm2_shell_integration.zsh && source /Users/ryan/.iterm2_shell_integration.zsh || true
+test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh" || true
