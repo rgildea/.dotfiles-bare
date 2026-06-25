@@ -11,7 +11,7 @@ How to fork and use this dotfiles repo to bootstrap a fresh Mac.
 
 ### 1. Fork the repo
 
-Fork `rgildea/.dotfiles-bare` on GitHub. Rename your fork if you like — `.dotfiles-bare` is conventional.
+Fork `YOUR_GITHUB_USER/.dotfiles-bare` on GitHub. Rename your fork if you like — `.dotfiles-bare` is conventional.
 
 ### 2. Configure
 
