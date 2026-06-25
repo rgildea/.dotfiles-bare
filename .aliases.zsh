@@ -50,7 +50,7 @@ alias cgp="config push origin HEAD"
 alias cgs="config status -sb"
 alias cstat="cgs"
 alias clog="config log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias config=dotbare
+alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
 # exa enhanced listing
 alias l.="ls -d .*" # show only dotfiles

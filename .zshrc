@@ -33,7 +33,6 @@ plugins=(
 	alias-finder
 	aliases
 	git
-	dotbare
 	colored-man-pages
 	colorize
 	pip

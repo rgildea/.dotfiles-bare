@@ -5,9 +5,9 @@
 
 set -e
 
-source "$HOME/repos/oh-my-zsh/custom/plugins/dotbare/dotbare.plugin.zsh"
+CFG="git --git-dir=$HOME/.cfg --work-tree=$HOME"
 
-BRANCH="${1:-$(dotbare branch --show-current)}"
+BRANCH="${1:-$($CFG branch --show-current)}"
 
 if [[ -z "$BRANCH" ]]; then
   echo "dotsync: could not determine current branch; pass one explicitly: dotsync main" >&2
@@ -15,12 +15,12 @@ if [[ -z "$BRANCH" ]]; then
 fi
 
 echo "→ pulling dotfiles ($BRANCH)..."
-dotbare fetch origin
-dotbare checkout --force "$BRANCH"
-dotbare pull origin "$BRANCH"
+$CFG fetch origin
+$CFG checkout --force "$BRANCH"
+$CFG pull origin "$BRANCH"
 
 echo "→ updating submodules..."
-dotbare submodule update --init --recursive
+$CFG submodule update --init --recursive
 
 echo "→ brew bundle..."
 brew bundle --file="$HOME/Brewfile"
