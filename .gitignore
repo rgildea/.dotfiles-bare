@@ -184,3 +184,6 @@ dist
 # Claude configuration
 .claude.json
 .claude/settings.local.json
+
+# Dotfiles per-machine configuration (copy from dotfiles.config.zsh.example)
+dotfiles.config.zsh

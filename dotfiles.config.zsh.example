@@ -1,0 +1,22 @@
+# Dotfiles configuration — copy to ~/.dotfiles.config.zsh and fill in your values.
+# ~/.dotfiles.config.zsh is gitignored and stays local to each machine.
+# Bootstrap sources it automatically if present.
+
+# Required: URL of your dotfiles bare repo fork
+export DOTFILES_REPO="https://github.com/YOUR_GITHUB_USER/.dotfiles-bare.git"
+
+# Required: your GitHub username (used by tart-prep to construct the bootstrap URL)
+export DOTFILES_GITHUB_USER="YOUR_GITHUB_USER"
+
+# Optional: branch to check out (default: main)
+# export DOTFILES_BRANCH="main"
+
+# Optional: 1Password secret reference for your GitHub personal access token.
+# If unset, bootstrap will prompt you to paste the token manually.
+# export OP_GITHUB_TOKEN_PATH="op://Personal/GitHub Personal Access Token/credential"
+
+# Optional: set to "false" to skip Claude Code installation
+export INSTALL_CLAUDE_CODE="true"
+
+# Optional: set to "false" to skip Zed editor settings stub
+export INSTALL_ZED_STUB="true"
