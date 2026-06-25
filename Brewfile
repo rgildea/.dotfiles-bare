@@ -8,6 +8,10 @@ brew "bash"
 brew "bat"
 # Arbitrary precision numeric processing language
 brew "bc"
+# Cross-platform make
+brew "cmake"
+# Documentation for CMake
+brew "cmake-docs"
 # Defines a standard way of committing rules and communicating it
 brew "commitizen"
 # GNU File, Shell, and Text utilities
@@ -42,6 +46,10 @@ brew "gnu-sed"
 brew "go"
 # Improved top (interactive process viewer)
 brew "htop"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Simple terminal UI for git commands
@@ -56,6 +64,8 @@ brew "mole"
 brew "neovim"
 # Retrieves currently playing media, and simulates media actions
 brew "nowplaying-cli"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Wrapper to colorize and simplify ping's output
 brew "prettyping"
 # Modern replacement for ps written in Rust
@@ -90,6 +100,8 @@ brew "zsh-syntax-highlighting"
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
+# C and C++ IDE
+cask "clion"
 # Voice and text chat software
 cask "discord"
 cask "font-monaspace-nf"
@@ -164,6 +176,11 @@ vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpp-devtools"
+vscode "ms-vscode.cpptools"
+vscode "ms-vscode.cpptools-extension-pack"
+vscode "ms-vscode.cpptools-themes"
 vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.remote-repositories"
 vscode "ms-vscode.vscode-speech"
