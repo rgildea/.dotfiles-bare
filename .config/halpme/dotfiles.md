@@ -1,7 +1,7 @@
 ### Dotfiles
 <!-- halpme: dots | Manage config files with cfg, cadd, cgp -->
 
-Your config lives in a bare git repo at `~/.cfg`, managed via **dotbare** (`cfg` = `config` = `dotbare`).
+Your config lives in a bare git repo at `~/.cfg`, managed via `cfg` aliases (`cfg` = `config` = `git --git-dir=$HOME/.cfg --work-tree=$HOME`).
 Never use plain `git` from the home directory — use these instead:
 
 | What | Command |

@@ -2,7 +2,7 @@
 
 ## Working with This Repository
 
-This is a **bare git repository** using dotbare. Never use raw `git` commands from the home directory—they won't work.
+This is a **bare git repository**. Never use raw `git` commands from the home directory—they won't work.
 
 ### Correct Commands
 
@@ -16,7 +16,7 @@ This is a **bare git repository** using dotbare. Never use raw `git` commands fr
 
 Aliases: `config`, `cfg`, `cadd`, `cstat`, `clog`, `cdiff`, `cgs` (status -sb), `cgp` (push)
 
-**Always use the most compact alias available.** Prefer `cfg` over `config` over `dotbare`; prefer `cadd`, `cdiff`, `cstat`, `clog`, `cgp` over their longer forms.
+**Always use the most compact alias available.** Prefer `cfg` over `config`; prefer `cadd`, `cdiff`, `cstat`, `clog`, `cgp` over their longer forms.
 
 ### Commit Messages
 
@@ -206,7 +206,6 @@ cfg commit -m "chore(skills): add <name> skill"
 
 This repo uses git submodules:
 - `repos/base16-shell` - Base16 color schemes
-- `repos/oh-my-zsh/custom/plugins/dotbare` - Dotbare plugin
 - `repos/fzf-tab` - fzf-powered completion menu
 
 Update with:
@@ -246,7 +245,7 @@ The bootstrap script creates a minimal stub if the file doesn't exist.
 
 If modifying `bin/bootstrap-dotfiles.zsh`:
 1. Test in a fresh macOS VM — the script is destructive (overwrites configs, installs software)
-2. Key line: `dotbare finit -u https://github.com/rgildea/.dotfiles-bare.git`
+2. Key step: clones `$DOTFILES_REPO` into `~/.cfg` as a bare git repository
 
 Bootstrap order: Homebrew → Xcode tools → 1Password → dotfiles → brew bundle → chmod brew dirs → Oh My Zsh → mise + languages (reads `.tool-versions`) → Claude Code → GitHub token → Zed stub → skills-restore → macOS defaults → open iTerm.
 
@@ -268,7 +267,7 @@ tart-prep sequoia-test your-branch   # writes ~/bootstrap.sh on the VM
 
 To test a specific branch:
 ```bash
-export DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
+export DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/<your-github-user>/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
 ```
 
 **Important:** the dotfiles install step is skipped if `~/.cfg` already exists — bootstrap is idempotent by design. Always start from a fresh VM clone to test the full flow. Never reuse a VM that has already been bootstrapped.
@@ -277,6 +276,5 @@ export DOTFILES_BRANCH=your-branch && /bin/zsh -c "$(curl -fsSL https://raw.gith
 
 ### Common Issues
 
-- **dotbare tty error** - Harmless, affects some environments
 - **zcompdump files** - Safe to delete `~/.zcompdump-*`
 - **npx not found during skills-restore** - mise shims must be on PATH; bootstrap handles this automatically

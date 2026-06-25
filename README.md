@@ -1,6 +1,6 @@
 # Dotfiles
 
-Portable macOS development environment managed with [dotbare](https://github.com/kazhala/dotbare).
+Portable macOS development environment managed as a bare git repository.
 
 > Already set up? Run `halpme` in your terminal for the full workflow guide.
 
@@ -9,7 +9,7 @@ Portable macOS development environment managed with [dotbare](https://github.com
 > **Requires physical/GUI access.** Bootstrap cannot be run over SSH — 1Password sign-in and SSH agent setup require the desktop app.
 
 ```bash
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/main/bin/bootstrap-dotfiles.zsh)"
+/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/<your-github-user>/.dotfiles-bare/main/bin/bootstrap-dotfiles.zsh)"
 ```
 
 The script will pause and prompt you to sign in to 1Password and enable **Settings → Developer → SSH Agent** and **Settings → Developer → CLI Integration** before continuing.
@@ -62,7 +62,7 @@ Configuration follows Zsh's load order (earliest to latest):
 
 ## Managing Dotfiles
 
-The repo uses a bare git repository at `~/.cfg`, managed via [dotbare](https://github.com/kazhala/dotbare):
+The repo uses a bare git repository at `~/.cfg`, managed via `cfg` aliases:
 
 ```bash
 cfg status

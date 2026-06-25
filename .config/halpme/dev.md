@@ -20,7 +20,7 @@ tart-prep sequoia-test your-branch   # writes ~/bootstrap.sh on the VM
 **Test a feature branch directly:**
 ```bash
 export DOTFILES_BRANCH=your-branch
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/rgildea/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
+/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/<your-github-user>/.dotfiles-bare/$DOTFILES_BRANCH/bin/bootstrap-dotfiles.zsh)"
 ```
 
 > The dotfiles install step is skipped if `~/.cfg` already exists. Always start from a fresh VM — never reuse a bootstrapped instance.
