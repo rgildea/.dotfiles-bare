@@ -11,9 +11,18 @@ How to fork and use this dotfiles repo to bootstrap a fresh Mac.
 
 ### 1. Fork the repo
 
-Fork `YOUR_GITHUB_USER/.dotfiles-bare` on GitHub. Rename your fork if you like — `.dotfiles-bare` is conventional.
+Fork this repo on GitHub. Rename your fork if you like — `.dotfiles-bare` is conventional.
 
-### 2. Configure
+### 2. Clone locally
+
+Clone your fork so you can edit files before running bootstrap:
+
+```bash
+git clone https://github.com/YOUR_GITHUB_USER/.dotfiles-bare.git
+cd .dotfiles-bare
+```
+
+### 3. Configure
 
 Copy the example config and fill in your values:
 
@@ -28,11 +37,11 @@ Edit `~/.dotfiles.config.zsh`:
 - Set `OP_GITHUB_TOKEN_PATH` if you use 1Password CLI (optional — bootstrap will prompt otherwise)
 - Set `INSTALL_CLAUDE_CODE="false"` or `INSTALL_ZED_STUB="false"` to skip those installs
 
-### 3. Trim the Brewfile
+### 4. Trim the Brewfile
 
 Open `Brewfile` in your fork and remove packages and casks you don't want. At minimum, review the `cask` entries — these are GUI applications and take the most time to install.
 
-### 4. Run bootstrap
+### 5. Run bootstrap
 
 From a fresh Mac, run:
 
@@ -49,7 +58,7 @@ Or if you've already created `~/.dotfiles.config.zsh`, it will be sourced automa
 
 The script will pause and prompt you to sign in to 1Password before continuing.
 
-### 5. Local overrides
+### 6. Local overrides
 
 Create `~/.zshrc.local` for machine-specific settings that should never be committed:
 

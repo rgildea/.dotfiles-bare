@@ -163,7 +163,8 @@ if ! grep -q "GITHUB_PERSONAL_ACCESS_TOKEN" "$HOME/.zshrc.local" 2>/dev/null; th
     read "GITHUB_TOKEN?GitHub Personal Access Token: "
     GITHUB_TOKEN="${GITHUB_TOKEN:-REPLACE_WITH_GITHUB_TOKEN}"
   fi
-  echo "\nexport GITHUB_PERSONAL_ACCESS_TOKEN=\"$GITHUB_TOKEN\"" >> "$HOME/.zshrc.local"
+  echo "" >> "$HOME/.zshrc.local"
+  echo "export GITHUB_PERSONAL_ACCESS_TOKEN=\"$GITHUB_TOKEN\"" >> "$HOME/.zshrc.local"
   echo "GitHub token written to ~/.zshrc.local"
 else
   echo "GITHUB_PERSONAL_ACCESS_TOKEN already set in ~/.zshrc.local...skipping."

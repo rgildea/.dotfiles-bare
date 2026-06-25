@@ -187,3 +187,4 @@ dist
 
 # Dotfiles per-machine configuration (copy from dotfiles.config.zsh.example)
 dotfiles.config.zsh
+.dotfiles.config.zsh
