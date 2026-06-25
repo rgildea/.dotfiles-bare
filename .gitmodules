@@ -1,18 +1,6 @@
-[submodule "repos/zsh-syntax-highlighting"]
-	path = repos/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "repos/zsh-autosuggestions"]
-	path = repos/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "repos/dotbare"]
-	path = repos/dotbare
-	url = https://github.com/kazhala/dotbare.git
 [submodule "repos/base16-shell"]
 	path = repos/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
-[submodule "repos/oh-my-zsh/custom/plugins/dotbare"]
-	path = repos/oh-my-zsh/custom/plugins/dotbare
-	url = https://github.com/kazhala/dotbare
 [submodule "repos/fzf-tab"]
 	path = repos/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab.git
