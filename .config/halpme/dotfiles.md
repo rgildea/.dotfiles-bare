@@ -11,7 +11,6 @@ Never use plain `git` from the home directory — use these instead:
 | Commit | `cfg commit -m "chore: update zsh config"` |
 | Push | `cgp` |
 | View history | `clog` |
-| Go to repo | `dots` |
 
 **Workflow — editing a config file:**
 ```

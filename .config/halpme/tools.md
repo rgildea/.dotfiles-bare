@@ -1,3 +1,17 @@
+### Ripgrep
+<!-- halpme: rg | Fast search with rg — respects .gitignore, use instead of grep -->
+
+Ripgrep is installed as `rg` — it's not aliased to `grep` since they're not API-compatible.
+
+```
+rg "pattern"              # search recursively in current directory
+rg "pattern" src/         # limit to a directory
+rg -t ts "pattern"        # search only TypeScript files
+rg -l "pattern"           # list matching files only (no lines)
+```
+
+---
+
 ### NPM Shortcuts
 <!-- halpme: npm | ni, nrd, nrt, rmn and friends -->
 
@@ -99,12 +113,12 @@ zed ~/.config/zed/settings.json
 ---
 
 ### GCloud
-<!-- halpme: gcloud | gct for streaming build logs -->
-
-Quick access to Google Cloud build logs for the current project.
+<!-- halpme: gcloud | gcloud config and log access -->
 
 ```
-gct                       # tail build logs for current gcloud project
+gcloud config get-value project          # show active project
+gcloud config set project my-project     # switch project
+gcloud beta logging tail build-log --project=$(gcloud config get-value project)  # stream build logs
 ```
 
 ---

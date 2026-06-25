@@ -52,7 +52,7 @@ alias cstat="cgs"
 alias clog="config log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
-# exa enhanced listing
+# eza enhanced listing
 alias l.="ls -d .*" # show only dotfiles
 alias la="ls -la --git"
 alias ll="ls -l --git"
@@ -61,7 +61,6 @@ alias lt="ls -T --git --level=2"
 # git aliases
 alias gcz='git cz'
 alias gac='git add -A && git commit -m'
-alias gcopy='git copy-branch-name'
 alias gd='git diff'
 alias gl='git pull --prune'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
@@ -95,8 +94,6 @@ alias ports="lsof -nP -iTCP -sTCP:LISTEN"
 alias weather="curl -s wttr.in"
 alias week="date +%V"
 
-# gcloud
-alias gct='gcloud beta logging tail --project=$(gcloud config get-value project) build-log'
 
 # Brewfile management
 # Install and immediately record to Brewfile

@@ -33,7 +33,7 @@ As you type, a grey ghost suggestion appears from your history.
 
 | Action | Keys |
 |--------|------|
-| Accept full suggestion | `→` (right arrow) or `End` or `Ctrl+E` |
+| Accept full suggestion | `→` or `End` or `Ctrl+E` or `Ctrl+Space` |
 | Accept one char | `Ctrl+F` |
 | Ignore suggestion | Keep typing |
 
@@ -48,7 +48,7 @@ As you type, a grey ghost suggestion appears from your history.
 | `ls` | `eza` | Colors, git status, icons |
 | `ll` | `eza -l --git` | Long format with git info |
 | `lt` | `eza -T --git` | Tree view |
-| `grep` | `ripgrep` | Faster, respects .gitignore |
+| `grep` | `grep --color=auto` | Colorized output |
 | `find` | `fd` | Simpler syntax, faster |
 | `df` | `duf` | Visual disk usage |
 | `top` | `htop` | Interactive process viewer |

@@ -61,6 +61,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
 
+# Remove gitk aliases from oh-my-zsh git plugin (gitk not installed on macOS)
+unalias gk gke 2>/dev/null
+
 # Aliases
 alias zshconfig="e ~/.zshrc"
 alias ohmyzsh="e ~/.oh-my-zsh"

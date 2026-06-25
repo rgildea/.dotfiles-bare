@@ -18,6 +18,15 @@
       "skillFolderHash": "a07ba6d345a6f9732c30f5f1da57c3a41b30f389",
       "installedAt": "2026-05-14T23:25:38.974Z",
       "updatedAt": "2026-05-14T23:25:38.974Z"
+    },
+    "halpme": {
+      "source": "halpme-sh/halpme",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/halpme-sh/halpme.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "2ea5687ff26e21bf85516121b94493483c6d5cf1",
+      "installedAt": "2026-06-25T22:32:24.469Z",
+      "updatedAt": "2026-06-25T22:32:24.469Z"
     }
   },
   "dismissed": {
@@ -26,17 +35,17 @@
   "lastSelectedAgents": [
     "amp",
     "antigravity",
+    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
     "deepagents",
-    "dexto",
-    "firebender",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kimi-code-cli",
     "opencode",
     "warp",
+    "zed",
     "claude-code"
   ]
 }

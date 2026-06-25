@@ -46,7 +46,6 @@ Your gitconfig is opinionated. Here's what it does for you automatically:
 | Checkout | `gco branch-name` |
 | New branch | `gcb new-feature` |
 | Stage all + commit | `gac "feat: ..."` |
-| Copy branch name | `gcopy` |
 
 **Undo things safely:**
 
@@ -72,7 +71,7 @@ yours | original | theirs. The original helps you understand intent.
 ---
 
 ### Making a Commit
-<!-- halpme: commit | Conventional Commits via gc (interactive) or gac (fast) -->
+<!-- halpme: commit | Conventional Commits via gcz (Commitizen) or gac (fast) -->
 
 All commits must follow **Conventional Commits** format.
 A `commit-msg` hook enforces this globally — bad messages are rejected.
@@ -93,14 +92,16 @@ A `commit-msg` hook enforces this globally — bad messages are rejected.
 **The two commit paths:**
 
 ```
-gc                        # interactive Commitizen prompt — use this to build the habit
+gcz                       # interactive Commitizen prompt (git cz) — use this to build the habit
 gac "feat(ui): add dark mode toggle"   # fast path when you already know the format
 ```
+
+> `gc` is oh-my-zsh's `git commit` — opens your editor with the `.gitmessage` template. Use `gcz` for the full interactive Commitizen CLI.
 
 **Workflow — interactive commit:**
 ```
 gapa                      # stage selectively (git add --patch)
-gc                        # launches Commitizen: pick type → scope → subject → body
+gcz                       # launches Commitizen: pick type → scope → subject → body
 gp                        # push
 ```
 
