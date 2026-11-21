@@ -6,6 +6,8 @@ brew "awscli"
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Bash Automated Testing System
+brew "bats-core"
 # Arbitrary precision numeric processing language
 brew "bc"
 # Cross-platform make
@@ -60,6 +62,8 @@ brew "mise"
 brew "mkcert"
 # Deep clean and optimize your Mac
 brew "mole"
+# Cross platform, open source .NET development framework
+brew "mono"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Retrieves currently playing media, and simulates media actions
@@ -127,6 +131,8 @@ cask "stats"
 cask "synology-drive"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
+# JDK from the Eclipse Foundation (Adoptium)
+cask "temurin"
 # Window manager
 cask "tiles"
 # Open-source code editor
@@ -191,6 +197,7 @@ vscode "mtxr.sqltools-driver-mysql"
 vscode "mtxr.sqltools-driver-sqlite"
 vscode "oderwat.indent-rainbow"
 vscode "openai.chatgpt"
+vscode "openai.codex-audio"
 vscode "pkief.material-icon-theme"
 vscode "poorchop.theme-darktooth"
 vscode "prisma.prisma"
@@ -207,3 +214,4 @@ go "github.com/bootdotdev/bootdev"
 cargo "tree-sitter-cli"
 npm "@openai/codex"
 npm "corepack"
+npm "csv2bind"
