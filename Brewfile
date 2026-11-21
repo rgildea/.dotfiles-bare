@@ -1,5 +1,7 @@
 tap "1password/tap", trusted: true
 tap "cirruslabs/cli", trusted: true
+# Flexible, feature-rich Zsh plugin manager
+brew "antidote"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter

@@ -1,48 +1,15 @@
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-ZSH_THEME=""  # Prompt handled by Starship
-
-# update automatically without asking
-zstyle ':omz:update' mode auto
-
-COMPLETION_WAITING_DOTS="true"
-
-export HISTFILE=~/.zsh_history                         # Set history file location
-export HISTSIZE=100000                                 # More history in memory
-export SAVEHIST=100000                                 # More history on disk
-setopt INC_APPEND_HISTORY                              # Append history incrementally
-setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
-
-# OMZ must not call compinit — we handle it explicitly below
-skip_global_compinit=1
-ZSH_DISABLE_COMPFIX=true
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/repos/oh-my-zsh/custom
+export HISTFILE=~/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
 
 # fpath entries must be added before compinit runs
 fpath=($HOME/.docker/completions $fpath)
 
-plugins=(
-	1password
-	alias-finder
-	aliases
-	git
-	colored-man-pages
-	colorize
-	pip
-	brew
-	copyfile
-	macos
-	tldr
-)
-
-source $ZSH/oh-my-zsh.sh
+# Antidote plugin manager
+source ${HOMEBREW_PREFIX:-/opt/homebrew}/opt/antidote/share/antidote/antidote.zsh
+antidote load
 
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
@@ -61,23 +28,19 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
 
-# Remove gitk aliases from oh-my-zsh git plugin (gitk not installed on macOS)
-unalias gk gke 2>/dev/null
-
 # Aliases
 alias zshconfig="e ~/.zshrc"
-alias ohmyzsh="e ~/.oh-my-zsh"
 
 source $HOME/.aliases.zsh
 
 # custom functions (thanks Kent C. Dodds)
 killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
 
-#Set up alias-finder
-zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
-zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
-zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
-zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
+# alias-finder config
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' longer yes
+zstyle ':omz:plugins:alias-finder' exact yes
+zstyle ':omz:plugins:alias-finder' cheaper yes
 
 _brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
 [[ -f "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
