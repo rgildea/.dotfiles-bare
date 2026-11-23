@@ -12,6 +12,8 @@ autoload -U compinit && compinit -u
 
 # Antidote plugin manager — static bundle avoids process substitution issues on macOS
 source ${HOMEBREW_PREFIX:-/opt/homebrew}/opt/antidote/share/antidote/antidote.zsh
+# OMZ plugins reference $ZSH to find their own paths — point it at antidote's cache
+export ZSH=${ANTIDOTE_HOME:-${XDG_CACHE_HOME:-$HOME/.cache}/antidote}/github.com/ohmyzsh/ohmyzsh
 zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 zsh_plugins_bundle=${ZDOTDIR:-$HOME}/.zsh_plugins.zsh
 if [[ ! -f $zsh_plugins_bundle || $zsh_plugins -nt $zsh_plugins_bundle ]]; then
