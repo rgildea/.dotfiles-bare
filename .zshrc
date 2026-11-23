@@ -10,9 +10,15 @@ fpath=($HOME/.docker/completions $fpath)
 # compinit must run before plugins that call compdef
 autoload -U compinit && compinit -u
 
-# Antidote plugin manager
+# Antidote plugin manager — static bundle avoids process substitution issues on macOS
 source ${HOMEBREW_PREFIX:-/opt/homebrew}/opt/antidote/share/antidote/antidote.zsh
-antidote load
+zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins.txt
+zsh_plugins_bundle=${ZDOTDIR:-$HOME}/.zsh_plugins.zsh
+if [[ ! -f $zsh_plugins_bundle || $zsh_plugins -nt $zsh_plugins_bundle ]]; then
+  antidote bundle < $zsh_plugins >| $zsh_plugins_bundle
+fi
+source $zsh_plugins_bundle
+unset zsh_plugins zsh_plugins_bundle
 
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
