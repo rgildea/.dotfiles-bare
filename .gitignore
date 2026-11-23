@@ -192,3 +192,6 @@ dotfiles.config.zsh
 # iTerm2 shell integration (auto-generated per machine — install via iTerm2 menu)
 .iterm2_shell_integration.zsh
 .iterm2/
+
+# Antidote static bundle (generated from .zsh_plugins.txt — do not commit)
+.zsh_plugins.zsh
