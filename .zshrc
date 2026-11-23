@@ -7,6 +7,9 @@ setopt HIST_IGNORE_ALL_DUPS
 # fpath entries must be added before compinit runs
 fpath=($HOME/.docker/completions $fpath)
 
+# compinit must run before plugins that call compdef
+autoload -U compinit && compinit -u
+
 # Antidote plugin manager
 source ${HOMEBREW_PREFIX:-/opt/homebrew}/opt/antidote/share/antidote/antidote.zsh
 antidote load
@@ -46,7 +49,6 @@ _brew_share="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
 [[ -f "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$_brew_share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 [[ -f "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$_brew_share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 (( $+widgets[autosuggest-accept] )) && bindkey '^ ' autosuggest-accept
-autoload -U compinit && compinit -u
 # fzf-tab must be sourced after compinit, replaces the default completion menu with fzf
 [[ -f "$HOME/repos/fzf-tab/fzf-tab.plugin.zsh" ]] && source "$HOME/repos/fzf-tab/fzf-tab.plugin.zsh"
 unset _brew_share
