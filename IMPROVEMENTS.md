@@ -18,7 +18,4 @@ Items identified during review, ordered roughly by ROI.
 - [x] **Alfred → Raycast** — Raycast is free, more extensible, where the developer community has moved.
 - [x] **Powerlevel10k → Starship** — Starship is cross-shell, written in Rust, actively maintained, no instant prompt needed.
 - [x] **`zsh-autocomplete` → `fzf-tab`** — fzf-tab routes completions through fzf without compinit ownership issues.
-
-## To Do
-
-- [ ] **Oh My Zsh → sheldon or zinit** — OMZ is the main source of shell startup latency. A lightweight plugin manager with just the plugins you actually use would be noticeably faster. Real time investment to migrate.
+- [x] **Oh My Zsh → Antidote** — Same plugins via ohmyzsh/ohmyzsh path syntax, without the framework overhead. PR #12.
