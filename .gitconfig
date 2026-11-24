@@ -16,13 +16,14 @@
 [pull]
         rebase = true
 [push]
-        autoSetupRemote = true
+	autoSetupRemote = true
 [fetch]
         prune = true
 [rebase]
         autoSquash = true
 [branch]
         autoSetupRebase = always
+	autoSetupMerge = always
 [log]
         abbrevCommit = true
         decorate = auto
